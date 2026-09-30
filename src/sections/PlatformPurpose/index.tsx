@@ -6,14 +6,38 @@ import { BrandIconPlaceholder } from "@/components/ui/BrandIconPlaceholder";
 
 export default function PlatformPurpose() {
   return (
-    <section className="section-gap" style={{ backgroundColor: "var(--cream-deep)", position: "relative" }}>
-      <div className="container">
+    <section
+      id="a-plataforma"
+      className="section-gap"
+      style={{
+        backgroundColor: "var(--cream-deep)",
+        position: "relative",
+        paddingTop: "clamp(6rem, 10vh, 9rem)",
+        overflow: "hidden",
+      }}
+    >
+      {/* Transição em degradê suave que elimina o corte/linha com o fundo escuro do topo */}
+      <div
+        aria-hidden="true"
+        style={{
+          position: "absolute",
+          top: 0,
+          left: 0,
+          right: 0,
+          height: "clamp(140px, 20vh, 240px)",
+          background: "linear-gradient(to bottom, var(--ink) 0%, rgba(13, 12, 10, 0.9) 25%, rgba(40, 34, 26, 0.6) 55%, rgba(244, 239, 228, 0.25) 85%, var(--cream-deep) 100%)",
+          pointerEvents: "none",
+          zIndex: 1,
+        }}
+      />
+
+      <div className="container" style={{ position: "relative", zIndex: 2 }}>
         <SectionReveal>
           <div style={{ display: "flex", flexWrap: "wrap", gap: "clamp(2rem, 5vw, 4rem)", alignItems: "center" }}>
             
             {/* LEFT Column (Text) */}
             <div style={{ flex: "1 1 500px", minWidth: 0, width: "100%" }}>
-              <span className="text-label font-sans" style={{ color: "var(--gold)", textTransform: "uppercase", fontSize: "0.75rem", letterSpacing: "0.1em" }}>
+              <span className="text-label font-sans" style={{ color: "var(--earth-1)", textTransform: "uppercase", fontSize: "0.75rem", letterSpacing: "0.14em", fontWeight: 700 }}>
                 A Plataforma
               </span>
               
@@ -31,7 +55,7 @@ export default function PlatformPurpose() {
                 Esta plataforma nasceu da experiência real com equinos, do Haras Nossa Senhora Aparecida, e do desejo de compartilhar esse conhecimento de forma acessível, séria e profissional.
               </p>
               
-              <Link href="/nossa-historia" className="font-sans" style={{ color: "var(--earth-1)", fontWeight: 500, fontSize: "0.75rem", letterSpacing: "0.12em", textDecoration: "none", textTransform: "uppercase", display: "inline-flex", alignItems: "center", gap: "0.4rem" }}>
+              <Link href="/nossa-historia" className="font-sans" style={{ color: "var(--earth-1)", fontWeight: 600, fontSize: "0.75rem", letterSpacing: "0.12em", textDecoration: "none", textTransform: "uppercase", display: "inline-flex", alignItems: "center", gap: "0.4rem" }}>
                 <span>Nossa história completa</span>
                 <span aria-hidden="true">→</span>
               </Link>

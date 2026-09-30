@@ -349,14 +349,15 @@ export default function Hero() {
       </div>
 
       {/* ============================================================
-          4. FAIXA DE MÓDULOS DESTAQUES SURGINDO NA BASE DO HERO (COM ÍCONE MUNDO DOS CAVALOS)
+          4. FAIXA DE MÓDULOS DESTAQUES SURGINDO NA BASE DO HERO (POSTERS ESTILO STREAMING)
           ============================================================ */}
       <div
         style={{
           position: "relative",
           zIndex: 3,
           width: "100%",
-          paddingBottom: "1.25rem",
+          paddingBottom: "2.5rem",
+          marginTop: "2rem",
         }}
       >
         <div
@@ -368,31 +369,36 @@ export default function Hero() {
           }}
         >
           {/* Título do Trilho de Conteúdo */}
-          <div style={{ marginBottom: "0.75rem", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+          <div style={{ marginBottom: "0.85rem", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
             <span
               className="font-sans"
               style={{
-                fontSize: "0.75rem",
-                fontWeight: 700,
-                letterSpacing: "0.14em",
+                fontSize: "0.78rem",
+                fontWeight: 800,
+                letterSpacing: "0.16em",
                 textTransform: "uppercase",
-                color: "var(--off-white)",
+                color: "var(--gold-light)",
+                display: "flex",
+                alignItems: "center",
+                gap: "0.5rem",
               }}
             >
-              POPULARES NO MUNDO DOS CAVALOS
+              <span style={{ display: "inline-block", width: "8px", height: "8px", borderRadius: "50%", backgroundColor: "var(--gold)" }} />
+              MÓDULOS DA PLATAFORMA
             </span>
           </div>
 
-          {/* FAIXA HORIZONTAL DE CAPAS COM ÍCONE MUNDO DOS CAVALOS */}
+          {/* FAIXA HORIZONTAL DE POSTERS VERTICAIS (TEXTO SOBRE DEGRADÊ + IMAGEM DE FUNDO) */}
           <div
             style={{
               display: "flex",
-              gap: "1rem",
+              gap: "1.15rem",
               overflowX: "auto",
               scrollSnapType: "x mandatory",
               WebkitOverflowScrolling: "touch",
               scrollbarWidth: "none",
-              paddingBottom: "0.5rem",
+              paddingBottom: "0.85rem",
+              paddingTop: "0.3rem",
             }}
             className="no-scrollbar"
           >
@@ -401,36 +407,103 @@ export default function Hero() {
                 key={mod.id}
                 href="#modulos"
                 style={{
-                  flex: "0 0 clamp(160px, 22vw, 220px)",
+                  flex: "0 0 clamp(160px, 20vw, 210px)",
                   scrollSnapAlign: "start",
-                  aspectRatio: "16/9",
+                  aspectRatio: "2/3",
                   position: "relative",
-                  borderRadius: "4px",
+                  borderRadius: "6px",
                   overflow: "hidden",
-                  border: "1px solid rgba(196, 169, 110, 0.25)",
-                  backgroundColor: "var(--ink-soft)",
+                  border: "1px solid rgba(196, 169, 110, 0.3)",
+                  backgroundColor: "#151310",
                   textDecoration: "none",
-                  boxShadow: "0 6px 18px rgba(0,0,0,0.5)",
-                  transition: "transform 0.3s ease, border-color 0.3s ease",
+                  boxShadow: "0 10px 25px rgba(0,0,0,0.65)",
+                  transition: "transform 0.35 ease, border-color 0.35s ease, box-shadow 0.35s ease",
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "space-between",
+                  padding: "0.85rem",
                 }}
                 className="hero-catalog-card"
               >
-                <BrandIconPlaceholder label={`MÓDULO 0${mod.number}`} aspectRatio="16/9" />
+                {/* Layer 1: Imagem de Fundo (Pronta para substituição futura) */}
                 <div
                   style={{
                     position: "absolute",
                     inset: 0,
-                    background: "linear-gradient(to top, rgba(13,12,10,0.95) 0%, transparent 65%)",
-                    pointerEvents: "none",
+                    backgroundImage: `url(${mod.image})`,
+                    backgroundSize: "cover",
+                    backgroundPosition: "center",
+                    opacity: 0.65,
+                    transition: "transform 0.5s ease, opacity 0.5s ease",
+                    zIndex: 0,
                   }}
+                  className="card-bg-image"
                 />
+
+                {/* Layer 2: Degradê Escuro por cima da imagem para dar contraste e legibilidade perfeita ao texto */}
                 <div
                   style={{
                     position: "absolute",
-                    bottom: "0.5rem",
-                    left: "0.6rem",
-                    right: "0.6rem",
-                    zIndex: 3,
+                    inset: 0,
+                    background: "linear-gradient(to top, rgba(13,12,10,0.98) 0%, rgba(13,12,10,0.75) 45%, rgba(13,12,10,0.3) 80%, rgba(13,12,10,0.4) 100%)",
+                    zIndex: 1,
+                    pointerEvents: "none",
+                  }}
+                />
+
+                {/* Layer 3 Top: Emblema / Marca no Canto Superior */}
+                <div
+                  style={{
+                    position: "relative",
+                    zIndex: 2,
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "space-between",
+                  }}
+                >
+                  <span
+                    style={{
+                      fontFamily: "'Inter', sans-serif",
+                      fontSize: "0.55rem",
+                      fontWeight: 800,
+                      letterSpacing: "0.15em",
+                      color: "var(--gold-light)",
+                      backgroundColor: "rgba(13,12,10,0.75)",
+                      backdropFilter: "blur(4px)",
+                      padding: "0.2rem 0.45rem",
+                      borderRadius: "3px",
+                      border: "1px solid rgba(196,169,110,0.3)",
+                      textTransform: "uppercase",
+                    }}
+                  >
+                    MÓDULO {mod.number}
+                  </span>
+                  
+                  {/* Ícone Vetorial sutil no topo */}
+                  <div
+                    style={{
+                      width: "22px",
+                      height: "22px",
+                      borderRadius: "50%",
+                      border: "1px solid rgba(196, 169, 110, 0.4)",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      backgroundColor: "rgba(13,12,10,0.6)",
+                    }}
+                  >
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--gold-light)" strokeWidth="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+                  </div>
+                </div>
+
+                {/* Layer 3 Bottom: Texto Principal sobre o Degradê */}
+                <div
+                  style={{
+                    position: "relative",
+                    zIndex: 2,
+                    display: "flex",
+                    flexDirection: "column",
+                    gap: "0.3rem",
                   }}
                 >
                   <span
@@ -438,27 +511,44 @@ export default function Hero() {
                       fontFamily: "'Inter', sans-serif",
                       fontSize: "0.52rem",
                       fontWeight: 700,
-                      letterSpacing: "0.12em",
-                      color: "var(--gold-light)",
+                      letterSpacing: "0.2em",
+                      color: "var(--gold)",
                       textTransform: "uppercase",
-                      display: "block",
                     }}
                   >
-                    MÓDULO 0{mod.number}
+                    MUNDO DOS CAVALOS
                   </span>
-                  <span
+
+                  <h3
                     style={{
                       fontFamily: "'Inter', sans-serif",
-                      fontSize: "0.68rem",
-                      fontWeight: 600,
+                      fontSize: "clamp(0.85rem, 1.1vw, 1.05rem)",
+                      fontWeight: 800,
+                      lineHeight: 1.2,
                       color: "var(--off-white)",
-                      display: "block",
-                      whiteSpace: "nowrap",
-                      overflow: "hidden",
-                      textOverflow: "ellipsis",
+                      margin: 0,
+                      textTransform: "uppercase",
+                      letterSpacing: "-0.01em",
+                      textShadow: "0 2px 8px rgba(0,0,0,0.9)",
                     }}
                   >
                     {mod.title}
+                  </h3>
+
+                  <span
+                    style={{
+                      fontFamily: "'Inter', sans-serif",
+                      fontSize: "0.58rem",
+                      fontWeight: 400,
+                      color: "rgba(244,239,228,0.75)",
+                      lineHeight: 1.3,
+                      display: "-webkit-box",
+                      WebkitLineClamp: 2,
+                      WebkitBoxOrient: "vertical",
+                      overflow: "hidden",
+                    }}
+                  >
+                    {mod.description}
                   </span>
                 </div>
               </a>
@@ -467,13 +557,32 @@ export default function Hero() {
         </div>
       </div>
 
+      {/* Degradê de Transição na Base do Hero para Suavizar com a próxima seção */}
+      <div
+        aria-hidden="true"
+        style={{
+          position: "absolute",
+          bottom: 0,
+          left: 0,
+          right: 0,
+          height: "80px",
+          background: "linear-gradient(to bottom, transparent 0%, rgba(13,12,10,0.6) 50%, var(--ink) 100%)",
+          zIndex: 4,
+          pointerEvents: "none",
+        }}
+      />
+
       {/* Estilos específicos do Layout Streaming & Ajuste do Vídeo Widescreen */}
       <style dangerouslySetInnerHTML={{__html: `
         .no-scrollbar::-webkit-scrollbar { display: none; }
         .hero-catalog-card:hover {
-          transform: scale(1.05);
-          border-color: var(--gold-light);
-          z-index: 10;
+          transform: translateY(-6px) scale(1.03);
+          border-color: var(--gold-light) !important;
+          box-shadow: 0 15px 35px rgba(0,0,0,0.85) !important;
+        }
+        .hero-catalog-card:hover .card-bg-image {
+          transform: scale(1.08);
+          opacity: 0.85 !important;
         }
 
         /* Enquadramento do Vídeo Widescreen (Não-Story) */
