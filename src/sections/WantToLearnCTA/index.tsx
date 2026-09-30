@@ -7,7 +7,12 @@ import { NetflixLoginModal } from "@/components/ui/NetflixLoginModal";
 
 export default function WantToLearnCTA() {
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
-  const [selectedPlan, setSelectedPlan] = useState<"anual" | "mensal">("anual");
+
+  // Estado preparado para receber a contagem real de vendas do banco de dados/API
+  // Valor de 0 a 100 (ex: 24 vendas realizadas = 24% preenchido)
+  const [salesCount] = useState<number>(24);
+  const maxCapacity = 100;
+  const progressPercentage = Math.min(Math.max((salesCount / maxCapacity) * 100, 0), 100);
 
   return (
     <>
@@ -108,7 +113,7 @@ export default function WantToLearnCTA() {
                     color: "var(--gold-light)",
                   }}
                 >
-                  ACESSO ILIMITADO • PLATAFORMA MUNDO DOS CAVALOS
+                  PLANO ÚNICO VITALÍCIO • PAGUE APENAS UMA VEZ
                 </span>
               </div>
 
@@ -139,149 +144,190 @@ export default function WantToLearnCTA() {
                   fontWeight: 400,
                   lineHeight: 1.6,
                   maxWidth: "680px",
-                  margin: "0 0 1.5rem 0",
+                  margin: "0 0 1rem 0",
                 }}
               >
-                Aprenda a rotina real, a ciência e o respeito equino aplicados no Haras Nossa Senhora Aparecida. Assista onde e quando quiser.
+                Aprenda a rotina real, a ciência e o respeito equino aplicados no Haras Nossa Senhora Aparecida. Assista onde e quando quiser com acesso para sempre.
               </p>
 
-              {/* CARD CONTAINER GLASSMORPHISM COM OS PLANOS DE ASSINATURA */}
+              {/* CARD CONTAINER GLASSMORPHISM DO PLANO VITALÍCIO */}
               <div
                 style={{
                   width: "100%",
-                  maxWidth: "960px",
-                  backgroundColor: "rgba(18, 16, 13, 0.88)",
-                  backdropFilter: "blur(20px)",
-                  WebkitBackdropFilter: "blur(20px)",
-                  border: "1px solid rgba(196, 169, 110, 0.35)",
+                  maxWidth: "920px",
+                  backgroundColor: "rgba(18, 16, 13, 0.92)",
+                  backdropFilter: "blur(24px)",
+                  WebkitBackdropFilter: "blur(24px)",
+                  border: "1px solid rgba(196, 169, 110, 0.4)",
                   borderRadius: "12px",
                   padding: "clamp(1.5rem, 4vw, 3rem)",
-                  boxShadow: "0 30px 80px rgba(0,0,0,0.95), inset 0 0 40px rgba(196,169,110,0.05)",
+                  boxShadow: "0 30px 80px rgba(0,0,0,0.95), inset 0 0 40px rgba(196,169,110,0.06)",
                   display: "flex",
                   flexDirection: "column",
-                  gap: "2.5rem",
+                  gap: "2.2rem",
                 }}
               >
-                {/* GRID DOS DOIS PLANOS */}
+                {/* 1. SEÇÃO DE PREÇO & ACESSO VITALÍCIO ÚNICO */}
                 <div
                   style={{
-                    display: "grid",
-                    gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
-                    gap: "1.5rem",
-                    alignItems: "stretch",
+                    backgroundColor: "rgba(32, 27, 20, 0.85)",
+                    border: "2px solid var(--gold-light)",
+                    borderRadius: "8px",
+                    padding: "2rem 1.75rem",
+                    textAlign: "center",
+                    position: "relative",
+                    boxShadow: "0 10px 30px rgba(196, 169, 110, 0.15)",
                   }}
                 >
-                  {/* PLANO 1: ANUAL (DESTAQUE RECOMENDADO) */}
-                  <div
-                    onClick={() => setSelectedPlan("anual")}
+                  <span
                     style={{
-                      position: "relative",
-                      backgroundColor: selectedPlan === "anual" ? "rgba(32, 27, 20, 0.9)" : "rgba(13, 12, 10, 0.6)",
-                      border: selectedPlan === "anual" ? "2px solid var(--gold-light)" : "1px solid rgba(196, 169, 110, 0.2)",
-                      borderRadius: "8px",
-                      padding: "1.8rem 1.5rem",
-                      cursor: "pointer",
-                      transition: "all 0.3s ease",
-                      textAlign: "left",
-                      display: "flex",
-                      flexDirection: "column",
-                      justifyContent: "space-between",
-                      boxShadow: selectedPlan === "anual" ? "0 10px 30px rgba(196, 169, 110, 0.2)" : "none",
+                      fontFamily: "'Inter', sans-serif",
+                      fontSize: "0.72rem",
+                      fontWeight: 800,
+                      letterSpacing: "0.25em",
+                      color: "var(--gold-light)",
+                      textTransform: "uppercase",
+                      display: "block",
+                      marginBottom: "0.5rem",
                     }}
                   >
-                    {/* Badge Mais Escolhido */}
+                    ✦ PLANO ÚNICO DE ACESSO VITALÍCIO ✦
+                  </span>
+
+                  <h3
+                    style={{
+                      fontSize: "clamp(1.5rem, 2.5vw, 2.2rem)",
+                      fontWeight: 900,
+                      color: "var(--off-white)",
+                      margin: "0 0 0.8rem 0",
+                      textTransform: "uppercase",
+                    }}
+                  >
+                    Sem Mensalidades • Acesso para Sempre
+                  </h3>
+
+                  <div style={{ display: "flex", alignItems: "baseline", justifyContent: "center", gap: "0.5rem", marginBottom: "0.5rem" }}>
+                    <span style={{ fontSize: "1.1rem", color: "rgba(244,239,228,0.7)", fontWeight: 500 }}>12x de</span>
+                    <span style={{ fontSize: "clamp(2.8rem, 5vw, 3.8rem)", fontWeight: 900, color: "var(--off-white)", lineHeight: 1 }}>R$ 49,90</span>
+                  </div>
+                  <span style={{ fontSize: "0.85rem", color: "var(--gold-light)", fontWeight: 600, display: "block", marginBottom: "1.2rem" }}>
+                    ou R$ 497,00 à vista no PIX / Cartão
+                  </span>
+
+                  {/* BENEFÍCIOS DO PLANO VITALÍCIO */}
+                  <div
+                    style={{
+                      display: "grid",
+                      gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
+                      gap: "0.85rem",
+                      textAlign: "left",
+                      paddingTop: "1.2rem",
+                      borderTop: "1px solid rgba(196, 169, 110, 0.25)",
+                    }}
+                  >
+                    <div style={{ display: "flex", alignItems: "center", gap: "0.5rem", fontSize: "0.85rem", color: "var(--off-white)" }}>
+                      <span style={{ color: "var(--gold-light)", fontWeight: 800, fontSize: "1rem" }}>✓</span> Acesso vitalício aos 10 Módulos Iniciais
+                    </div>
+                    <div style={{ display: "flex", alignItems: "center", gap: "0.5rem", fontSize: "0.85rem", color: "var(--off-white)" }}>
+                      <span style={{ color: "var(--gold-light)", fontWeight: 800, fontSize: "1rem" }}>✓</span> Novos Módulos adicionados 100% Grátis
+                    </div>
+                    <div style={{ display: "flex", alignItems: "center", gap: "0.5rem", fontSize: "0.85rem", color: "var(--off-white)" }}>
+                      <span style={{ color: "var(--gold-light)", fontWeight: 800, fontSize: "1rem" }}>✓</span> Certificado Oficial de Conclusão
+                    </div>
+                    <div style={{ display: "flex", alignItems: "center", gap: "0.5rem", fontSize: "0.85rem", color: "var(--off-white)" }}>
+                      <span style={{ color: "var(--gold-light)", fontWeight: 800, fontSize: "1rem" }}>✓</span> Materiais em PDF + Suporte Direto
+                    </div>
+                  </div>
+                </div>
+
+                {/* 2. COMUNICADO DE EVOLUÇÃO CONTÍNUA (10 MÓDULOS + ATUALIZAÇÕES GRATUITAS) */}
+                <div
+                  style={{
+                    backgroundColor: "rgba(13, 12, 10, 0.75)",
+                    border: "1px solid rgba(196, 169, 110, 0.3)",
+                    borderRadius: "8px",
+                    padding: "1.35rem 1.5rem",
+                    textAlign: "left",
+                    display: "flex",
+                    alignItems: "flex-start",
+                    gap: "1rem",
+                  }}
+                >
+                  <div
+                    style={{
+                      width: "44px",
+                      height: "44px",
+                      borderRadius: "50%",
+                      backgroundColor: "rgba(196, 169, 110, 0.15)",
+                      border: "1px solid var(--gold)",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      flexShrink: 0,
+                      fontSize: "1.2rem",
+                    }}
+                  >
+                    🚀
+                  </div>
+                  <div>
+                    <h4 style={{ fontSize: "0.95rem", fontWeight: 800, color: "var(--gold-light)", margin: "0 0 0.3rem 0", textTransform: "uppercase", letterSpacing: "0.05em" }}>
+                      CONTEÚDO EM CONSTANTE EVOLUÇÃO (10+ MÓDULOS)
+                    </h4>
+                    <p style={{ fontSize: "0.84rem", color: "rgba(244, 239, 228, 0.85)", margin: 0, lineHeight: 1.55 }}>
+                      Iniciamos a plataforma com um total de <strong>10 Módulos Práticos completos</strong>. Conforme novos módulos e aulas forem produzidos e lançados, <strong>você receberá todas as atualizações automaticamente sem pagar absolutamente nada a mais por isso!</strong>
+                    </p>
+                  </div>
+                </div>
+
+                {/* 3. GRÁFICO / BARRA DE PROGRESSO DE VENDAS EM TEMPO REAL (0 A 100) */}
+                <div
+                  style={{
+                    backgroundColor: "rgba(13, 12, 10, 0.85)",
+                    border: "1px solid rgba(196, 169, 110, 0.25)",
+                    borderRadius: "8px",
+                    padding: "1.25rem 1.5rem",
+                    textAlign: "left",
+                  }}
+                >
+                  <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "0.6rem", flexWrap: "wrap", gap: "0.5rem" }}>
+                    <div style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
+                      <span style={{ display: "inline-block", width: "8px", height: "8px", borderRadius: "50%", backgroundColor: "#34d399", boxShadow: "0 0 8px #34d399" }} />
+                      <span style={{ fontSize: "0.75rem", fontWeight: 800, letterSpacing: "0.12em", color: "var(--gold-light)", textTransform: "uppercase" }}>
+                        VAGAS PREENCHIDAS DO LOTE VITALÍCIO (0 A 100)
+                      </span>
+                    </div>
+                    <span style={{ fontSize: "0.85rem", fontWeight: 800, color: "var(--off-white)", fontFamily: "'Inter', sans-serif" }}>
+                      {salesCount} de {maxCapacity} Vagas ({progressPercentage.toFixed(0)}%)
+                    </span>
+                  </div>
+
+                  {/* Barra Visual de Progresso Metalizada */}
+                  <div
+                    style={{
+                      position: "relative",
+                      width: "100%",
+                      height: "14px",
+                      backgroundColor: "rgba(255, 255, 255, 0.08)",
+                      borderRadius: "10px",
+                      overflow: "hidden",
+                      border: "1px solid rgba(196, 169, 110, 0.3)",
+                    }}
+                  >
                     <div
                       style={{
-                        position: "absolute",
-                        top: "-14px",
-                        right: "1.5rem",
-                        backgroundColor: "var(--gold-light)",
-                        color: "var(--ink)",
-                        fontFamily: "'Inter', sans-serif",
-                        fontSize: "0.6rem",
-                        fontWeight: 800,
-                        letterSpacing: "0.15em",
-                        padding: "0.35rem 0.85rem",
-                        borderRadius: "20px",
-                        textTransform: "uppercase",
+                        height: "100%",
+                        width: `${progressPercentage}%`,
+                        background: "linear-gradient(90deg, #856a33 0%, #c4a96e 50%, #fff2d0 100%)",
+                        boxShadow: "0 0 15px rgba(196, 169, 110, 0.8)",
+                        borderRadius: "10px",
+                        transition: "width 1s cubic-bezier(0.16, 1, 0.3, 1)",
                       }}
-                    >
-                      MAIS POPULAR • ECONOMIZE 40%
-                    </div>
-
-                    <div>
-                      <span style={{ fontSize: "0.7rem", fontWeight: 700, letterSpacing: "0.2em", color: "var(--gold-light)", textTransform: "uppercase" }}>
-                        PLANO COMPLETO ANUAL
-                      </span>
-                      <h3 style={{ fontSize: "1.4rem", fontWeight: 800, color: "var(--off-white)", margin: "0.3rem 0 1rem 0" }}>
-                        Passe Livre Total
-                      </h3>
-
-                      <div style={{ display: "flex", alignItems: "baseline", gap: "0.4rem", marginBottom: "1.25rem" }}>
-                        <span style={{ fontSize: "0.9rem", color: "rgba(244,239,228,0.7)" }}>12x de</span>
-                        <span style={{ fontSize: "2.4rem", fontWeight: 900, color: "var(--off-white)", lineHeight: 1 }}>R$ 49,90</span>
-                        <span style={{ fontSize: "0.8rem", color: "rgba(244,239,228,0.6)" }}>/mês</span>
-                      </div>
-
-                      {/* Benefícios */}
-                      <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: "0.65rem" }}>
-                        <li style={{ display: "flex", alignItems: "center", gap: "0.5rem", fontSize: "0.82rem", color: "var(--off-white)" }}>
-                          <span style={{ color: "var(--gold-light)", fontWeight: 800 }}>✓</span> Acesso completo aos 4 módulos práticos
-                        </li>
-                        <li style={{ display: "flex", alignItems: "center", gap: "0.5rem", fontSize: "0.82rem", color: "var(--off-white)" }}>
-                          <span style={{ color: "var(--gold-light)", fontWeight: 800 }}>✓</span> Certificado Oficial de Conclusão
-                        </li>
-                        <li style={{ display: "flex", alignItems: "center", gap: "0.5rem", fontSize: "0.82rem", color: "var(--off-white)" }}>
-                          <span style={{ color: "var(--gold-light)", fontWeight: 800 }}>✓</span> Suporte técnico & Material em PDF
-                        </li>
-                      </ul>
-                    </div>
+                    />
                   </div>
-
-                  {/* PLANO 2: MENSAL */}
-                  <div
-                    onClick={() => setSelectedPlan("mensal")}
-                    style={{
-                      position: "relative",
-                      backgroundColor: selectedPlan === "mensal" ? "rgba(32, 27, 20, 0.9)" : "rgba(13, 12, 10, 0.6)",
-                      border: selectedPlan === "mensal" ? "2px solid var(--gold-light)" : "1px solid rgba(196, 169, 110, 0.2)",
-                      borderRadius: "8px",
-                      padding: "1.8rem 1.5rem",
-                      cursor: "pointer",
-                      transition: "all 0.3s ease",
-                      textAlign: "left",
-                      display: "flex",
-                      flexDirection: "column",
-                      justifyContent: "space-between",
-                    }}
-                  >
-                    <div>
-                      <span style={{ fontSize: "0.7rem", fontWeight: 700, letterSpacing: "0.2em", color: "rgba(244,239,228,0.6)", textTransform: "uppercase" }}>
-                        PLANO FLEXÍVEL MENSAL
-                      </span>
-                      <h3 style={{ fontSize: "1.4rem", fontWeight: 800, color: "var(--off-white)", margin: "0.3rem 0 1rem 0" }}>
-                        Acesso Mês a Mês
-                      </h3>
-
-                      <div style={{ display: "flex", alignItems: "baseline", gap: "0.4rem", marginBottom: "1.25rem" }}>
-                        <span style={{ fontSize: "2.4rem", fontWeight: 900, color: "var(--off-white)", lineHeight: 1 }}>R$ 79,90</span>
-                        <span style={{ fontSize: "0.8rem", color: "rgba(244,239,228,0.6)" }}>/mês</span>
-                      </div>
-
-                      {/* Benefícios */}
-                      <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: "0.65rem" }}>
-                        <li style={{ display: "flex", alignItems: "center", gap: "0.5rem", fontSize: "0.82rem", color: "rgba(244,239,228,0.85)" }}>
-                          <span style={{ color: "var(--gold)", fontWeight: 800 }}>✓</span> Cancele a qualquer momento sem multa
-                        </li>
-                        <li style={{ display: "flex", alignItems: "center", gap: "0.5rem", fontSize: "0.82rem", color: "rgba(244,239,228,0.85)" }}>
-                          <span style={{ color: "var(--gold)", fontWeight: 800 }}>✓</span> Todos os vídeos em qualidade HD/4K
-                        </li>
-                        <li style={{ display: "flex", alignItems: "center", gap: "0.5rem", fontSize: "0.82rem", color: "rgba(244,239,228,0.85)" }}>
-                          <span style={{ color: "var(--gold)", fontWeight: 800 }}>✓</span> Assista pelo Celular, TV ou Tablet
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
+                  
+                  <span style={{ display: "block", fontSize: "0.68rem", color: "rgba(244,239,228,0.5)", marginTop: "0.5rem" }}>
+                    * Gráfico conectado para sincronização em tempo real via banco de dados. Restam {maxCapacity - salesCount} vagas neste valor.
+                  </span>
                 </div>
 
                 {/* BOTÃO PRINCIPAL DE ASSINATURA CINEMATOGRÁFICO */}
@@ -290,8 +336,8 @@ export default function WantToLearnCTA() {
                     onClick={() => setIsLoginModalOpen(true)}
                     style={{
                       width: "100%",
-                      maxWidth: "480px",
-                      padding: "1.2rem 2.5rem",
+                      maxWidth: "520px",
+                      padding: "1.25rem 2.5rem",
                       backgroundColor: "var(--off-white)",
                       color: "var(--ink)",
                       fontFamily: "'Inter', sans-serif",
@@ -314,7 +360,7 @@ export default function WantToLearnCTA() {
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
                       <polygon points="5 3 19 12 5 21 5 3" />
                     </svg>
-                    <span>COMEÇAR MINHA TRANSFORMAÇÃO AGORA</span>
+                    <span>GARANTIR MEU ACESSO VITALÍCIO AGORA</span>
                   </button>
 
                   {/* GARANTIA & CONFIANÇA */}

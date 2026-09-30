@@ -408,6 +408,57 @@ export function NetflixLoginModal({ isOpen, onClose }: NetflixLoginModalProps) {
                     Assine agora.
                   </a>
                 </p>
+
+                {/* BANNER DO APP ANDROID */}
+                <div
+                  style={{
+                    marginTop: "0.75rem",
+                    padding: "0.85rem 1rem",
+                    backgroundColor: "rgba(13, 12, 10, 0.85)",
+                    border: "1px solid rgba(196, 169, 110, 0.3)",
+                    borderRadius: "6px",
+                    display: "flex",
+                    flexDirection: "column",
+                    gap: "0.4rem",
+                    textAlign: "left",
+                  }}
+                >
+                  <div style={{ display: "flex", alignItems: "center", gap: "0.4rem" }}>
+                    <span style={{ fontSize: "0.9rem" }}>📱</span>
+                    <span style={{ fontSize: "0.72rem", fontWeight: 700, color: "var(--gold-light)", letterSpacing: "0.08em", textTransform: "uppercase" }}>
+                      Você utiliza Android?
+                    </span>
+                  </div>
+                  <p style={{ fontSize: "0.7rem", color: "rgba(244,239,228,0.75)", margin: 0, lineHeight: 1.4 }}>
+                    Baixe nosso aplicativo oficial e assista a todo o conteúdo direto no seu dispositivo Android.
+                  </p>
+                  <button
+                    type="button"
+                    onClick={() => alert("O aplicativo Android está em fase final de homologação e o download estará disponível em breve!")}
+                    style={{
+                      marginTop: "0.2rem",
+                      backgroundColor: "rgba(196, 169, 110, 0.15)",
+                      border: "1px solid var(--gold-light)",
+                      color: "var(--gold-light)",
+                      fontFamily: "'Inter', sans-serif",
+                      fontSize: "0.65rem",
+                      fontWeight: 700,
+                      letterSpacing: "0.1em",
+                      textTransform: "uppercase",
+                      padding: "0.45rem 0.75rem",
+                      borderRadius: "3px",
+                      cursor: "pointer",
+                      display: "inline-flex",
+                      alignItems: "center",
+                      gap: "0.4rem",
+                      alignSelf: "flex-start",
+                      transition: "all 0.2s ease",
+                    }}
+                  >
+                    <span>BAIXAR APP ANDROID</span>
+                    <span>↓</span>
+                  </button>
+                </div>
               </form>
             </div>
           )}

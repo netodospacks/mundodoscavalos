@@ -346,37 +346,48 @@ export default function CourseModules() {
           </div>
         )}
 
-        {/* Card com Informações do Curso & Call-to-Action */}
+        {/* Card com Informações do Curso & Call-to-Action de Alto Padrão */}
         <SectionReveal type="up">
           <div
             id="inscreva-se"
             style={{
               marginTop: "clamp(4rem, 8vw, 6rem)",
-              backgroundColor: "var(--ink-soft)",
-              border: "1px solid rgba(157, 132, 82, 0.3)",
+              backgroundColor: "rgba(18, 16, 13, 0.92)",
+              backdropFilter: "blur(20px)",
+              WebkitBackdropFilter: "blur(20px)",
+              border: "1px solid rgba(196, 169, 110, 0.35)",
               padding: "clamp(2rem, 5vw, 4rem)",
               display: "flex",
               flexDirection: "column",
               gap: "2.5rem",
               alignItems: "center",
               textAlign: "center",
-              borderRadius: "2px",
+              borderRadius: "8px",
+              boxShadow: "0 25px 60px rgba(0,0,0,0.85), inset 0 0 30px rgba(196,169,110,0.04)",
             }}
           >
             <div>
               <span
                 className="text-label font-sans"
-                style={{ color: "var(--gold)", textTransform: "uppercase" }}
+                style={{
+                  color: "var(--gold-light)",
+                  textTransform: "uppercase",
+                  fontSize: "0.72rem",
+                  letterSpacing: "0.22em",
+                  fontWeight: 700,
+                  display: "block",
+                  marginBottom: "0.5rem",
+                }}
               >
-                QUERO TRANSFORMAR MEU MANEJO
+                ESPECIFICAÇÕES DA PLATAFORMA
               </span>
               <h3
                 className="font-serif"
                 style={{
                   color: "var(--off-white)",
-                  fontSize: "clamp(2rem, 4vw, 3.2rem)",
-                  fontWeight: 300,
-                  marginTop: "0.75rem",
+                  fontSize: "clamp(2rem, 4vw, 3.4rem)",
+                  fontWeight: 400,
+                  marginTop: "0.25rem",
                   marginBottom: "1rem",
                 }}
               >
@@ -385,52 +396,119 @@ export default function CourseModules() {
               <p
                 className="font-sans"
                 style={{
-                  color: "var(--stone-light)",
-                  maxWidth: "540px",
+                  color: "rgba(244,239,228,0.8)",
+                  maxWidth: "620px",
                   margin: "0 auto",
                   fontSize: "0.95rem",
                   fontWeight: 300,
+                  lineHeight: 1.6,
                 }}
               >
-                Acesso completo ao conteúdo, materiais complementares e
-                metodologia prática do Haras Nossa Senhora Aparecida.
+                Metodologia prática, embasada na rotina real e na ciência do Haras Nossa Senhora Aparecida. Assista de onde quiser com acesso para sempre.
               </p>
             </div>
 
-            {/* Linha Horizontal Compacta de Informações do Curso (Sem Empilhamento Vertical) */}
+            {/* Grid de Ficha Técnica de Cinema (4 Cards Especificações) */}
             <div
               style={{
-                display: "flex",
-                flexWrap: "nowrap",
-                alignItems: "center",
-                justifyContent: "center",
-                gap: "clamp(0.5rem, 3vw, 1.5rem)",
-                padding: "0.85rem clamp(0.75rem, 3vw, 2rem)",
-                backgroundColor: "rgba(13, 12, 10, 0.75)",
-                border: "1px solid rgba(196, 169, 110, 0.25)",
-                borderRadius: "2px",
+                display: "grid",
+                gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
+                gap: "1.25rem",
                 width: "100%",
-                maxWidth: "680px",
-                overflowX: "auto",
+                maxWidth: "920px",
+                textAlign: "left",
               }}
             >
-              <div style={{ display: "flex", alignItems: "center", gap: "0.35rem", whiteSpace: "nowrap" }}>
-                <span className="font-sans" style={{ fontSize: "0.6rem", textTransform: "uppercase", letterSpacing: "0.12em", color: "var(--stone-light)" }}>Formato</span>
-                <span className="font-sans" style={{ fontSize: "0.75rem", fontWeight: 700, color: "var(--gold-light)" }}>CURSO PRÁTICO</span>
+              {/* Feature 1: Módulos & Evolução */}
+              <div
+                style={{
+                  backgroundColor: "rgba(13, 12, 10, 0.75)",
+                  border: "1px solid rgba(196, 169, 110, 0.25)",
+                  padding: "1.25rem 1.1rem",
+                  borderRadius: "6px",
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: "0.4rem",
+                }}
+              >
+                <span style={{ fontSize: "0.65rem", fontWeight: 700, letterSpacing: "0.18em", color: "var(--gold-light)", textTransform: "uppercase" }}>
+                  MÓDULOS & EVOLUÇÃO
+                </span>
+                <span style={{ fontSize: "1.05rem", fontWeight: 800, color: "var(--off-white)" }}>
+                  10+ Módulos Práticos
+                </span>
+                <span style={{ fontSize: "0.75rem", color: "rgba(244,239,228,0.7)", lineHeight: 1.4 }}>
+                  Início com 10 módulos. Novos conteúdos adicionados sem custo extra.
+                </span>
               </div>
 
-              <span style={{ color: "rgba(196, 169, 110, 0.35)", fontSize: "0.8rem" }}>|</span>
-
-              <div style={{ display: "flex", alignItems: "center", gap: "0.35rem", whiteSpace: "nowrap" }}>
-                <span className="font-sans" style={{ fontSize: "0.6rem", textTransform: "uppercase", letterSpacing: "0.12em", color: "var(--stone-light)" }}>Duração</span>
-                <span className="font-sans" style={{ fontSize: "0.75rem", fontWeight: 700, color: "var(--off-white)" }}>12 HORAS</span>
+              {/* Feature 2: Acesso Vitalício */}
+              <div
+                style={{
+                  backgroundColor: "rgba(13, 12, 10, 0.75)",
+                  border: "1px solid rgba(196, 169, 110, 0.25)",
+                  padding: "1.25rem 1.1rem",
+                  borderRadius: "6px",
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: "0.4rem",
+                }}
+              >
+                <span style={{ fontSize: "0.65rem", fontWeight: 700, letterSpacing: "0.18em", color: "var(--gold-light)", textTransform: "uppercase" }}>
+                  TIPO DE ACESSO
+                </span>
+                <span style={{ fontSize: "1.05rem", fontWeight: 800, color: "var(--off-white)" }}>
+                  Vitalício (Pague 1x)
+                </span>
+                <span style={{ fontSize: "0.75rem", color: "rgba(244,239,228,0.7)", lineHeight: 1.4 }}>
+                  Sem mensalidades ou assinaturas recorrentes. Seu para sempre.
+                </span>
               </div>
 
-              <span style={{ color: "rgba(196, 169, 110, 0.35)", fontSize: "0.8rem" }}>|</span>
+              {/* Feature 3: Compatibilidade / App Android */}
+              <div
+                style={{
+                  backgroundColor: "rgba(13, 12, 10, 0.75)",
+                  border: "1px solid rgba(196, 169, 110, 0.25)",
+                  padding: "1.25rem 1.1rem",
+                  borderRadius: "6px",
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: "0.4rem",
+                }}
+              >
+                <span style={{ fontSize: "0.65rem", fontWeight: 700, letterSpacing: "0.18em", color: "var(--gold-light)", textTransform: "uppercase" }}>
+                  DISPOSITIVOS
+                </span>
+                <span style={{ fontSize: "1.05rem", fontWeight: 800, color: "var(--off-white)" }}>
+                  Web, TV & App Android
+                </span>
+                <span style={{ fontSize: "0.75rem", color: "rgba(244,239,228,0.7)", lineHeight: 1.4 }}>
+                  Assista no computador, celular ou tablet Android dedicado.
+                </span>
+              </div>
 
-              <div style={{ display: "flex", alignItems: "center", gap: "0.35rem", whiteSpace: "nowrap" }}>
-                <span className="font-sans" style={{ fontSize: "0.6rem", textTransform: "uppercase", letterSpacing: "0.12em", color: "var(--stone-light)" }}>Módulos</span>
-                <span className="font-sans" style={{ fontSize: "0.75rem", fontWeight: 700, color: "var(--off-white)" }}>4 MÓDULOS</span>
+              {/* Feature 4: Certificação */}
+              <div
+                style={{
+                  backgroundColor: "rgba(13, 12, 10, 0.75)",
+                  border: "1px solid rgba(196, 169, 110, 0.25)",
+                  padding: "1.25rem 1.1rem",
+                  borderRadius: "6px",
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: "0.4rem",
+                }}
+              >
+                <span style={{ fontSize: "0.65rem", fontWeight: 700, letterSpacing: "0.18em", color: "var(--gold-light)", textTransform: "uppercase" }}>
+                  CERTIFICAÇÃO
+                </span>
+                <span style={{ fontSize: "1.05rem", fontWeight: 800, color: "var(--off-white)" }}>
+                  Certificado Oficial
+                </span>
+                <span style={{ fontSize: "0.75rem", color: "rgba(244,239,228,0.7)", lineHeight: 1.4 }}>
+                  Emitido automaticamente ao concluir os módulos práticos.
+                </span>
               </div>
             </div>
 
@@ -442,11 +520,11 @@ export default function CourseModules() {
                 alignItems: "center",
                 gap: "1rem",
                 width: "100%",
-                maxWidth: "360px",
+                maxWidth: "420px",
               }}
             >
               <Link
-                href="/login"
+                href="#quero-aprender"
                 className="btn btn-primary-dark"
                 style={{
                   width: "100%",
@@ -454,19 +532,22 @@ export default function CourseModules() {
                   padding: "1.1rem 2rem",
                   fontSize: "0.78rem",
                   letterSpacing: "0.18em",
+                  backgroundColor: "var(--off-white)",
+                  color: "var(--ink)",
+                  fontWeight: 900,
+                  textTransform: "uppercase",
                 }}
               >
-                COMECE AGORA →
+                INSCREVER-SE AGORA →
               </Link>
               <span
                 style={{
                   fontFamily: "'Inter', sans-serif",
-                  fontSize: "0.7rem",
-                  color: "var(--stone-light)",
-                  opacity: 0.8,
+                  fontSize: "0.72rem",
+                  color: "rgba(244,239,228,0.75)",
                 }}
               >
-                Garantia de aprendizado com aplicação prática
+                Acesso imediato • 7 Dias de Garantia Incondicional
               </span>
             </div>
           </div>
