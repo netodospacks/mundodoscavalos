@@ -53,63 +53,38 @@ export default function FeaturedPaths() {
           </div>
         </SectionReveal>
 
-        {/* Grid de Capas Verticais (Posters 2:3 Idênticos aos Módulos e ao Hero) */}
+        {/* Grid de 3 Cards Lado a Lado (Sem Imagens de Fundo) */}
         <div className="paths-grid-container">
           {paths.map((path, index) => (
             <SectionReveal key={path.id || index} delay={(index % 4) as 0 | 1 | 2 | 3 | 4}>
               <Link 
                 href={path.href}
-                className="path-poster-card"
+                className="path-text-card"
                 style={{
                   display: "flex",
                   flexDirection: "column",
                   justifyContent: "space-between",
-                  aspectRatio: "2/3",
+                  height: "100%",
+                  minHeight: "220px",
                   position: "relative",
-                  borderRadius: "6px",
-                  overflow: "hidden",
-                  border: "1px solid rgba(196, 169, 110, 0.3)",
-                  backgroundColor: "#151310",
+                  borderRadius: "8px",
+                  border: "1px solid rgba(196, 169, 110, 0.25)",
+                  backgroundColor: "rgba(18, 16, 13, 0.95)",
+                  backdropFilter: "blur(16px)",
+                  WebkitBackdropFilter: "blur(16px)",
                   textDecoration: "none",
-                  boxShadow: "0 10px 25px rgba(0,0,0,0.65)",
-                  transition: "transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease",
-                  padding: "1rem",
+                  boxShadow: "0 10px 30px rgba(0,0,0,0.7)",
+                  transition: "all 0.35s ease",
+                  padding: "1.5rem 1.25rem",
                 }}
               >
-                {/* Layer 1: Imagem de Fundo em HD */}
+                {/* Header do Card (Badge + Ícone) */}
                 <div
                   style={{
-                    position: "absolute",
-                    inset: 0,
-                    backgroundImage: `url(${path.image})`,
-                    backgroundSize: "cover",
-                    backgroundPosition: "center",
-                    opacity: 0.65,
-                    transition: "transform 0.5s ease, opacity 0.5s ease",
-                    zIndex: 0,
-                  }}
-                  className="poster-bg-image"
-                />
-
-                {/* Layer 2: Degradê Escuro Profundo */}
-                <div
-                  style={{
-                    position: "absolute",
-                    inset: 0,
-                    background: "linear-gradient(to top, rgba(13,12,10,0.98) 0%, rgba(13,12,10,0.75) 50%, rgba(13,12,10,0.3) 80%, rgba(13,12,10,0.4) 100%)",
-                    zIndex: 1,
-                    pointerEvents: "none",
-                  }}
-                />
-
-                {/* Layer 3 Top: Emblema Portal + Ícone */}
-                <div
-                  style={{
-                    position: "relative",
-                    zIndex: 2,
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "space-between",
+                    marginBottom: "1rem",
                   }}
                 >
                   <span
@@ -119,11 +94,10 @@ export default function FeaturedPaths() {
                       fontWeight: 800,
                       letterSpacing: "0.15em",
                       color: "var(--gold-light)",
-                      backgroundColor: "rgba(13,12,10,0.85)",
-                      backdropFilter: "blur(6px)",
+                      backgroundColor: "rgba(196,169,110,0.12)",
                       padding: "0.25rem 0.6rem",
-                      borderRadius: "3px",
-                      border: "1px solid rgba(196,169,110,0.35)",
+                      borderRadius: "4px",
+                      border: "1px solid rgba(196,169,110,0.3)",
                       textTransform: "uppercase",
                     }}
                   >
@@ -132,28 +106,27 @@ export default function FeaturedPaths() {
 
                   <div
                     style={{
-                      width: "26px",
-                      height: "26px",
+                      width: "30px",
+                      height: "30px",
                       borderRadius: "50%",
-                      border: "1px solid rgba(196, 169, 110, 0.4)",
+                      border: "1px solid rgba(196, 169, 110, 0.35)",
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
-                      backgroundColor: "rgba(13,12,10,0.75)",
+                      backgroundColor: "rgba(13,12,10,0.6)",
                     }}
                   >
-                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--gold-light)" strokeWidth="2"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--gold-light)" strokeWidth="2"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
                   </div>
                 </div>
 
-                {/* Layer 3 Bottom: Título e Descrição com Fonte Inter */}
+                {/* Conteúdo Principal do Card */}
                 <div
                   style={{
-                    position: "relative",
-                    zIndex: 2,
                     display: "flex",
                     flexDirection: "column",
-                    gap: "0.4rem",
+                    gap: "0.5rem",
+                    flex: 1,
                   }}
                 >
                   <span
@@ -166,20 +139,19 @@ export default function FeaturedPaths() {
                       textTransform: "uppercase",
                     }}
                   >
-                    MUNDO DOS CAVALOS
+                    PORTAL DE CONHECIMENTO
                   </span>
 
                   <h3
                     style={{
                       fontFamily: "'Inter', sans-serif",
-                      fontSize: "clamp(1.1rem, 1.4vw, 1.35rem)",
-                      fontWeight: 800,
+                      fontSize: "clamp(1.1rem, 1.4vw, 1.4rem)",
+                      fontWeight: 900,
                       lineHeight: 1.2,
                       color: "var(--off-white)",
                       margin: 0,
                       textTransform: "uppercase",
                       letterSpacing: "-0.01em",
-                      textShadow: "0 2px 8px rgba(0,0,0,0.9)",
                     }}
                   >
                     {path.title}
@@ -188,65 +160,61 @@ export default function FeaturedPaths() {
                   <p
                     style={{
                       fontFamily: "'Inter', sans-serif",
-                      fontSize: "0.68rem",
+                      fontSize: "0.78rem",
                       fontWeight: 400,
                       color: "rgba(244,239,228,0.8)",
-                      lineHeight: 1.4,
+                      lineHeight: 1.5,
                       margin: 0,
-                      display: "-webkit-box",
-                      WebkitLineClamp: 3,
-                      WebkitBoxOrient: "vertical",
-                      overflow: "hidden",
                     }}
                   >
                     {path.description}
                   </p>
+                </div>
 
-                  <div
-                    style={{
-                      marginTop: "0.4rem",
-                      display: "flex",
-                      alignItems: "center",
-                      gap: "0.3rem",
-                      fontSize: "0.65rem",
-                      fontWeight: 700,
-                      color: "var(--gold-light)",
-                      letterSpacing: "0.1em",
-                      textTransform: "uppercase",
-                    }}
-                  >
-                    <span>EXPLORAR</span>
-                    <span className="arrow-icon" style={{ transition: "transform 0.3s ease" }}>&rarr;</span>
-                  </div>
+                {/* Rodapé / Link Explorar */}
+                <div
+                  style={{
+                    marginTop: "1.25rem",
+                    paddingTop: "0.85rem",
+                    borderTop: "1px solid rgba(196, 169, 110, 0.15)",
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "0.4rem",
+                    fontSize: "0.7rem",
+                    fontWeight: 800,
+                    color: "var(--gold-light)",
+                    letterSpacing: "0.12em",
+                    textTransform: "uppercase",
+                  }}
+                >
+                  <span>EXPLORAR</span>
+                  <span className="arrow-icon" style={{ transition: "transform 0.3s ease" }}>&rarr;</span>
                 </div>
               </Link>
             </SectionReveal>
           ))}
         </div>
 
-        {/* Estilos CSS do Grid de Posters */}
+        {/* Estilos CSS do Grid Lado a Lado (3 Colunas) */}
         <style dangerouslySetInnerHTML={{__html: `
           .paths-grid-container {
             display: grid;
-            grid-template-columns: repeat(1, 1fr);
+            grid-template-columns: repeat(3, 1fr);
             gap: 1.25rem;
           }
-          @media (min-width: 640px) {
+          @media (max-width: 767px) {
             .paths-grid-container {
-              grid-template-columns: repeat(3, 1fr);
-              gap: 1.5rem;
+              grid-template-columns: repeat(1, 1fr);
+              gap: 1rem;
             }
           }
-          .path-poster-card:hover {
+          .path-text-card:hover {
             border-color: var(--gold-light) !important;
-            transform: translateY(-6px) scale(1.02);
+            transform: translateY(-5px);
             box-shadow: 0 15px 35px rgba(0,0,0,0.85) !important;
+            background-color: rgba(26, 22, 18, 0.98) !important;
           }
-          .path-poster-card:hover .poster-bg-image {
-            transform: scale(1.08);
-            opacity: 0.85 !important;
-          }
-          .path-poster-card:hover .arrow-icon {
+          .path-text-card:hover .arrow-icon {
             transform: translateX(4px);
           }
         `}} />
