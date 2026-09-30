@@ -192,7 +192,7 @@ export function NetflixLoginModal({ isOpen, onClose }: NetflixLoginModalProps) {
       )}
 
       {/* ============================================================
-          FASE 3: FORMULÁRIO DE LOGIN ESTILO STREAMING PLATFORM
+          FASE 3: FORMULÁRIO DE LOGIN ESTILO STREAMING PLATFORM (COMPACTO & RESPONSIVO)
           ============================================================ */}
       {phase === "login-form" && (
         <div
@@ -200,8 +200,10 @@ export function NetflixLoginModal({ isOpen, onClose }: NetflixLoginModalProps) {
           style={{
             zIndex: 10000,
             width: "100%",
-            maxWidth: "440px",
-            padding: "0 1.25rem",
+            maxWidth: "380px",
+            maxHeight: "85vh",
+            overflowY: "auto",
+            padding: "0 1rem",
           }}
         >
           {loginSuccess ? (
@@ -212,32 +214,32 @@ export function NetflixLoginModal({ isOpen, onClose }: NetflixLoginModalProps) {
                 backdropFilter: "blur(24px)",
                 border: "1px solid var(--gold)",
                 borderRadius: "8px",
-                padding: "3rem 2rem",
+                padding: "2.5rem 1.5rem",
                 textAlign: "center",
                 boxShadow: "0 25px 60px rgba(0,0,0,0.85)",
               }}
             >
               <div
                 style={{
-                  width: "60px",
-                  height: "60px",
+                  width: "50px",
+                  height: "50px",
                   borderRadius: "50%",
                   backgroundColor: "rgba(196, 169, 110, 0.2)",
                   border: "2px solid var(--gold-light)",
                   display: "inline-flex",
                   alignItems: "center",
                   justifyContent: "center",
-                  marginBottom: "1.25rem",
+                  marginBottom: "1rem",
                   color: "var(--gold-light)",
-                  fontSize: "1.8rem",
+                  fontSize: "1.5rem",
                 }}
               >
                 ✓
               </div>
-              <h3 style={{ color: "var(--off-white)", fontSize: "1.4rem", fontWeight: 800, margin: "0 0 0.5rem 0" }}>
+              <h3 style={{ color: "var(--off-white)", fontSize: "1.25rem", fontWeight: 800, margin: "0 0 0.4rem 0" }}>
                 Bem-vindo(a) de volta!
               </h3>
-              <p style={{ color: "rgba(244, 239, 228, 0.75)", fontSize: "0.9rem" }}>
+              <p style={{ color: "rgba(244, 239, 228, 0.75)", fontSize: "0.85rem" }}>
                 Iniciando sua experiência no Mundo dos Cavalos...
               </p>
             </div>
@@ -245,33 +247,33 @@ export function NetflixLoginModal({ isOpen, onClose }: NetflixLoginModalProps) {
             /* Formulário Principal de Login estilo Netflix */
             <div
               style={{
-                backgroundColor: "rgba(18, 16, 13, 0.94)",
+                backgroundColor: "rgba(18, 16, 13, 0.96)",
                 backdropFilter: "blur(24px)",
                 WebkitBackdropFilter: "blur(24px)",
                 border: "1px solid rgba(196, 169, 110, 0.3)",
                 borderRadius: "8px",
-                padding: "clamp(2rem, 5vw, 3rem) clamp(1.5rem, 4vw, 2.5rem)",
+                padding: "1.75rem 1.5rem",
                 boxShadow: "0 25px 60px rgba(0, 0, 0, 0.9)",
               }}
             >
               {/* Header do Form */}
-              <div style={{ marginBottom: "2rem" }}>
-                <div style={{ display: "flex", alignItems: "center", gap: "0.5rem", marginBottom: "0.5rem" }}>
-                  <span style={{ fontWeight: 900, fontSize: "1.1rem", color: "var(--gold)" }}>M</span>
-                  <span style={{ fontSize: "0.65rem", fontWeight: 700, letterSpacing: "0.2em", color: "var(--gold-light)", textTransform: "uppercase" }}>
+              <div style={{ marginBottom: "1.25rem" }}>
+                <div style={{ display: "flex", alignItems: "center", gap: "0.4rem", marginBottom: "0.3rem" }}>
+                  <span style={{ fontWeight: 900, fontSize: "1rem", color: "var(--gold)" }}>M</span>
+                  <span style={{ fontSize: "0.6rem", fontWeight: 700, letterSpacing: "0.2em", color: "var(--gold-light)", textTransform: "uppercase" }}>
                     MUNDO DOS CAVALOS
                   </span>
                 </div>
-                <h2 style={{ fontSize: "1.8rem", fontWeight: 800, color: "var(--off-white)", margin: 0 }}>
+                <h2 style={{ fontSize: "1.5rem", fontWeight: 800, color: "var(--off-white)", margin: 0 }}>
                   Entrar
                 </h2>
               </div>
 
-              <form onSubmit={handleLoginSubmit} style={{ display: "flex", flexDirection: "column", gap: "1.2rem" }}>
+              <form onSubmit={handleLoginSubmit} style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
                 {/* Campo E-mail */}
                 <div>
-                  <label htmlFor="login-email" style={{ display: "block", fontSize: "0.7rem", fontWeight: 600, color: "rgba(244,239,228,0.7)", letterSpacing: "0.08em", textTransform: "uppercase", marginBottom: "0.4rem" }}>
-                    E-mail ou número de telefone
+                  <label htmlFor="login-email" style={{ display: "block", fontSize: "0.65rem", fontWeight: 600, color: "rgba(244,239,228,0.7)", letterSpacing: "0.08em", textTransform: "uppercase", marginBottom: "0.3rem" }}>
+                    E-mail ou telefone
                   </label>
                   <input
                     id="login-email"
@@ -285,11 +287,10 @@ export function NetflixLoginModal({ isOpen, onClose }: NetflixLoginModalProps) {
                       backgroundColor: "rgba(255, 255, 255, 0.06)",
                       border: "1px solid rgba(196, 169, 110, 0.25)",
                       borderRadius: "4px",
-                      padding: "0.85rem 1rem",
+                      padding: "0.75rem 0.85rem",
                       color: "var(--off-white)",
-                      fontSize: "0.95rem",
+                      fontSize: "0.88rem",
                       outline: "none",
-                      transition: "border-color 0.2s ease, box-shadow 0.2s ease",
                     }}
                     className="focus:border-gold"
                   />
@@ -297,7 +298,7 @@ export function NetflixLoginModal({ isOpen, onClose }: NetflixLoginModalProps) {
 
                 {/* Campo Senha */}
                 <div>
-                  <label htmlFor="login-password" style={{ display: "block", fontSize: "0.7rem", fontWeight: 600, color: "rgba(244,239,228,0.7)", letterSpacing: "0.08em", textTransform: "uppercase", marginBottom: "0.4rem" }}>
+                  <label htmlFor="login-password" style={{ display: "block", fontSize: "0.65rem", fontWeight: 600, color: "rgba(244,239,228,0.7)", letterSpacing: "0.08em", textTransform: "uppercase", marginBottom: "0.3rem" }}>
                     Senha
                   </label>
                   <input
@@ -312,11 +313,10 @@ export function NetflixLoginModal({ isOpen, onClose }: NetflixLoginModalProps) {
                       backgroundColor: "rgba(255, 255, 255, 0.06)",
                       border: "1px solid rgba(196, 169, 110, 0.25)",
                       borderRadius: "4px",
-                      padding: "0.85rem 1rem",
+                      padding: "0.75rem 0.85rem",
                       color: "var(--off-white)",
-                      fontSize: "0.95rem",
+                      fontSize: "0.88rem",
                       outline: "none",
-                      transition: "border-color 0.2s ease, box-shadow 0.2s ease",
                     }}
                     className="focus:border-gold"
                   />
@@ -327,16 +327,16 @@ export function NetflixLoginModal({ isOpen, onClose }: NetflixLoginModalProps) {
                   type="submit"
                   disabled={isLoggingIn}
                   style={{
-                    marginTop: "0.5rem",
+                    marginTop: "0.25rem",
                     width: "100%",
                     backgroundColor: "var(--off-white)",
                     color: "var(--ink)",
                     fontFamily: "'Inter', sans-serif",
                     fontWeight: 800,
-                    fontSize: "0.9rem",
+                    fontSize: "0.82rem",
                     letterSpacing: "0.1em",
                     textTransform: "uppercase",
-                    padding: "0.95rem",
+                    padding: "0.85rem",
                     borderRadius: "4px",
                     border: "none",
                     cursor: "pointer",
@@ -347,21 +347,20 @@ export function NetflixLoginModal({ isOpen, onClose }: NetflixLoginModalProps) {
                     justifyContent: "center",
                     gap: "0.5rem",
                   }}
-                  className="hover:scale-102"
                 >
                   {isLoggingIn ? (
                     <span>CONECTANDO...</span>
                   ) : (
                     <>
                       <span>ENTRAR</span>
-                      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3" /></svg>
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3" /></svg>
                     </>
                   )}
                 </button>
 
-                {/* Opções Auxiliares: Lembrar & Ajuda */}
-                <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", fontSize: "0.78rem", color: "rgba(244,239,228,0.7)" }}>
-                  <label style={{ display: "flex", alignItems: "center", gap: "0.4rem", cursor: "pointer" }}>
+                {/* Opções Auxiliares */}
+                <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", fontSize: "0.72rem", color: "rgba(244,239,228,0.7)" }}>
+                  <label style={{ display: "flex", alignItems: "center", gap: "0.35rem", cursor: "pointer" }}>
                     <input
                       type="checkbox"
                       checked={rememberMe}
@@ -376,7 +375,7 @@ export function NetflixLoginModal({ isOpen, onClose }: NetflixLoginModalProps) {
                 </div>
 
                 {/* Linha Divisória */}
-                <div style={{ borderTop: "1px solid rgba(244,239,228,0.1)", margin: "0.5rem 0" }} />
+                <div style={{ borderTop: "1px solid rgba(244,239,228,0.1)", margin: "0.25rem 0" }} />
 
                 {/* Botão de Atalho Demo */}
                 <button
@@ -384,80 +383,41 @@ export function NetflixLoginModal({ isOpen, onClose }: NetflixLoginModalProps) {
                   onClick={handleDemoLogin}
                   style={{
                     width: "100%",
-                    backgroundColor: "rgba(196, 169, 110, 0.15)",
+                    backgroundColor: "rgba(196, 169, 110, 0.12)",
                     border: "1px solid var(--gold-light)",
                     color: "var(--gold-light)",
                     fontFamily: "'Inter', sans-serif",
                     fontWeight: 700,
-                    fontSize: "0.75rem",
-                    letterSpacing: "0.12em",
+                    fontSize: "0.7rem",
+                    letterSpacing: "0.1em",
                     textTransform: "uppercase",
-                    padding: "0.75rem",
+                    padding: "0.65rem",
                     borderRadius: "4px",
                     cursor: "pointer",
-                    transition: "all 0.25s ease",
                   }}
                 >
                   ⚡ ACESSO RÁPIDO DEMO (1-CLIQUE)
                 </button>
 
-                {/* Footer do Login */}
-                <p style={{ fontSize: "0.82rem", color: "rgba(244,239,228,0.6)", margin: "0.5rem 0 0 0", textAlign: "center" }}>
-                  Novo no Mundo dos Cavalos?{" "}
-                  <a href="#quero-aprender" onClick={() => onClose()} style={{ color: "var(--off-white)", fontWeight: 700, textDecoration: "none" }}>
-                    Assine agora.
-                  </a>
-                </p>
-
-                {/* BANNER DO APP ANDROID */}
+                {/* NOTA DISCRETA DE DISPOSITIVOS & APP ANDROID */}
                 <div
                   style={{
-                    marginTop: "0.75rem",
-                    padding: "0.85rem 1rem",
-                    backgroundColor: "rgba(13, 12, 10, 0.85)",
-                    border: "1px solid rgba(196, 169, 110, 0.3)",
-                    borderRadius: "6px",
-                    display: "flex",
-                    flexDirection: "column",
-                    gap: "0.4rem",
-                    textAlign: "left",
+                    marginTop: "0.5rem",
+                    textAlign: "center",
+                    borderTop: "1px solid rgba(244,239,228,0.08)",
+                    paddingTop: "0.65rem",
                   }}
                 >
-                  <div style={{ display: "flex", alignItems: "center", gap: "0.4rem" }}>
-                    <span style={{ fontSize: "0.9rem" }}>📱</span>
-                    <span style={{ fontSize: "0.72rem", fontWeight: 700, color: "var(--gold-light)", letterSpacing: "0.08em", textTransform: "uppercase" }}>
-                      Você utiliza Android?
-                    </span>
-                  </div>
-                  <p style={{ fontSize: "0.7rem", color: "rgba(244,239,228,0.75)", margin: 0, lineHeight: 1.4 }}>
-                    Baixe nosso aplicativo oficial e assista a todo o conteúdo direto no seu dispositivo Android.
-                  </p>
-                  <button
-                    type="button"
-                    onClick={() => alert("O aplicativo Android está em fase final de homologação e o download estará disponível em breve!")}
+                  <span
                     style={{
-                      marginTop: "0.2rem",
-                      backgroundColor: "rgba(196, 169, 110, 0.15)",
-                      border: "1px solid var(--gold-light)",
-                      color: "var(--gold-light)",
-                      fontFamily: "'Inter', sans-serif",
                       fontSize: "0.65rem",
-                      fontWeight: 700,
-                      letterSpacing: "0.1em",
-                      textTransform: "uppercase",
-                      padding: "0.45rem 0.75rem",
-                      borderRadius: "3px",
-                      cursor: "pointer",
-                      display: "inline-flex",
-                      alignItems: "center",
-                      gap: "0.4rem",
-                      alignSelf: "flex-start",
-                      transition: "all 0.2s ease",
+                      color: "rgba(244,239,228,0.55)",
+                      display: "block",
+                      lineHeight: 1.4,
                     }}
                   >
-                    <span>BAIXAR APP ANDROID</span>
-                    <span>↓</span>
-                  </button>
+                    Disponível para Web, Smart TV e App Android dedicado.
+                  </span>
                 </div>
               </form>
             </div>
