@@ -122,7 +122,7 @@ export default function Hero() {
             width: "100%",
             height: "100%",
             objectFit: "cover",
-            objectPosition: "center 38%",
+            objectPosition: "center 30%",
             display: "block",
           }}
           aria-hidden="true"
@@ -471,13 +471,21 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* Estilos específicos do Layout Streaming */}
+      {/* Estilos específicos do Layout Streaming & Ajuste do Vídeo Widescreen */}
       <style dangerouslySetInnerHTML={{__html: `
         .no-scrollbar::-webkit-scrollbar { display: none; }
         .hero-catalog-card:hover {
           transform: scale(1.05);
           border-color: var(--gold-light);
           z-index: 10;
+        }
+
+        /* Ajustes de Enquadramento do Vídeo Widescreen (Não-Story) no Mobile */
+        @media (max-width: 767px) {
+          .hero-streaming-section video {
+            object-fit: cover !important;
+            object-position: center 25% !important;
+          }
         }
       `}} />
     </section>
