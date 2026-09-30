@@ -11,105 +11,212 @@ export default function FeaturedPaths() {
   return (
     <section className="section-gap" style={{ backgroundColor: "var(--ink)", position: "relative" }}>
       <div className="container">
-        {/* Header da seção */}
+        {/* Header da seção Centralizado */}
         <SectionReveal type="up">
-          <div style={{ marginBottom: "clamp(2rem, 4vw, 3.5rem)", display: "flex", justifyContent: "space-between", alignItems: "flex-end", flexWrap: "wrap", gap: "1rem" }}>
-            <div>
-              <span className="text-label font-sans" style={{ color: "var(--gold-light)", display: "block", marginBottom: "0.5rem", textTransform: "uppercase", letterSpacing: "0.22em", fontWeight: 600 }}>
-                CATEGORIAS DE CONTEÚDO
-              </span>
-              <h2 className="font-sans text-heading" style={{ color: "var(--off-white)", fontWeight: 800, textTransform: "uppercase", letterSpacing: "-0.01em" }}>
-                Pilares do Conhecimento
-              </h2>
-            </div>
-
-            {/* Aviso Arraste (exibido apenas em telas menores) */}
-            <div
-              className="md:hidden"
+          <div
+            style={{
+              marginBottom: "clamp(2rem, 5vw, 3.5rem)",
+              textAlign: "center",
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              gap: "0.4rem",
+            }}
+          >
+            <span
               style={{
-                display: "inline-flex",
-                alignItems: "center",
-                gap: "0.35rem",
-                fontSize: "0.6rem",
-                letterSpacing: "0.18em",
-                textTransform: "uppercase",
-                fontFamily: "'Inter', sans-serif",
                 color: "var(--gold-light)",
-                opacity: 0.85,
+                textTransform: "uppercase",
+                letterSpacing: "0.25em",
+                fontWeight: 700,
+                fontSize: "0.72rem",
+                fontFamily: "'Inter', sans-serif",
               }}
             >
-              <span>arraste para o lado</span>
-              <span className="animate-slide-right" aria-hidden="true">→</span>
-            </div>
+              CATEGORIAS DE CONTEÚDO
+            </span>
+
+            <h2
+              style={{
+                fontFamily: "'Inter', sans-serif",
+                color: "var(--off-white)",
+                fontWeight: 900,
+                fontSize: "clamp(1.6rem, 4.5vw, 3.2rem)",
+                textTransform: "uppercase",
+                letterSpacing: "-0.02em",
+                margin: "0.1rem 0",
+                whiteSpace: "nowrap",
+              }}
+            >
+              Pilares do Conhecimento
+            </h2>
           </div>
         </SectionReveal>
 
-        {/* Catalog Container — Horizontal scroll no mobile, Grid 3 colunas no desktop */}
-        <div className="paths-catalog-wrapper">
+        {/* Grid de Capas Verticais (Posters 2:3 Idênticos aos Módulos e ao Hero) */}
+        <div className="paths-grid-container">
           {paths.map((path, index) => (
-            <SectionReveal key={path.id || index} delay={(index % 4) as 0 | 1 | 2 | 3 | 4} className="path-card-reveal">
+            <SectionReveal key={path.id || index} delay={(index % 4) as 0 | 1 | 2 | 3 | 4}>
               <Link 
                 href={path.href}
-                className="featured-path-card"
+                className="path-poster-card"
                 style={{
-                  display: "block",
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "space-between",
+                  aspectRatio: "2/3",
                   position: "relative",
-                  aspectRatio: "3/4",
+                  borderRadius: "6px",
                   overflow: "hidden",
+                  border: "1px solid rgba(196, 169, 110, 0.3)",
+                  backgroundColor: "#151310",
                   textDecoration: "none",
-                  border: "1px solid rgba(157, 132, 82, 0.2)",
-                  borderRadius: "2px",
+                  boxShadow: "0 10px 25px rgba(0,0,0,0.65)",
+                  transition: "transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease",
+                  padding: "1rem",
                 }}
               >
-                <div style={{ position: "relative", width: "100%", height: "100%" }}>
-                  <BrandIconPlaceholder label={path.title} aspectRatio="3/4" />
-                  
-                  {/* Overlay gradiente cinematográfico */}
-                  <div 
-                    style={{ 
-                      position: "absolute", 
-                      inset: 0, 
-                      background: "linear-gradient(to top, rgba(13, 12, 10, 0.95) 0%, rgba(13, 12, 10, 0.4) 50%, transparent 100%)",
-                      transition: "background 0.5s ease",
-                      pointerEvents: "none"
-                    }} 
-                    className="path-overlay"
-                  />
+                {/* Layer 1: Imagem de Fundo em HD */}
+                <div
+                  style={{
+                    position: "absolute",
+                    inset: 0,
+                    backgroundImage: `url(${path.image})`,
+                    backgroundSize: "cover",
+                    backgroundPosition: "center",
+                    opacity: 0.65,
+                    transition: "transform 0.5s ease, opacity 0.5s ease",
+                    zIndex: 0,
+                  }}
+                  className="poster-bg-image"
+                />
 
-                  {/* Conteúdo do Card */}
-                  <div style={{ 
-                    position: "absolute", 
-                    bottom: 0, 
-                    left: 0, 
-                    right: 0, 
-                    padding: "clamp(1.25rem, 3vw, 2rem)",
+                {/* Layer 2: Degradê Escuro Profundo */}
+                <div
+                  style={{
+                    position: "absolute",
+                    inset: 0,
+                    background: "linear-gradient(to top, rgba(13,12,10,0.98) 0%, rgba(13,12,10,0.75) 50%, rgba(13,12,10,0.3) 80%, rgba(13,12,10,0.4) 100%)",
+                    zIndex: 1,
+                    pointerEvents: "none",
+                  }}
+                />
+
+                {/* Layer 3 Top: Emblema Portal + Ícone */}
+                <div
+                  style={{
+                    position: "relative",
+                    zIndex: 2,
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "space-between",
+                  }}
+                >
+                  <span
+                    style={{
+                      fontFamily: "'Inter', sans-serif",
+                      fontSize: "0.6rem",
+                      fontWeight: 800,
+                      letterSpacing: "0.15em",
+                      color: "var(--gold-light)",
+                      backgroundColor: "rgba(13,12,10,0.85)",
+                      backdropFilter: "blur(6px)",
+                      padding: "0.25rem 0.6rem",
+                      borderRadius: "3px",
+                      border: "1px solid rgba(196,169,110,0.35)",
+                      textTransform: "uppercase",
+                    }}
+                  >
+                    PILAR 0{index + 1}
+                  </span>
+
+                  <div
+                    style={{
+                      width: "26px",
+                      height: "26px",
+                      borderRadius: "50%",
+                      border: "1px solid rgba(196, 169, 110, 0.4)",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      backgroundColor: "rgba(13,12,10,0.75)",
+                    }}
+                  >
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--gold-light)" strokeWidth="2"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+                  </div>
+                </div>
+
+                {/* Layer 3 Bottom: Título e Descrição com Fonte Inter */}
+                <div
+                  style={{
+                    position: "relative",
+                    zIndex: 2,
                     display: "flex",
                     flexDirection: "column",
                     gap: "0.4rem",
-                    zIndex: 3
-                  }}>
-                    <span style={{ 
-                      fontFamily: "'Inter', sans-serif", 
-                      fontSize: "0.6rem", 
-                      letterSpacing: "0.2em", 
-                      color: "var(--gold-light)", 
-                      textTransform: "uppercase" 
-                    }}>
-                      PORTAL 0{index + 1}
-                    </span>
+                  }}
+                >
+                  <span
+                    style={{
+                      fontFamily: "'Inter', sans-serif",
+                      fontSize: "0.58rem",
+                      fontWeight: 700,
+                      letterSpacing: "0.2em",
+                      color: "var(--gold)",
+                      textTransform: "uppercase",
+                    }}
+                  >
+                    MUNDO DOS CAVALOS
+                  </span>
 
-                    <h3 className="font-serif" style={{ color: "var(--off-white)", fontSize: "clamp(1.5rem, 2.4vw, 2.1rem)", margin: 0, fontWeight: 400 }}>
-                      {path.title}
-                    </h3>
+                  <h3
+                    style={{
+                      fontFamily: "'Inter', sans-serif",
+                      fontSize: "clamp(1.1rem, 1.4vw, 1.35rem)",
+                      fontWeight: 800,
+                      lineHeight: 1.2,
+                      color: "var(--off-white)",
+                      margin: 0,
+                      textTransform: "uppercase",
+                      letterSpacing: "-0.01em",
+                      textShadow: "0 2px 8px rgba(0,0,0,0.9)",
+                    }}
+                  >
+                    {path.title}
+                  </h3>
 
-                    <p className="font-sans" style={{ color: "rgba(244, 239, 228, 0.75)", fontSize: "0.8rem", fontWeight: 300, lineHeight: 1.5, margin: "0.2rem 0 0.5rem 0" }}>
-                      {path.description}
-                    </p>
+                  <p
+                    style={{
+                      fontFamily: "'Inter', sans-serif",
+                      fontSize: "0.68rem",
+                      fontWeight: 400,
+                      color: "rgba(244,239,228,0.8)",
+                      lineHeight: 1.4,
+                      margin: 0,
+                      display: "-webkit-box",
+                      WebkitLineClamp: 3,
+                      WebkitBoxOrient: "vertical",
+                      overflow: "hidden",
+                    }}
+                  >
+                    {path.description}
+                  </p>
 
-                    <div style={{ display: "flex", alignItems: "center", gap: "0.4rem", color: "var(--gold-light)", fontSize: "0.7rem", letterSpacing: "0.12em", textTransform: "uppercase", fontWeight: 500 }}>
-                      <span>Explorar</span>
-                      <span aria-hidden="true" style={{ transition: "transform 0.3s ease" }} className="arrow-icon">→</span>
-                    </div>
+                  <div
+                    style={{
+                      marginTop: "0.4rem",
+                      display: "flex",
+                      alignItems: "center",
+                      gap: "0.3rem",
+                      fontSize: "0.65rem",
+                      fontWeight: 700,
+                      color: "var(--gold-light)",
+                      letterSpacing: "0.1em",
+                      textTransform: "uppercase",
+                    }}
+                  >
+                    <span>EXPLORAR</span>
+                    <span className="arrow-icon" style={{ transition: "transform 0.3s ease" }}>&rarr;</span>
                   </div>
                 </div>
               </Link>
@@ -117,37 +224,31 @@ export default function FeaturedPaths() {
           ))}
         </div>
 
-        {/* Estilos CSS do catálogo horizontal mobile / grid desktop */}
+        {/* Estilos CSS do Grid de Posters */}
         <style dangerouslySetInnerHTML={{__html: `
-          .paths-catalog-wrapper {
-            display: flex;
+          .paths-grid-container {
+            display: grid;
+            grid-template-columns: repeat(1, 1fr);
             gap: 1.25rem;
-            overflow-x: auto;
-            scroll-snap-type: x mandatory;
-            -webkit-overflow-scrolling: touch;
-            padding-bottom: 0.75rem;
-            scrollbar-width: none;
           }
-          .paths-catalog-wrapper::-webkit-scrollbar { display: none; }
-          .path-card-reveal {
-            flex: 0 0 82%;
-            scroll-snap-align: start;
-            min-width: 0;
-          }
-          @media (min-width: 768px) {
-            .paths-catalog-wrapper {
-              display: grid;
+          @media (min-width: 640px) {
+            .paths-grid-container {
               grid-template-columns: repeat(3, 1fr);
-              gap: 2rem;
-              overflow-x: visible;
-              padding-bottom: 0;
-            }
-            .path-card-reveal {
-              flex: unset;
+              gap: 1.5rem;
             }
           }
-          .featured-path-card:hover .path-overlay { background: linear-gradient(to top, rgba(13, 12, 10, 0.98) 0%, rgba(13, 12, 10, 0.5) 60%, transparent 100%); }
-          .featured-path-card:hover .arrow-icon { transform: translateX(4px); }
+          .path-poster-card:hover {
+            border-color: var(--gold-light) !important;
+            transform: translateY(-6px) scale(1.02);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.85) !important;
+          }
+          .path-poster-card:hover .poster-bg-image {
+            transform: scale(1.08);
+            opacity: 0.85 !important;
+          }
+          .path-poster-card:hover .arrow-icon {
+            transform: translateX(4px);
+          }
         `}} />
       </div>
     </section>
