@@ -1,33 +1,27 @@
 "use client";
 
-import Image from "next/image";
 import SectionReveal from "@/components/ui/SectionReveal";
+import { BrandIconPlaceholder } from "@/components/ui/BrandIconPlaceholder";
 import { mainFaculty } from "@/data/faculty";
 
 export default function Faculty() {
   return (
-    <section className="section-gap" style={{ backgroundColor: "var(--ink-soft)", position: "relative" }}>
+    <section id="docente" className="section-gap" style={{ backgroundColor: "var(--ink-soft)", position: "relative" }}>
       <div className="container">
         <SectionReveal type="up">
           {/* Layout responsivo — Mobile: 38% Foto Esquerda / 62% Texto Direita | Desktop: Editorial 42%/58% */}
           <div className="faculty-layout-wrapper">
             
-            {/* COLUNA FOTO (Esquerda) */}
+            {/* COLUNA FOTO / ÍCONE DA MARCA (Esquerda) */}
             <div className="faculty-photo-col">
               <div className="faculty-photo-frame">
-                <Image 
-                  src={mainFaculty.photo}
-                  alt={mainFaculty.photoAlt}
-                  fill
-                  sizes="(max-width: 768px) 40vw, 42vw"
-                  style={{ objectFit: "cover" }}
-                />
+                <BrandIconPlaceholder label={mainFaculty.name} aspectRatio="3/4" />
               </div>
             </div>
 
             {/* COLUNA TEXTO (Direita) */}
             <div className="faculty-info-col">
-              <span className="text-label font-sans" style={{ color: "var(--gold)", textTransform: "uppercase", fontSize: "0.68rem", letterSpacing: "0.15em", display: "block" }}>
+              <span className="text-label font-sans" style={{ color: "var(--gold-light)", textTransform: "uppercase", fontSize: "0.68rem", letterSpacing: "0.15em", display: "block" }}>
                 Corpo Docente & Especialista
               </span>
               
@@ -56,7 +50,7 @@ export default function Faculty() {
                 </ul>
               </div>
 
-              {/* Experiência (Ocultada em telas extremamente pequenas para priorizar legibilidade) */}
+              {/* Experiência */}
               <div className="faculty-experience-block" style={{ marginBottom: "1.25rem" }}>
                 <h3 className="font-sans" style={{ color: "var(--gold)", fontSize: "0.6rem", textTransform: "uppercase", letterSpacing: "0.12em", marginBottom: "0.5rem" }}>
                   Experiência Prática
@@ -135,5 +129,3 @@ export default function Faculty() {
     </section>
   );
 }
-
-

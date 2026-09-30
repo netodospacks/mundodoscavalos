@@ -1,9 +1,9 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import Image from "next/image";
 import Link from "next/link";
 import { SectionReveal } from "@/components/ui/SectionReveal";
+import { BrandIconPlaceholder } from "@/components/ui/BrandIconPlaceholder";
 import { courseModules } from "@/data/courseModules";
 
 export default function Hero() {
@@ -96,15 +96,15 @@ export default function Hero() {
       </aside>
 
       {/* ============================================================
-          2. VÍDEO CINEMATOGRÁFICO DE FUNDO & GRADIENTES DE LEITURA
+          2. VÍDEO CINEMATOGRÁFICO DE FUNDO & DEGRADÊ DE TRANSIÇÃO SUAVE
           ============================================================ */}
       <div
         style={{
           position: "absolute",
           inset: 0,
           zIndex: 0,
-          transform: `scale(${1 - scrollProgress * 0.04}) translateY(${scrollProgress * 25}px)`,
-          opacity: 1 - scrollProgress * 0.5,
+          transform: `scale(${1 - scrollProgress * 0.02}) translateY(${scrollProgress * 15}px)`,
+          opacity: 1 - scrollProgress * 0.4,
           transition: "transform 0.1s linear, opacity 0.1s linear",
         }}
       >
@@ -122,7 +122,7 @@ export default function Hero() {
             width: "100%",
             height: "100%",
             objectFit: "cover",
-            objectPosition: "center 30%",
+            objectPosition: "center 28%",
             display: "block",
           }}
           aria-hidden="true"
@@ -138,22 +138,22 @@ export default function Hero() {
             backgroundImage:
               "url('https://images.unsplash.com/photo-1553284965-e2815db4c1c4?w=1920&q=85')",
             backgroundSize: "cover",
-            backgroundPosition: "center 35%",
+            backgroundPosition: "center 30%",
             zIndex: -1,
           }}
           aria-hidden="true"
         />
 
-        {/* Gradiente estilo Streaming (Sombra profunda à esquerda e base inferior para cards) */}
+        {/* Gradiente estilo Streaming com Degradê Profundo na Base (elimina qualquer corte ao rolar) */}
         <div
           aria-hidden="true"
           style={{
             position: "absolute",
             inset: 0,
             background: `
-              radial-gradient(circle at 75% 40%, transparent 20%, rgba(13, 12, 10, 0.4) 60%, rgba(13, 12, 10, 0.95) 100%),
+              radial-gradient(circle at 75% 40%, transparent 25%, rgba(13, 12, 10, 0.45) 60%, rgba(13, 12, 10, 0.95) 100%),
               linear-gradient(to right, rgba(13, 12, 10, 0.96) 0%, rgba(13, 12, 10, 0.8) 35%, rgba(13, 12, 10, 0.25) 65%, transparent 100%),
-              linear-gradient(to top, rgba(13, 12, 10, 0.98) 0%, rgba(13, 12, 10, 0.7) 20%, transparent 60%)
+              linear-gradient(to top, var(--ink) 0%, rgba(13, 12, 10, 0.95) 18%, rgba(13, 12, 10, 0.7) 35%, transparent 75%)
             `,
             zIndex: 1,
             pointerEvents: "none",
@@ -349,7 +349,7 @@ export default function Hero() {
       </div>
 
       {/* ============================================================
-          4. FAIXA DE MÓDULOS DESTAQUES SURGINDO NA BASE DO HERO (CATÁLOGO STREAMING)
+          4. FAIXA DE MÓDULOS DESTAQUES SURGINDO NA BASE DO HERO (COM ÍCONE MUNDO DOS CAVALOS)
           ============================================================ */}
       <div
         style={{
@@ -383,7 +383,7 @@ export default function Hero() {
             </span>
           </div>
 
-          {/* FAIXA HORIZONTAL DE CAPAS */}
+          {/* FAIXA HORIZONTAL DE CAPAS COM ÍCONE MUNDO DOS CAVALOS */}
           <div
             style={{
               display: "flex",
@@ -415,18 +415,13 @@ export default function Hero() {
                 }}
                 className="hero-catalog-card"
               >
-                <Image
-                  src={mod.image}
-                  alt={mod.title}
-                  fill
-                  sizes="220px"
-                  style={{ objectFit: "cover" }}
-                />
+                <BrandIconPlaceholder label={`MÓDULO 0${mod.number}`} aspectRatio="16/9" />
                 <div
                   style={{
                     position: "absolute",
                     inset: 0,
-                    background: "linear-gradient(to top, rgba(13,12,10,0.95) 0%, transparent 60%)",
+                    background: "linear-gradient(to top, rgba(13,12,10,0.95) 0%, transparent 65%)",
+                    pointerEvents: "none",
                   }}
                 />
                 <div
@@ -435,6 +430,7 @@ export default function Hero() {
                     bottom: "0.5rem",
                     left: "0.6rem",
                     right: "0.6rem",
+                    zIndex: 3,
                   }}
                 >
                   <span
@@ -480,7 +476,7 @@ export default function Hero() {
           z-index: 10;
         }
 
-        /* Ajustes de Enquadramento do Vídeo Widescreen (Não-Story) no Mobile */
+        /* Enquadramento do Vídeo Widescreen (Não-Story) */
         @media (max-width: 767px) {
           .hero-streaming-section video {
             object-fit: cover !important;

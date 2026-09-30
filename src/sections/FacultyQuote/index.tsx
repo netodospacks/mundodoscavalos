@@ -1,7 +1,7 @@
 "use client";
 
-import Image from "next/image";
 import SectionReveal from "@/components/ui/SectionReveal";
+import { BrandIconPlaceholder } from "@/components/ui/BrandIconPlaceholder";
 import { mainFaculty } from "@/data/faculty";
 
 export default function FacultyQuote() {
@@ -48,7 +48,7 @@ export default function FacultyQuote() {
             </p>
           </div>
 
-          {/* RIGHT Half (Image) */}
+          {/* RIGHT Half (Brand Icon Placeholder) */}
           <div style={{ 
             flex: "1 1 450px", 
             minWidth: 0, 
@@ -57,13 +57,7 @@ export default function FacultyQuote() {
             minHeight: "320px",
             aspectRatio: "16/10"
           }}>
-            <Image 
-              src={mainFaculty.photoSecondary}
-              alt={mainFaculty.photoSecondaryAlt}
-              fill
-              sizes="(max-width: 768px) 100vw, 50vw"
-              style={{ objectFit: "cover", objectPosition: "top" }}
-            />
+            <BrandIconPlaceholder label={mainFaculty.name} aspectRatio="16/10" />
           </div>
 
         </div>
@@ -71,4 +65,3 @@ export default function FacultyQuote() {
     </section>
   );
 }
-

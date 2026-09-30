@@ -1,5 +1,3 @@
-import Image from "next/image";
-import Link from "next/link";
 import { SectionReveal } from "@/components/ui/SectionReveal";
 import { testimonials } from "@/data/testimonials";
 
@@ -112,43 +110,26 @@ export default function Testimonials() {
                     marginTop: "auto",
                   }}
                 >
-                  {/* Avatar placeholder */}
+                  {/* Avatar com Emblema da Marca */}
                   <div
                     aria-hidden="true"
                     style={{
-                      width: "40px",
-                      height: "40px",
+                      width: "42px",
+                      height: "42px",
                       borderRadius: "50%",
-                      background: "var(--earth-2)",
+                      backgroundColor: "rgba(13, 12, 10, 0.8)",
+                      border: "1px solid var(--gold)",
                       flexShrink: 0,
-                      overflow: "hidden",
-                      position: "relative",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      boxShadow: "0 0 10px rgba(157, 132, 82, 0.2)",
                     }}
                   >
-                    {t.photo ? (
-                      <Image
-                        src={t.photo}
-                        alt={t.photoAlt ?? t.name}
-                        fill
-                        style={{ objectFit: "cover" }}
-                        sizes="40px"
-                      />
-                    ) : (
-                      <div
-                        style={{
-                          position: "absolute",
-                          inset: 0,
-                          display: "flex",
-                          alignItems: "center",
-                          justifyContent: "center",
-                        }}
-                      >
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                          <circle cx="12" cy="8" r="4" fill="rgba(196,169,110,0.4)" />
-                          <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" stroke="rgba(196,169,110,0.4)" strokeWidth="1.5" strokeLinecap="round" />
-                        </svg>
-                      </div>
-                    )}
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--gold-light)" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                      <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" />
+                      <polyline points="3.27 6.96 12 12.01 20.73 6.96" />
+                    </svg>
                   </div>
 
                   <div>

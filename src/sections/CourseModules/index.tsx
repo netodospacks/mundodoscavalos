@@ -1,9 +1,9 @@
 "use client";
 
 import { useState } from "react";
-import Image from "next/image";
 import Link from "next/link";
 import SectionReveal from "@/components/ui/SectionReveal";
+import { BrandIconPlaceholder } from "@/components/ui/BrandIconPlaceholder";
 import { courseModules } from "@/data/courseModules";
 
 export default function CourseModules() {
@@ -101,7 +101,7 @@ export default function CourseModules() {
                   transition: "transform 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease",
                 }}
               >
-                {/* Capa com Imagem */}
+                {/* Capa com Ícone Oficial */}
                 <div
                   style={{
                     position: "relative",
@@ -110,23 +110,14 @@ export default function CourseModules() {
                     overflow: "hidden",
                   }}
                 >
-                  <Image
-                    src={mod.image}
-                    alt={mod.imageAlt}
-                    fill
-                    sizes="(max-width: 768px) 80vw, 25vw"
-                    style={{
-                      objectFit: "cover",
-                      transition: "transform 0.7s cubic-bezier(0.16, 1, 0.3, 1)",
-                    }}
-                    className="module-cover-image"
-                  />
+                  <BrandIconPlaceholder label={`MÓDULO 0${mod.number}`} aspectRatio="16/10" />
                   <div
                     style={{
                       position: "absolute",
                       inset: 0,
                       background:
-                        "linear-gradient(to top, rgba(13, 12, 10, 0.95) 0%, rgba(13, 12, 10, 0.3) 60%, rgba(13, 12, 10, 0.2) 100%)",
+                        "linear-gradient(to top, rgba(13, 12, 10, 0.95) 0%, rgba(13, 12, 10, 0.3) 60%, transparent 100%)",
+                      pointerEvents: "none",
                     }}
                   />
                   {/* Badge de Número do Módulo */}
@@ -259,19 +250,15 @@ export default function CourseModules() {
               }}
               onClick={(e) => e.stopPropagation()}
             >
-              {/* Imagem Banner Modal */}
+              {/* Banner Modal com Ícone da Marca */}
               <div style={{ position: "relative", width: "100%", aspectRatio: "16/9" }}>
-                <Image
-                  src={selectedModule.image}
-                  alt={selectedModule.imageAlt}
-                  fill
-                  style={{ objectFit: "cover" }}
-                />
+                <BrandIconPlaceholder label={`MÓDULO 0${selectedModule.number}: ${selectedModule.title}`} aspectRatio="16/9" />
                 <div
                   style={{
                     position: "absolute",
                     inset: 0,
                     background: "linear-gradient(to top, var(--ink-soft) 0%, transparent 100%)",
+                    pointerEvents: "none",
                   }}
                 />
                 <button

@@ -1,8 +1,8 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import SectionReveal from "@/components/ui/SectionReveal";
+import { BrandIconPlaceholder } from "@/components/ui/BrandIconPlaceholder";
 
 export default function PlatformPurpose() {
   return (
@@ -37,23 +37,9 @@ export default function PlatformPurpose() {
               </Link>
             </div>
 
-            {/* RIGHT Column (Image) */}
+            {/* RIGHT Column (Brand Icon Placeholder) */}
             <div style={{ flex: "1 1 400px", minWidth: 0, width: "100%", position: "relative", aspectRatio: "4/5", overflow: "hidden", borderRadius: "2px" }}>
-              <Image 
-                src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=900&q=80"
-                alt="Equipe do Mundo dos Cavalos"
-                fill
-                sizes="(max-width: 768px) 100vw, 45vw"
-                style={{ objectFit: "cover" }}
-              />
-              <div style={{ 
-                position: "absolute", 
-                bottom: 0, 
-                left: 0, 
-                width: "100%", 
-                height: "30%", 
-                background: "linear-gradient(to bottom, transparent, var(--cream-deep))" 
-              }}></div>
+              <BrandIconPlaceholder label="HARAS NS APARECIDA" aspectRatio="4/5" />
             </div>
 
           </div>
@@ -62,4 +48,3 @@ export default function PlatformPurpose() {
     </section>
   );
 }
-

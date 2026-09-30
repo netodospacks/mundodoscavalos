@@ -1,8 +1,8 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import { SectionReveal } from "@/components/ui/SectionReveal";
+import { BrandIconPlaceholder } from "@/components/ui/BrandIconPlaceholder";
 import { featuredPaths } from "@/data/paths";
 
 export default function FeaturedPaths() {
@@ -62,22 +62,16 @@ export default function FeaturedPaths() {
                 }}
               >
                 <div style={{ position: "relative", width: "100%", height: "100%" }}>
-                  <Image 
-                    src={path.image} 
-                    alt={path.imageAlt}
-                    fill
-                    sizes="(max-width: 768px) 80vw, 33vw"
-                    style={{ objectFit: "cover", transition: "transform 0.7s cubic-bezier(0.16, 1, 0.3, 1)" }}
-                    className="path-image"
-                  />
+                  <BrandIconPlaceholder label={path.title} aspectRatio="3/4" />
                   
                   {/* Overlay gradiente cinematográfico */}
                   <div 
                     style={{ 
                       position: "absolute", 
                       inset: 0, 
-                      background: "linear-gradient(to top, rgba(13, 12, 10, 0.95) 0%, rgba(13, 12, 10, 0.4) 50%, rgba(13, 12, 10, 0.15) 100%)",
-                      transition: "background 0.5s ease" 
+                      background: "linear-gradient(to top, rgba(13, 12, 10, 0.95) 0%, rgba(13, 12, 10, 0.4) 50%, transparent 100%)",
+                      transition: "background 0.5s ease",
+                      pointerEvents: "none"
                     }} 
                     className="path-overlay"
                   />
@@ -91,7 +85,8 @@ export default function FeaturedPaths() {
                     padding: "clamp(1.25rem, 3vw, 2rem)",
                     display: "flex",
                     flexDirection: "column",
-                    gap: "0.4rem"
+                    gap: "0.4rem",
+                    zIndex: 3
                   }}>
                     <span style={{ 
                       fontFamily: "'Inter', sans-serif", 
@@ -151,13 +146,10 @@ export default function FeaturedPaths() {
               flex: unset;
             }
           }
-          .featured-path-card .path-image { transform: scale(1); }
-          .featured-path-card:hover .path-image { transform: scale(1.06); }
-          .featured-path-card:hover .path-overlay { background: linear-gradient(to top, rgba(13, 12, 10, 0.98) 0%, rgba(13, 12, 10, 0.5) 60%, rgba(13, 12, 10, 0.25) 100%); }
+          .featured-path-card:hover .path-overlay { background: linear-gradient(to top, rgba(13, 12, 10, 0.98) 0%, rgba(13, 12, 10, 0.5) 60%, transparent 100%); }
           .featured-path-card:hover .arrow-icon { transform: translateX(4px); }
         `}} />
       </div>
     </section>
   );
 }
-

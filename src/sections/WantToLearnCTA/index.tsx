@@ -1,12 +1,13 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import { SectionReveal } from "@/components/ui/SectionReveal";
+import { BrandIconPlaceholder } from "@/components/ui/BrandIconPlaceholder";
 
 export default function WantToLearnCTA() {
   return (
     <section
+      id="quero-aprender"
       style={{
         position: "relative",
         width: "100%",
@@ -15,23 +16,17 @@ export default function WantToLearnCTA() {
         color: "var(--off-white)",
       }}
     >
-      {/* Background Image with Cinematic Overlay */}
+      {/* Background Container com Ícone da Marca e Gradiente */}
       <div style={{ position: "absolute", inset: 0, zIndex: 0 }}>
-        <Image
-          src="https://images.unsplash.com/photo-1553284965-83fd3e82fa5a?w=1600&q=80"
-          alt="Cavalo em movimento cinematográfico"
-          fill
-          sizes="100vw"
-          style={{ objectFit: "cover", objectPosition: "center 35%", filter: "brightness(0.65) contrast(1.1)" }}
-          priority
-        />
-        {/* Dark Cinematic Gradients */}
+        <BrandIconPlaceholder label="MUNDO DOS CAVALOS" aspectRatio="16/9" />
+        {/* Gradiente Escuro Cinematográfico */}
         <div
           style={{
             position: "absolute",
             inset: 0,
             background:
-              "radial-gradient(circle at center, rgba(13,12,10,0.55) 0%, rgba(13,12,10,0.92) 85%), linear-gradient(to bottom, rgba(13,12,10,0.8) 0%, transparent 40%, rgba(13,12,10,0.95) 100%)",
+              "radial-gradient(circle at center, rgba(13,12,10,0.65) 0%, rgba(13,12,10,0.95) 85%), linear-gradient(to bottom, rgba(13,12,10,0.9) 0%, transparent 40%, rgba(13,12,10,0.98) 100%)",
+            pointerEvents: "none",
           }}
         />
       </div>
@@ -55,7 +50,7 @@ export default function WantToLearnCTA() {
             <span
               className="font-sans"
               style={{
-                color: "var(--gold)",
+                color: "var(--gold-light)",
                 textTransform: "uppercase",
                 fontSize: "0.7rem",
                 fontWeight: 600,
@@ -65,16 +60,16 @@ export default function WantToLearnCTA() {
                 gap: "0.5rem",
               }}
             >
-              <span style={{ width: "6px", height: "6px", borderRadius: "50%", backgroundColor: "var(--gold)" }} />
+              <span style={{ width: "6px", height: "6px", borderRadius: "50%", backgroundColor: "var(--gold-light)" }} />
               Pausa Cinematográfica &bull; Escolha seu Destino
             </span>
 
             {/* High Impact Headline */}
             <h2
-              className="font-serif"
+              className="font-sans"
               style={{
-                fontSize: "clamp(2.3rem, 6.5vw, 5.5rem)",
-                fontWeight: 300,
+                fontSize: "clamp(2rem, 5.5vw, 4.5rem)",
+                fontWeight: 800,
                 color: "var(--off-white)",
                 letterSpacing: "-0.02em",
                 lineHeight: 1.05,
@@ -84,12 +79,12 @@ export default function WantToLearnCTA() {
               }}
             >
               Quero Transformar <br style={{ display: "block" }} />
-              <span style={{ color: "var(--gold-light)", fontStyle: "italic", fontWeight: 400 }}>Meu Manejo</span>
+              <span style={{ color: "var(--gold-light)", fontWeight: 800 }}>Meu Manejo</span>
             </h2>
 
             <div style={{ height: "1px", width: "60px", backgroundColor: "var(--gold)", opacity: 0.7 }} />
 
-            {/* Premium Product Metadata Bar (Avoiding Table Appearance) */}
+            {/* Premium Product Metadata Bar */}
             <div
               style={{
                 display: "flex",
@@ -124,12 +119,6 @@ export default function WantToLearnCTA() {
                 <span className="font-sans" style={{ fontSize: "0.65rem", textTransform: "uppercase", letterSpacing: "0.15em", color: "var(--stone-light)" }}>Conteúdo</span>
                 <span className="font-sans" style={{ fontSize: "0.85rem", fontWeight: 600, color: "var(--off-white)" }}>4 MÓDULOS</span>
               </div>
-              <span style={{ color: "rgba(206, 175, 114, 0.3)" }}>|</span>
-
-              <div style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
-                <span className="font-sans" style={{ fontSize: "0.65rem", textTransform: "uppercase", letterSpacing: "0.15em", color: "var(--stone-light)" }}>Investimento</span>
-                <span className="font-sans" style={{ fontSize: "0.95rem", fontWeight: 700, color: "var(--gold)" }}>R$ 297,00</span>
-              </div>
             </div>
 
             {/* Primary Action Button */}
@@ -143,7 +132,7 @@ export default function WantToLearnCTA() {
               }}
             >
               <Link
-                href="/matricula"
+                href="/login"
                 className="font-sans"
                 style={{
                   padding: "1.15rem 3rem",
@@ -168,7 +157,7 @@ export default function WantToLearnCTA() {
 
               <span
                 className="font-sans"
-                style={{ fontSize: "0.72rem", color: "var(--stone)", letterSpacing: "0.05em" }}
+                style={{ fontSize: "0.72rem", color: "var(--stone-light)", letterSpacing: "0.05em" }}
               >
                 Acesso imediato &bull; Certificado de Conclusão &bull; Suporte Técnico
               </span>
@@ -180,5 +169,3 @@ export default function WantToLearnCTA() {
     </section>
   );
 }
-
-
