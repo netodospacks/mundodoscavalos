@@ -2,6 +2,7 @@
 
 import { useEffect, useState, useRef } from "react";
 import Link from "next/link";
+import { NetflixLoginModal } from "@/components/ui/NetflixLoginModal";
 
 interface NavItem {
   label: string;
@@ -19,6 +20,7 @@ const mainNavItems: NavItem[] = [
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [userHasSwiped, setUserHasSwiped] = useState(false);
+  const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
   const navRef = useRef<HTMLDivElement>(null);
 
   // Detecta o scroll vertical para ajustar a densidade do fundo do cabeçalho
@@ -36,110 +38,113 @@ export default function Header() {
   };
 
   return (
-    <header
-      style={{
-        position: "fixed",
-        top: 0,
-        left: 0,
-        right: 0,
-        zIndex: 100,
-        transition:
-          "background 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s ease, backdrop-filter 0.4s ease",
-        background: scrolled
-          ? "rgba(13, 12, 10, 0.94)"
-          : "linear-gradient(to bottom, rgba(13, 12, 10, 0.75) 0%, transparent 100%)",
-        backdropFilter: scrolled ? "blur(16px) saturate(1.2)" : "none",
-        WebkitBackdropFilter: scrolled ? "blur(16px) saturate(1.2)" : "none",
-        borderBottom: scrolled
-          ? "1px solid rgba(157, 132, 82, 0.25)"
-          : "1px solid rgba(244, 239, 228, 0.08)",
-      }}
-      role="banner"
-    >
-      <div
+    <>
+      <header
         style={{
-          maxWidth: "1380px",
-          margin: "0 auto",
-          padding: "0 clamp(0.85rem, 3.5vw, 2.5rem)",
-          display: "flex",
-          flexDirection: "column",
+          position: "fixed",
+          top: 0,
+          left: 0,
+          right: 0,
+          zIndex: 100,
+          transition:
+            "background 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s ease, backdrop-filter 0.4s ease",
+          background: scrolled
+            ? "rgba(13, 12, 10, 0.94)"
+            : "linear-gradient(to bottom, rgba(13, 12, 10, 0.75) 0%, transparent 100%)",
+          backdropFilter: scrolled ? "blur(16px) saturate(1.2)" : "none",
+          WebkitBackdropFilter: scrolled ? "blur(16px) saturate(1.2)" : "none",
+          borderBottom: scrolled
+            ? "1px solid rgba(157, 132, 82, 0.25)"
+            : "1px solid rgba(244, 239, 228, 0.08)",
         }}
+        role="banner"
       >
-        {/* ── LINHA 1 (SUPERIOR): MUNDO DOS CAVALOS [ESQ] | CONTA / LOGIN [DIR] ── */}
         <div
           style={{
+            maxWidth: "1380px",
+            margin: "0 auto",
+            padding: "0 clamp(0.85rem, 3.5vw, 2.5rem)",
             display: "flex",
-            alignItems: "center",
-            justifyContent: "space-between",
-            height: "52px",
-            borderBottom: "1px solid rgba(244, 239, 228, 0.06)",
-            width: "100%",
+            flexDirection: "column",
           }}
         >
-          {/* BRAND (FIXO À ESQUERDA) — Tipografia Sans-Serif Forte & Contemporânea */}
-          <Link
-            href="/"
-            aria-label="Mundo dos Cavalos — Página inicial"
+          {/* ── LINHA 1 (SUPERIOR): MUNDO DOS CAVALOS [ESQ] | CONTA / LOGIN [DIR] ── */}
+          <div
             style={{
               display: "flex",
               alignItems: "center",
-              gap: "0.4rem",
-              textDecoration: "none",
+              justifyContent: "space-between",
+              height: "52px",
+              borderBottom: "1px solid rgba(244, 239, 228, 0.06)",
+              width: "100%",
             }}
           >
-            <span
-              className="font-sans"
+            {/* BRAND (FIXO À ESQUERDA) — Tipografia Sans-Serif Forte & Contemporânea */}
+            <Link
+              href="/"
+              aria-label="Mundo dos Cavalos — Página inicial"
               style={{
-                fontWeight: 800,
-                fontSize: "clamp(0.9rem, 1.3vw, 1.15rem)",
-                letterSpacing: "0.18em",
-                textTransform: "uppercase",
-                color: "var(--off-white)",
+                display: "flex",
+                alignItems: "center",
+                gap: "0.4rem",
+                textDecoration: "none",
               }}
             >
-              MUNDO DOS <span style={{ color: "var(--gold-light)", fontWeight: 700 }}>CAVALOS</span>
-            </span>
-          </Link>
+              <span
+                className="font-sans"
+                style={{
+                  fontWeight: 800,
+                  fontSize: "clamp(0.9rem, 1.3vw, 1.15rem)",
+                  letterSpacing: "0.18em",
+                  textTransform: "uppercase",
+                  color: "var(--off-white)",
+                }}
+              >
+                MUNDO DOS <span style={{ color: "var(--gold-light)", fontWeight: 700 }}>CAVALOS</span>
+              </span>
+            </Link>
 
-          {/* CONTA / LOGIN (FIXO À DIREITA) */}
-          <Link
-            href="/login"
-            aria-label="Área de Conta e Login"
-            style={{
-              display: "inline-flex",
-              alignItems: "center",
-              gap: "0.4rem",
-              fontFamily: "'Inter', sans-serif",
-              fontWeight: 600,
-              fontSize: "0.65rem",
-              letterSpacing: "0.14em",
-              textTransform: "uppercase",
-              color: "var(--off-white)",
-              backgroundColor: "rgba(157, 132, 82, 0.18)",
-              border: "1px solid var(--gold-light)",
-              padding: "0.4rem 0.85rem",
-              borderRadius: "2px",
-              whiteSpace: "nowrap",
-              transition: "all 0.3s ease",
-            }}
-          >
-            <svg
-              width="13"
-              height="13"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="var(--gold-light)"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              aria-hidden="true"
+            {/* CONTA / LOGIN (Gatilho da Vinheta Cinematográfica & Modal Netflix) */}
+            <button
+              onClick={() => setIsLoginModalOpen(true)}
+              aria-label="Área de Conta e Login"
+              style={{
+                display: "inline-flex",
+                alignItems: "center",
+                gap: "0.4rem",
+                fontFamily: "'Inter', sans-serif",
+                fontWeight: 600,
+                fontSize: "0.65rem",
+                letterSpacing: "0.14em",
+                textTransform: "uppercase",
+                color: "var(--off-white)",
+                backgroundColor: "rgba(157, 132, 82, 0.18)",
+                border: "1px solid var(--gold-light)",
+                padding: "0.4rem 0.85rem",
+                borderRadius: "2px",
+                whiteSpace: "nowrap",
+                transition: "all 0.3s ease",
+                cursor: "pointer",
+              }}
+              className="hover:scale-105"
             >
-              <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" />
-              <circle cx="12" cy="7" r="4" />
-            </svg>
-            <span>CONTA / LOGIN</span>
-          </Link>
-        </div>
+              <svg
+                width="13"
+                height="13"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="var(--gold-light)"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                aria-hidden="true"
+              >
+                <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" />
+                <circle cx="12" cy="7" r="4" />
+              </svg>
+              <span>CONTA / LOGIN</span>
+            </button>
+          </div>
 
         {/* ── LINHA 2 (INFERIOR): NAVEGAÇÃO COM ROLAGEM HORIZONTAL E INDICADOR ── */}
         <div
@@ -227,5 +232,11 @@ export default function Header() {
         </div>
       </div>
     </header>
+
+    <NetflixLoginModal
+      isOpen={isLoginModalOpen}
+      onClose={() => setIsLoginModalOpen(false)}
+    />
+    </>
   );
 }
