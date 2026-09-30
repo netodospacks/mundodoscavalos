@@ -24,27 +24,26 @@ export default function HomePage() {
       {/* 2. Por que a plataforma existe / Objetivo */}
       <PlatformPurpose />
 
-      {/* 3. Frase de impacto */}
+      {/* 4. Frase de impacto */}
       <ImpactQuote />
 
-      {/* 4. Três caminhos de exploração (Garanhões, Haras + Cavalos, Cavalos) */}
+      {/* 5. Três Pilares do Conhecimento (Destaque Ativo Sequencial 1 -> 2 -> 3 no Scroll) */}
       <FeaturedPaths />
 
-      {/* 5. Corpo docente — quem ensina */}
+      {/* 6. Corpo docente — quem ensina */}
       <Faculty />
 
-      {/* 6. Citação do docente com foto */}
+      {/* 8. Citação do docente com foto */}
       <FacultyQuote />
 
-      {/* 7. Módulos e Conteúdo Programático (Manejo, Nutrição, Produção, Primeiros Socorros, Informações & Comece agora) */}
+      {/* 9. Módulos e Conteúdo Programático */}
       <CourseModules />
 
-      {/* 8. Depoimentos de alunos */}
+      {/* 10. Depoimentos de alunos */}
       <Testimonials />
 
-      {/* 9. CTA final — Quero Aprender */}
+      {/* 11. CTA final — Quero Aprender */}
       <WantToLearnCTA />
     </>
   );
 }
-

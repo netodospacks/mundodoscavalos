@@ -9,7 +9,7 @@ import { courseModules } from "@/data/courseModules";
 export default function Hero() {
   const videoRef = useRef<HTMLVideoElement>(null);
   const heroRef = useRef<HTMLElement>(null);
-  const [scrollProgress, setScrollProgress] = useState(0);
+  const bgWrapperRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const video = videoRef.current;
@@ -24,17 +24,37 @@ export default function Hero() {
     }
   }, []);
 
-  // Efeito de paralaia e opacidade no scroll
+  // Efeito de parallax de alta performance (60 FPS via GPU translate3d + requestAnimationFrame)
   useEffect(() => {
-    const handleScroll = () => {
-      if (!heroRef.current) return;
+    let ticking = false;
+
+    const updateScroll = () => {
+      if (!heroRef.current || !bgWrapperRef.current) return;
       const rect = heroRef.current.getBoundingClientRect();
       const heroHeight = rect.height || window.innerHeight;
-      const progress = Math.min(Math.max(-rect.top / heroHeight, 0), 1);
-      setScrollProgress(progress);
+
+      if (rect.top <= window.innerHeight && rect.bottom >= 0) {
+        const progress = Math.min(Math.max(-rect.top / heroHeight, 0), 1);
+        const y = (progress * 120).toFixed(2);
+        const scale = (1.04 + progress * 0.05).toFixed(3);
+        const opacity = (1 - progress * 0.4).toFixed(2);
+
+        bgWrapperRef.current.style.transform = `translate3d(0, ${y}px, 0) scale(${scale})`;
+        bgWrapperRef.current.style.opacity = opacity;
+      }
+      ticking = false;
+    };
+
+    const handleScroll = () => {
+      if (!ticking) {
+        requestAnimationFrame(updateScroll);
+        ticking = true;
+      }
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
+    updateScroll();
+
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
@@ -99,13 +119,15 @@ export default function Hero() {
           2. VÍDEO CINEMATOGRÁFICO DE FUNDO & DEGRADÊ DE TRANSIÇÃO SUAVE
           ============================================================ */}
       <div
+        ref={bgWrapperRef}
         style={{
           position: "absolute",
-          inset: 0,
+          inset: "-12% 0",
           zIndex: 0,
-          transform: `scale(${1 - scrollProgress * 0.02}) translateY(${scrollProgress * 15}px)`,
-          opacity: 1 - scrollProgress * 0.4,
-          transition: "transform 0.1s linear, opacity 0.1s linear",
+          willChange: "transform, opacity",
+          transform: "translate3d(0, 0, 0) scale(1.04)",
+          backfaceVisibility: "hidden",
+          WebkitBackfaceVisibility: "hidden",
         }}
       >
         <video

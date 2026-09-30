@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useRef } from "react";
 import Link from "next/link";
 import SectionReveal from "@/components/ui/SectionReveal";
 import { courseModules } from "@/data/courseModules";
@@ -9,57 +9,12 @@ export default function CourseModules() {
   const [selectedModule, setSelectedModule] = useState<typeof courseModules[0] | null>(null);
   const scrollRef = useRef<HTMLDivElement>(null);
 
-  // Estado do Showcase Estilo Vídeo de Informações do Curso (Cenas: 0, 1, 2, 3)
-  const [activeScene, setActiveScene] = useState<number>(0);
-  const [isPlaying, setIsPlaying] = useState<boolean>(true);
-
-  // Efeito de auto-play do Showcase de Vídeo (troca de cena a cada 4.5s)
-  useEffect(() => {
-    if (!isPlaying) return;
-    const interval = setInterval(() => {
-      setActiveScene((prev) => (prev + 1) % 4);
-    }, 4500);
-    return () => clearInterval(interval);
-  }, [isPlaying]);
-
   // Função para rolar o catálogo horizontalmente
   const handleScroll = (direction: "left" | "right") => {
     if (!scrollRef.current) return;
     const scrollAmount = direction === "left" ? -300 : 300;
     scrollRef.current.scrollBy({ left: scrollAmount, behavior: "smooth" });
   };
-
-  const scenes = [
-    {
-      id: 1,
-      badge: "🎥 METODOLOGIA PRÁTICA EM HD",
-      title: "10+ Módulos Práticos Gravados no Haras",
-      description: "Conteúdo 100% embasado na rotina real de manejo, nutrição, primeiros socorros e ciência equina do Haras Nossa Senhora Aparecida.",
-      tag: "1080p Full HD • Gravado em Campo",
-    },
-    {
-      id: 2,
-      badge: "♾️ TIPO DE ACESSO",
-      title: "Acesso Vitalício (Sem Mensalidades)",
-      description: "Pague uma única vez e tenha acesso para sempre. Sem taxas ocultas, renovações ou assinaturas recorrentes.",
-      tag: "Pague 1x • Assista para Sempre",
-    },
-    {
-      id: 3,
-      badge: "📊 GRÁFICO DE ADESÃO EM TEMPO REAL",
-      title: "24 de 100 Vagas Preenchidas (24%)",
-      description: "Acompanhe em tempo real o preenchimento das vagas promocionais da turma vitalícia. Restam 76 vagas neste valor.",
-      tag: "76 Vagas Restantes no Lote Vitalício",
-      isGraph: true,
-    },
-    {
-      id: 4,
-      badge: "📱 COMPATIBILIDADE DE DISPOSITIVOS",
-      title: "Assista na Web, Smart TV e App Android",
-      description: "Sua plataforma está disponível em qualquer tela: no navegador do computador, na Smart TV da sua sala ou no aplicativo Android dedicado.",
-      tag: "Aplicativo Android Nativo (.APK) Incluso",
-    },
-  ];
 
   return (
     <section
@@ -176,7 +131,7 @@ export default function CourseModules() {
             }}
             className="no-scrollbar"
           >
-            {courseModules.map((mod, index) => (
+            {courseModules.map((mod) => (
               <div
                 key={mod.id}
                 onClick={() => setSelectedModule(mod)}
@@ -526,275 +481,7 @@ export default function CourseModules() {
           </div>
         )}
 
-        {/* SHOWCASE ANIMADO ESTILO TRAILER / VÍDEO ("INFORMAÇÕES DO CURSO") */}
-        <SectionReveal type="up">
-          <div
-            id="inscreva-se"
-            style={{
-              marginTop: "clamp(3.5rem, 7vw, 5.5rem)",
-              backgroundColor: "rgba(18, 16, 13, 0.96)",
-              backdropFilter: "blur(24px)",
-              WebkitBackdropFilter: "blur(24px)",
-              border: "1px solid rgba(196, 169, 110, 0.35)",
-              borderRadius: "10px",
-              overflow: "hidden",
-              boxShadow: "0 30px 80px rgba(0,0,0,0.95), inset 0 0 40px rgba(196,169,110,0.05)",
-            }}
-          >
-            {/* Header do Player de Vídeo */}
-            <div
-              style={{
-                backgroundColor: "rgba(13, 12, 10, 0.9)",
-                borderBottom: "1px solid rgba(196, 169, 110, 0.2)",
-                padding: "0.85rem 1.5rem",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "space-between",
-                flexWrap: "wrap",
-                gap: "0.5rem",
-              }}
-            >
-              <div style={{ display: "flex", alignItems: "center", gap: "0.6rem" }}>
-                <span style={{ width: "8px", height: "8px", borderRadius: "50%", backgroundColor: "#ef4444", boxShadow: "0 0 8px #ef4444" }} />
-                <span
-                  style={{
-                    fontFamily: "'Inter', sans-serif",
-                    fontSize: "0.68rem",
-                    fontWeight: 800,
-                    letterSpacing: "0.2em",
-                    color: "var(--gold-light)",
-                    textTransform: "uppercase",
-                  }}
-                >
-                  APRESENTAÇÃO VIRTUAL • INFORMAÇÕES DO CURSO
-                </span>
-              </div>
-
-              {/* Botão Play / Pause da Animação */}
-              <button
-                type="button"
-                onClick={() => setIsPlaying(!isPlaying)}
-                style={{
-                  display: "inline-flex",
-                  alignItems: "center",
-                  gap: "0.4rem",
-                  backgroundColor: "rgba(255, 255, 255, 0.08)",
-                  border: "1px solid rgba(196, 169, 110, 0.3)",
-                  borderRadius: "20px",
-                  padding: "0.25rem 0.75rem",
-                  color: "var(--off-white)",
-                  fontSize: "0.65rem",
-                  fontFamily: "'Inter', sans-serif",
-                  fontWeight: 700,
-                  cursor: "pointer",
-                }}
-              >
-                <span>{isPlaying ? "❚❚ PAUSAR" : "▶ REPRODUZIR"}</span>
-              </button>
-            </div>
-
-            {/* PALCO DE VÍDEO CINEMATOGRÁFICO (CENAS COM TRANSIÇÕES EFEITO TEASER) */}
-            <div
-              style={{
-                position: "relative",
-                minHeight: "340px",
-                padding: "clamp(2rem, 5vw, 4rem)",
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-                justifyContent: "center",
-                textAlign: "center",
-                overflow: "hidden",
-                background: "radial-gradient(circle at 50% 40%, rgba(196, 169, 110, 0.12) 0%, rgba(13,12,10,0.98) 75%)",
-              }}
-            >
-              {/* CENA ATIVA */}
-              <div
-                key={activeScene}
-                className="animate-scene-fade"
-                style={{
-                  width: "100%",
-                  maxWidth: "720px",
-                  display: "flex",
-                  flexDirection: "column",
-                  alignItems: "center",
-                  gap: "1.2rem",
-                }}
-              >
-                {/* Badge da Cena */}
-                <span
-                  style={{
-                    fontFamily: "'Inter', sans-serif",
-                    fontSize: "0.72rem",
-                    fontWeight: 800,
-                    letterSpacing: "0.22em",
-                    color: "var(--gold-light)",
-                    backgroundColor: "rgba(13, 12, 10, 0.8)",
-                    border: "1px solid var(--gold)",
-                    padding: "0.35rem 1rem",
-                    borderRadius: "30px",
-                    textTransform: "uppercase",
-                  }}
-                >
-                  {scenes[activeScene].badge}
-                </span>
-
-                {/* Título Principal da Cena */}
-                <h3
-                  style={{
-                    fontFamily: "'Inter', sans-serif",
-                    fontSize: "clamp(1.8rem, 4vw, 3rem)",
-                    fontWeight: 900,
-                    color: "var(--off-white)",
-                    textTransform: "uppercase",
-                    letterSpacing: "-0.02em",
-                    lineHeight: 1.1,
-                    margin: 0,
-                    textShadow: "0 4px 25px rgba(0,0,0,0.9)",
-                  }}
-                >
-                  {scenes[activeScene].title}
-                </h3>
-
-                {/* Descrição */}
-                <p
-                  style={{
-                    fontFamily: "'Inter', sans-serif",
-                    fontSize: "clamp(0.9rem, 1.2vw, 1.05rem)",
-                    color: "rgba(244, 239, 228, 0.85)",
-                    fontWeight: 400,
-                    lineHeight: 1.6,
-                    margin: 0,
-                    maxWidth: "600px",
-                  }}
-                >
-                  {scenes[activeScene].description}
-                </p>
-
-                {/* Se for a Cena do Gráfico (Cena 3) */}
-                {scenes[activeScene].isGraph && (
-                  <div
-                    style={{
-                      width: "100%",
-                      maxWidth: "500px",
-                      marginTop: "0.5rem",
-                      backgroundColor: "rgba(13, 12, 10, 0.8)",
-                      border: "1px solid var(--gold-light)",
-                      borderRadius: "8px",
-                      padding: "1rem 1.25rem",
-                      textAlign: "left",
-                    }}
-                  >
-                    <div style={{ display: "flex", justifyContent: "space-between", fontSize: "0.75rem", fontWeight: 800, color: "var(--gold-light)", marginBottom: "0.4rem" }}>
-                      <span>ADESÃO EM TEMPO REAL</span>
-                      <span>24 / 100 VAGAS (24%)</span>
-                    </div>
-                    <div style={{ width: "100%", height: "12px", backgroundColor: "rgba(255,255,255,0.1)", borderRadius: "6px", overflow: "hidden" }}>
-                      <div
-                        style={{
-                          height: "100%",
-                          width: "24%",
-                          background: "linear-gradient(90deg, #856a33 0%, #c4a96e 50%, #fff2d0 100%)",
-                          borderRadius: "6px",
-                          boxShadow: "0 0 15px rgba(196,169,110,0.8)",
-                        }}
-                      />
-                    </div>
-                  </div>
-                )}
-
-                <span
-                  style={{
-                    fontFamily: "'Inter', sans-serif",
-                    fontSize: "0.7rem",
-                    color: "rgba(244,239,228,0.55)",
-                    letterSpacing: "0.1em",
-                    textTransform: "uppercase",
-                  }}
-                >
-                  {scenes[activeScene].tag}
-                </span>
-              </div>
-            </div>
-
-            {/* CONTROLES / NAVEGAÇÃO DE CENAS (TABS + TIMELINE DE PROGRESSO) */}
-            <div
-              style={{
-                backgroundColor: "rgba(13, 12, 10, 0.95)",
-                borderTop: "1px solid rgba(196, 169, 110, 0.2)",
-                padding: "1rem 1.5rem",
-                display: "flex",
-                flexDirection: "column",
-                gap: "1rem",
-                alignItems: "center",
-              }}
-            >
-              {/* Abas Selecionáveis de Cenas */}
-              <div
-                style={{
-                  display: "flex",
-                  gap: "0.6rem",
-                  flexWrap: "wrap",
-                  justifyContent: "center",
-                }}
-              >
-                {scenes.map((scene, idx) => (
-                  <button
-                    key={scene.id}
-                    type="button"
-                    onClick={() => {
-                      setActiveScene(idx);
-                      setIsPlaying(false);
-                    }}
-                    style={{
-                      fontFamily: "'Inter', sans-serif",
-                      fontSize: "0.68rem",
-                      fontWeight: 700,
-                      letterSpacing: "0.08em",
-                      textTransform: "uppercase",
-                      padding: "0.45rem 0.85rem",
-                      borderRadius: "4px",
-                      border: idx === activeScene ? "1px solid var(--gold-light)" : "1px solid rgba(244,239,228,0.15)",
-                      backgroundColor: idx === activeScene ? "rgba(196, 169, 110, 0.2)" : "rgba(255,255,255,0.04)",
-                      color: idx === activeScene ? "var(--gold-light)" : "rgba(244,239,228,0.7)",
-                      cursor: "pointer",
-                      transition: "all 0.25s ease",
-                    }}
-                  >
-                    0{scene.id} {scene.badge.split(" ")[1] || "CENA"}
-                  </button>
-                ))}
-              </div>
-
-              {/* Botão de Inscrição Direta */}
-              <Link
-                href="#quero-aprender"
-                style={{
-                  padding: "0.95rem 2.5rem",
-                  fontSize: "0.8rem",
-                  letterSpacing: "0.14em",
-                  backgroundColor: "var(--off-white)",
-                  color: "var(--ink)",
-                  fontFamily: "'Inter', sans-serif",
-                  fontWeight: 900,
-                  textTransform: "uppercase",
-                  borderRadius: "4px",
-                  textDecoration: "none",
-                  display: "inline-flex",
-                  alignItems: "center",
-                  gap: "0.5rem",
-                  boxShadow: "0 6px 20px rgba(0,0,0,0.6)",
-                }}
-                className="hover:scale-102"
-              >
-                <span>GARANTIR MEU ACESSO VITALÍCIO</span>
-                <span>→</span>
-              </Link>
-            </div>
-          </div>
-        </SectionReveal>
-
-        {/* Estilos CSS do Grid Responsivo de Posters & Animação de Transição de Cenas */}
+        {/* Estilos CSS */}
         <style dangerouslySetInnerHTML={{__html: `
           .no-scrollbar::-webkit-scrollbar { display: none; }
           .module-poster-card:hover {
@@ -806,19 +493,6 @@ export default function CourseModules() {
             transform: scale(1.08);
             opacity: 0.85 !important;
           }
-          @keyframes sceneFade {
-            0% {
-              opacity: 0;
-              transform: translateY(12px) scale(0.97);
-            }
-            100% {
-              opacity: 1;
-              transform: translateY(0) scale(1);
-            }
-          }
-          .animate-scene-fade {
-            animation: sceneFade 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-          }
           @media (max-width: 767px) {
             .hide-mobile-btn { display: none !important; }
           }
@@ -827,4 +501,3 @@ export default function CourseModules() {
     </section>
   );
 }
-
