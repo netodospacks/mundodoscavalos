@@ -5,334 +5,479 @@ import { SectionReveal } from "@/components/ui/SectionReveal";
 
 export default function Hero() {
   const videoRef = useRef<HTMLVideoElement>(null);
-  const [videoLoaded, setVideoLoaded] = useState(false);
+  const heroRef = useRef<HTMLElement>(null);
+  const [scrollProgress, setScrollProgress] = useState(0);
 
   useEffect(() => {
     const video = videoRef.current;
     if (!video) return;
-    video.play().catch(() => {
-      // Handle autoplay restriction on mobile browsers
-    });
+
+    video.muted = true;
+    const playPromise = video.play();
+    if (playPromise !== undefined) {
+      playPromise.catch(() => {
+        // Fallback em caso de bloqueio de autoplay do navegador
+      });
+    }
+  }, []);
+
+  // Efeito de transição de profundidade no scroll no Desktop
+  useEffect(() => {
+    const handleScroll = () => {
+      if (!heroRef.current) return;
+      const rect = heroRef.current.getBoundingClientRect();
+      const heroHeight = rect.height || window.innerHeight;
+      const progress = Math.min(Math.max(-rect.top / heroHeight, 0), 1);
+      setScrollProgress(progress);
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   return (
     <section
-      aria-label="Apresentação principal"
+      ref={heroRef}
+      aria-label="Apresentação cinematográfica Mundo dos Cavalos"
+      className="hero-section"
       style={{
         position: "relative",
-        minHeight: "100svh",
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "flex-end",
+        minHeight: "85vh",
+        backgroundColor: "var(--ink)",
         overflow: "hidden",
-        background: "var(--ink)",
       }}
     >
-      {/* ── Vídeo / Fallback Background ── */}
-      <div
-        style={{
-          position: "absolute",
-          inset: 0,
-          zIndex: 0,
-        }}
-      >
-        <video
-          ref={videoRef}
-          autoPlay
-          muted
-          loop
-          playsInline
-          poster="https://images.unsplash.com/photo-1553284965-83fd3e82fa5a?w=1920&q=85"
-          onCanPlay={() => setVideoLoaded(true)}
+      {/* ============================================================
+          1. COMPOSIÇÃO DESKTOP (VÍDEO EM TELA CHEIA COMO PROTAGONISTA)
+          ============================================================ */}
+      <div className="hero-desktop-wrapper">
+        {/* Container do Vídeo Background */}
+        <div
           style={{
             position: "absolute",
             inset: 0,
+            zIndex: 0,
+            transform: `scale(${1 - scrollProgress * 0.04}) translateY(${scrollProgress * 20}px)`,
+            opacity: 1 - scrollProgress * 0.5,
+            transition: "transform 0.1s linear, opacity 0.1s linear",
+          }}
+        >
+          <video
+            ref={videoRef}
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="metadata"
+            poster="https://images.unsplash.com/photo-1553284965-83fd3e82fa5a?w=1920&q=85"
+            style={{
+              position: "absolute",
+              inset: 0,
+              width: "100%",
+              height: "100%",
+              objectFit: "cover",
+              objectPosition: "center 40%",
+              display: "block",
+            }}
+            aria-hidden="true"
+          >
+            <source src="/videos/hero-cavalos.mp4" type="video/mp4" />
+          </video>
+
+          {/* Imagem de fallback caso o vídeo falhe */}
+          <div
+            style={{
+              position: "absolute",
+              inset: 0,
+              backgroundImage:
+                "url('https://images.unsplash.com/photo-1553284965-e2815db4c1c4?w=1920&q=85')",
+              backgroundSize: "cover",
+              backgroundPosition: "center 35%",
+              zIndex: -1,
+            }}
+            aria-hidden="true"
+          />
+        </div>
+
+        {/* Gradiente Lateral Esquerdo (garante 100% de contraste no texto) */}
+        <div
+          aria-hidden="true"
+          style={{
+            position: "absolute",
+            inset: 0,
+            background: `
+              linear-gradient(
+                to right,
+                rgba(13, 12, 10, 0.94) 0%,
+                rgba(13, 12, 10, 0.78) 32%,
+                rgba(13, 12, 10, 0.3) 58%,
+                transparent 85%
+              ),
+              linear-gradient(
+                to top,
+                rgba(13, 12, 10, 0.98) 0%,
+                rgba(13, 12, 10, 0.4) 30%,
+                transparent 100%
+              )
+            `,
+            zIndex: 1,
+            pointerEvents: "none",
+          }}
+        />
+
+        {/* Conteúdo Desktop (Alinhado à Esquerda Estilo Streaming) */}
+        <div
+          style={{
+            position: "relative",
+            zIndex: 2,
             width: "100%",
-            height: "100%",
-            objectFit: "cover",
-            objectPosition: "center",
-            opacity: videoLoaded ? 1 : 0,
-            transition: "opacity 1.2s ease",
+            maxWidth: "1380px",
+            margin: "0 auto",
+            minHeight: "100vh",
+            paddingTop: "clamp(120px, 18vh, 180px)",
+            paddingBottom: "clamp(4rem, 8vh, 6.5rem)",
+            paddingLeft: "clamp(1.25rem, 8vw, 7.5rem)",
+            paddingRight: "clamp(1.25rem, 4vw, 3rem)",
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "flex-end",
+            transform: `translateY(${scrollProgress * -15}px)`,
+            opacity: 1 - scrollProgress * 0.4,
           }}
-          aria-hidden="true"
         >
-          {/* Adicione a URL do vídeo MP4 definitivo quando disponível */}
-          {/* <source src="URL_DO_VIDEO.mp4" type="video/mp4" /> */}
-        </video>
+          <div style={{ maxWidth: "760px" }}>
+            {/* Tag de Marca */}
+            <SectionReveal delay={0} type="up">
+              <div
+                style={{
+                  display: "inline-flex",
+                  alignItems: "center",
+                  gap: "0.6rem",
+                  marginBottom: "1rem",
+                  backgroundColor: "rgba(13, 12, 10, 0.65)",
+                  backdropFilter: "blur(8px)",
+                  WebkitBackdropFilter: "blur(8px)",
+                  border: "1px solid rgba(196, 169, 110, 0.3)",
+                  padding: "0.3rem 0.8rem",
+                  borderRadius: "2px",
+                }}
+              >
+                <span
+                  style={{
+                    width: "6px",
+                    height: "6px",
+                    borderRadius: "50%",
+                    backgroundColor: "var(--gold-light)",
+                    boxShadow: "0 0 8px var(--gold-light)",
+                  }}
+                  aria-hidden="true"
+                />
+                <span
+                  className="font-sans"
+                  style={{
+                    fontWeight: 600,
+                    fontSize: "0.72rem",
+                    letterSpacing: "0.22em",
+                    textTransform: "uppercase",
+                    color: "var(--gold-light)",
+                  }}
+                >
+                  Mundo dos Cavalos
+                </span>
+              </div>
+            </SectionReveal>
 
-        {/* Fallback image when video is loading or unsupported on mobile */}
-        <div
-          style={{
-            position: "absolute",
-            inset: 0,
-            backgroundImage:
-              "url('https://images.unsplash.com/photo-1553284965-e2815db4c1c4?w=1920&q=85')",
-            backgroundSize: "cover",
-            backgroundPosition: "center 30%",
-            opacity: videoLoaded ? 0 : 1,
-            transition: "opacity 1.2s ease",
-          }}
-          aria-hidden="true"
-        />
+            {/* Título Principal */}
+            <SectionReveal delay={1} type="up">
+              <h1
+                className="font-sans"
+                style={{
+                  fontWeight: 800,
+                  fontSize: "clamp(2.2rem, 4.8vw, 4.2rem)",
+                  lineHeight: 1.05,
+                  letterSpacing: "-0.02em",
+                  color: "var(--off-white)",
+                  textTransform: "uppercase",
+                  margin: "0.25rem 0 1rem 0",
+                }}
+              >
+                Cuidar de cavalos
+                <br />
+                <span style={{ color: "rgba(244, 239, 228, 0.9)", fontWeight: 700 }}>
+                  não é apenas tradição.
+                </span>
+                <br />
+                <span style={{ color: "var(--gold-light)", fontWeight: 800 }}>
+                  É ciência, manejo e respeito ao animal.
+                </span>
+              </h1>
+            </SectionReveal>
+
+            {/* Descrição Curta */}
+            <SectionReveal delay={2} type="up">
+              <p
+                className="font-sans"
+                style={{
+                  color: "rgba(244, 239, 228, 0.85)",
+                  fontSize: "clamp(0.9rem, 1.1vw, 1.05rem)",
+                  fontWeight: 300,
+                  lineHeight: 1.65,
+                  maxWidth: "580px",
+                  margin: "0 0 1.25rem 0",
+                }}
+              >
+                Conhecimento sério e aplicável sobre bem-estar, saúde, alimentação e manejo equino,
+                direto da rotina real de um haras profissional.
+              </p>
+            </SectionReveal>
+
+            {/* Metadata Line */}
+            <SectionReveal delay={3} type="up">
+              <div
+                style={{
+                  display: "inline-flex",
+                  alignItems: "center",
+                  gap: "0.6rem",
+                  fontFamily: "'Inter', sans-serif",
+                  fontSize: "0.72rem",
+                  fontWeight: 600,
+                  letterSpacing: "0.14em",
+                  textTransform: "uppercase",
+                  color: "var(--gold-light)",
+                  backgroundColor: "rgba(13, 12, 10, 0.7)",
+                  borderLeft: "2px solid var(--gold-light)",
+                  padding: "0.4rem 0.9rem",
+                  marginBottom: "1.75rem",
+                }}
+              >
+                <span>CURSO</span>
+                <span style={{ opacity: 0.4 }}>•</span>
+                <span>12 HORAS</span>
+                <span style={{ opacity: 0.4 }}>•</span>
+                <span>4 MÓDULOS</span>
+              </div>
+            </SectionReveal>
+
+            {/* Botões */}
+            <SectionReveal delay={4} type="up">
+              <div style={{ display: "flex", alignItems: "center", gap: "1rem" }}>
+                <a
+                  href="#modulos"
+                  className="btn btn-primary-dark"
+                  style={{
+                    fontSize: "0.75rem",
+                    padding: "1.1rem 2.6rem",
+                    fontWeight: 700,
+                    letterSpacing: "0.16em",
+                    backgroundColor: "var(--gold)",
+                    color: "var(--ink)",
+                  }}
+                >
+                  <span>COMEÇAR AGORA</span>
+                  <span aria-hidden="true">&rarr;</span>
+                </a>
+
+                <a
+                  href="#quero-aprender"
+                  className="btn btn-outline-light"
+                  style={{
+                    fontSize: "0.72rem",
+                    padding: "1.05rem 2rem",
+                    fontWeight: 500,
+                    letterSpacing: "0.14em",
+                  }}
+                >
+                  SAIBA MAIS
+                </a>
+              </div>
+            </SectionReveal>
+          </div>
+        </div>
       </div>
 
-      {/* ── Overlay cinematográfico ── */}
-      <div
-        aria-hidden="true"
-        style={{
-          position: "absolute",
-          inset: 0,
-          background: `
-            linear-gradient(
-              to bottom,
-              rgba(13, 12, 10, 0.6) 0%,
-              rgba(13, 12, 10, 0.35) 35%,
-              rgba(13, 12, 10, 0.7) 70%,
-              rgba(13, 12, 10, 0.96) 100%
-            )
-          `,
-          zIndex: 1,
-        }}
-      />
-
-      {/* ── Conteúdo sobre o vídeo (Com Z-index elevado e padding responsivo) ── */}
-      <div
-        style={{
-          position: "relative",
-          zIndex: 2,
-          paddingTop: "clamp(115px, 16vh, 150px)",
-          paddingRight: "clamp(1.25rem, 5vw, 4rem)",
-          paddingBottom: "clamp(4rem, 8vw, 7rem)",
-          paddingLeft: "clamp(1.25rem, 5vw, 4rem)",
-          maxWidth: "1380px",
-          margin: "0 auto",
-          width: "100%",
-        }}
-      >
-        {/* Label acima / Brand Tag */}
-        <SectionReveal delay={0} type="up">
-          <div
+      {/* ============================================================
+          2. COMPOSIÇÃO MOBILE (SPLIT EDITORIAL: TEXTO ESQ / VÍDEO DIR)
+          O vídeo NÃO fica atrás das letras no mobile.
+          ============================================================ */}
+      <div className="hero-mobile-wrapper">
+        {/* LADO ESQUERDO: PAINEL DE CONTEÚDO SÓLIDO E ELEGANTE (~52% W) */}
+        <div className="hero-mobile-content-col">
+          <span
+            className="font-sans"
             style={{
-              display: "flex",
-              alignItems: "center",
-              gap: "0.75rem",
-              marginBottom: "1.25rem",
-              flexWrap: "wrap",
+              fontSize: "0.58rem",
+              fontWeight: 700,
+              letterSpacing: "0.2em",
+              textTransform: "uppercase",
+              color: "var(--earth-2)",
+              display: "block",
+              marginBottom: "0.4rem",
             }}
           >
-            <span
-              style={{
-                fontFamily: "'Inter', sans-serif",
-                fontWeight: 600,
-                fontSize: "clamp(0.6rem, 1vw, 0.72rem)",
-                letterSpacing: "0.25em",
-                textTransform: "uppercase",
-                color: "var(--gold-light)",
-              }}
-            >
-              Haras Nossa Senhora Aparecida
-            </span>
-            <span
-              style={{
-                display: "inline-block",
-                width: "4px",
-                height: "4px",
-                borderRadius: "50%",
-                backgroundColor: "var(--gold)",
-                opacity: 0.6,
-              }}
-              aria-hidden="true"
-            />
-            <span
-              style={{
-                fontFamily: "'Inter', sans-serif",
-                fontSize: "0.6rem",
-                letterSpacing: "0.15em",
-                textTransform: "uppercase",
-                color: "var(--off-white)",
-                backgroundColor: "rgba(157, 132, 82, 0.2)",
-                border: "1px solid rgba(157, 132, 82, 0.4)",
-                padding: "0.2rem 0.6rem",
-                borderRadius: "2px",
-              }}
-            >
-              PLATAFORMA DIGITAL
-            </span>
-          </div>
-        </SectionReveal>
+            MUNDO DOS CAVALOS
+          </span>
 
-        {/* Título Principal */}
-        <SectionReveal delay={1} type="up">
           <h1
+            className="font-sans"
             style={{
-              fontFamily: "'Cormorant Garamond', Georgia, serif",
-              fontWeight: 300,
-              fontSize: "clamp(2.4rem, 7vw, 7rem)",
-              lineHeight: 1.02,
-              letterSpacing: "-0.025em",
-              color: "var(--off-white)",
-              maxWidth: "850px",
-              marginBottom: "0.3em",
+              fontSize: "clamp(1.05rem, 4.2vw, 1.35rem)",
+              fontWeight: 800,
+              lineHeight: 1.12,
+              letterSpacing: "-0.015em",
+              color: "var(--text-dark)",
+              textTransform: "uppercase",
+              margin: "0 0 0.5rem 0",
             }}
           >
-            Cuidar de Cavalos
+            CUIDAR DE CAVALOS <br />
+            <span style={{ color: "var(--earth-1)", fontWeight: 700 }}>
+              NÃO É APENAS TRADIÇÃO.
+            </span>
             <br />
-            <em
-              style={{
-                fontStyle: "italic",
-                color: "rgba(244, 239, 228, 0.82)",
-                fontWeight: 300,
-              }}
-            >
-              não é apenas tradição.
-            </em>
+            <span style={{ color: "var(--earth-3)", fontWeight: 800 }}>
+              É CIÊNCIA, MANEJO E RESPEITO.
+            </span>
           </h1>
-        </SectionReveal>
 
-        <SectionReveal delay={2} type="up">
           <p
+            className="font-sans"
             style={{
-              fontFamily: "'Cormorant Garamond', Georgia, serif",
+              fontSize: "0.72rem",
+              lineHeight: 1.45,
+              color: "var(--text-mid-light)",
               fontWeight: 400,
-              fontSize: "clamp(1.35rem, 3vw, 2.6rem)",
-              lineHeight: 1.25,
-              color: "var(--off-white)",
-              maxWidth: "640px",
-              marginTop: "0.75rem",
+              margin: "0 0 0.65rem 0",
             }}
           >
-            É ciência, <span style={{ color: "var(--gold-light)" }}>manejo</span>
-            <br />e respeito ao animal.
+            Conhecimento prático sobre bem-estar e manejo equino direto do haras.
           </p>
-        </SectionReveal>
 
-        {/* Metadata Pill Badge + Resumo Curto */}
-        <SectionReveal delay={3} type="up">
+          {/* Metadata Compacto Horizontal (Linha única no mobile) */}
           <div
             style={{
-              marginTop: "1.5rem",
-              display: "flex",
-              flexDirection: "column",
-              gap: "0.75rem",
-              maxWidth: "580px",
-            }}
-          >
-            <div
-              style={{
-                display: "inline-flex",
-                alignItems: "center",
-                gap: "0.75rem",
-                fontFamily: "'Inter', sans-serif",
-                fontSize: "0.7rem",
-                letterSpacing: "0.12em",
-                textTransform: "uppercase",
-                color: "var(--stone-light)",
-              }}
-            >
-              <span>Curso Prático</span>
-              <span aria-hidden="true">•</span>
-              <span>4 Módulos</span>
-              <span aria-hidden="true">•</span>
-              <span>100% Online</span>
-            </div>
-
-            <p
-              className="font-sans"
-              style={{
-                color: "rgba(244, 239, 228, 0.75)",
-                fontSize: "clamp(0.85rem, 1.1vw, 0.98rem)",
-                fontWeight: 300,
-                lineHeight: 1.7,
-                margin: 0,
-              }}
-            >
-              Conhecimento sério e aplicável sobre bem-estar, saúde, alimentação e
-              manejo equino, direto da rotina real de um haras profissional.
-            </p>
-          </div>
-        </SectionReveal>
-
-        {/* Botões de Ação (Primary + Secondary) */}
-        <SectionReveal delay={4} type="up">
-          <div
-            style={{
-              marginTop: "2.25rem",
               display: "flex",
               alignItems: "center",
-              gap: "1.25rem",
-              flexWrap: "wrap",
+              gap: "0.35rem",
+              fontSize: "0.58rem",
+              fontWeight: 700,
+              letterSpacing: "0.08em",
+              textTransform: "uppercase",
+              color: "var(--earth-2)",
+              backgroundColor: "rgba(160, 117, 64, 0.12)",
+              padding: "0.3rem 0.5rem",
+              borderRadius: "2px",
+              marginBottom: "0.85rem",
+              whiteSpace: "nowrap",
             }}
           >
-            <a
-              href="#modulos"
-              className="btn btn-primary-dark"
-              style={{
-                fontSize: "0.72rem",
-                padding: "1rem 2.2rem",
-                whiteSpace: "nowrap",
-                fontWeight: 600,
-                letterSpacing: "0.16em",
-              }}
-            >
-              COMEÇAR AGORA →
-            </a>
-            <a
-              href="#quero-aprender"
-              className="btn btn-outline-light"
-              style={{
-                fontSize: "0.68rem",
-                padding: "0.95rem 1.8rem",
-                whiteSpace: "nowrap",
-              }}
-            >
-              Conhecer a plataforma
-              <span aria-hidden="true" style={{ marginLeft: "0.35rem" }}>
-                ↓
-              </span>
-            </a>
+            <span>CURSO</span>
+            <span>•</span>
+            <span>12 HORAS</span>
+            <span>•</span>
+            <span>4 MÓDULOS</span>
           </div>
-        </SectionReveal>
+
+          <a
+            href="#modulos"
+            className="btn"
+            style={{
+              backgroundColor: "var(--ink)",
+              color: "var(--off-white)",
+              fontSize: "0.62rem",
+              padding: "0.65rem 1rem",
+              fontWeight: 700,
+              letterSpacing: "0.12em",
+              borderRadius: "2px",
+              width: "100%",
+              justifyContent: "center",
+              whiteSpace: "nowrap",
+            }}
+          >
+            COMEÇAR AGORA &rarr;
+          </a>
+        </div>
+
+        {/* LADO DIREITO: VÍDEO COM ENQUADRAMENTO NOS CAVALOS (~48% W) */}
+        <div className="hero-mobile-video-col">
+          <video
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="metadata"
+            poster="https://images.unsplash.com/photo-1553284965-83fd3e82fa5a?w=800&q=80"
+            style={{
+              width: "100%",
+              height: "100%",
+              objectFit: "cover",
+              objectPosition: "68% center",
+              display: "block",
+            }}
+            aria-hidden="true"
+          >
+            <source src="/videos/hero-cavalos.mp4" type="video/mp4" />
+          </video>
+
+          {/* Transição sutil com gradiente na borda esquerda da coluna do vídeo */}
+          <div
+            aria-hidden="true"
+            style={{
+              position: "absolute",
+              inset: 0,
+              background: "linear-gradient(to right, var(--off-white) 0%, transparent 18%)",
+              pointerEvents: "none",
+            }}
+          />
+        </div>
       </div>
 
-      {/* ── Scroll indicator ── */}
-      <div
-        aria-hidden="true"
-        style={{
-          position: "absolute",
-          bottom: "1.5rem",
-          right: "clamp(1rem, 4vw, 3rem)",
-          zIndex: 2,
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          gap: "0.5rem",
-          opacity: 0.45,
-        }}
-      >
-        <div
-          style={{
-            width: "1px",
-            height: "40px",
-            background:
-              "linear-gradient(to bottom, transparent, var(--off-white))",
-            animation: "pulse-slow 2.5s ease-in-out infinite",
-          }}
-        />
-        <span
-          style={{
-            fontFamily: "'Inter', sans-serif",
-            fontSize: "0.55rem",
-            letterSpacing: "0.2em",
-            textTransform: "uppercase",
-            color: "var(--off-white)",
-            writingMode: "vertical-rl",
-            transform: "rotate(180deg)",
-          }}
-        >
-          scroll
-        </span>
-      </div>
+      {/* Estilos CSS específicos para controlar Desktop vs Mobile Split */}
+      <style dangerouslySetInnerHTML={{__html: `
+        .hero-desktop-wrapper {
+          display: none;
+        }
+        .hero-mobile-wrapper {
+          display: flex;
+          flex-direction: row;
+          align-items: stretch;
+          width: 100%;
+          min-height: 84vh;
+          background-color: var(--off-white);
+          position: relative;
+          z-index: 2;
+          padding-top: 56px;
+        }
+        .hero-mobile-content-col {
+          flex: 0 0 54%;
+          max-width: 54%;
+          padding: 1.25rem 0.85rem 1.5rem 1.1rem;
+          display: flex;
+          flex-direction: column;
+          justifyContent: center;
+          background-color: var(--off-white);
+          z-index: 3;
+          position: relative;
+        }
+        .hero-mobile-video-col {
+          flex: 0 0 46%;
+          max-width: 46%;
+          position: relative;
+          overflow: hidden;
+          background-color: var(--ink);
+        }
+
+        @media (min-width: 768px) {
+          .hero-mobile-wrapper {
+            display: none !important;
+          }
+          .hero-desktop-wrapper {
+            display: block !important;
+            position: relative;
+            min-height: 100vh;
+            width: 100%;
+          }
+        }
+      `}} />
     </section>
   );
 }
-

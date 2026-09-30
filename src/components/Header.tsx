@@ -21,14 +21,14 @@ export default function Header() {
   const [userHasSwiped, setUserHasSwiped] = useState(false);
   const navRef = useRef<HTMLDivElement>(null);
 
-  // Detect vertical scroll to adjust header background density
+  // Detecta o scroll vertical para ajustar a densidade do fundo do cabeçalho
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 30);
+    const onScroll = () => setScrolled(window.scrollY > 40);
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // Detect horizontal scroll to auto-hide "arraste para o lado" indicator
+  // Detecta o scroll horizontal dos links para ocultar suavemente o indicador
   const handleNavScroll = () => {
     if (!userHasSwiped && navRef.current && navRef.current.scrollLeft > 15) {
       setUserHasSwiped(true);
@@ -44,13 +44,15 @@ export default function Header() {
         right: 0,
         zIndex: 100,
         transition:
-          "background 0.4s ease, border-color 0.4s ease, backdrop-filter 0.4s ease",
+          "background 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s ease, backdrop-filter 0.4s ease",
         background: scrolled
-          ? "rgba(13, 12, 10, 0.95)"
-          : "linear-gradient(to bottom, rgba(13,12,10,0.92) 0%, rgba(13,12,10,0.7) 100%)",
-        backdropFilter: "blur(18px) saturate(1.3)",
-        WebkitBackdropFilter: "blur(18px) saturate(1.3)",
-        borderBottom: "1px solid rgba(157, 132, 82, 0.2)",
+          ? "rgba(13, 12, 10, 0.94)"
+          : "linear-gradient(to bottom, rgba(13, 12, 10, 0.75) 0%, transparent 100%)",
+        backdropFilter: scrolled ? "blur(16px) saturate(1.2)" : "none",
+        WebkitBackdropFilter: scrolled ? "blur(16px) saturate(1.2)" : "none",
+        borderBottom: scrolled
+          ? "1px solid rgba(157, 132, 82, 0.25)"
+          : "1px solid rgba(244, 239, 228, 0.08)",
       }}
       role="banner"
     >
@@ -63,51 +65,39 @@ export default function Header() {
           flexDirection: "column",
         }}
       >
-        {/* ── LINHA 1 (SUPERIOR): MUNDO DOS CAVALOS [ESQ]  |  CONTA / LOGIN [DIR] ── */}
+        {/* ── LINHA 1 (SUPERIOR): MUNDO DOS CAVALOS [ESQ] | CONTA / LOGIN [DIR] ── */}
         <div
           style={{
             display: "flex",
             alignItems: "center",
             justifyContent: "space-between",
-            height: "48px",
+            height: "52px",
             borderBottom: "1px solid rgba(244, 239, 228, 0.06)",
             width: "100%",
           }}
         >
-          {/* BRAND (FIXO À ESQUERDA) */}
+          {/* BRAND (FIXO À ESQUERDA) — Tipografia Sans-Serif Forte & Contemporânea */}
           <Link
             href="/"
             aria-label="Mundo dos Cavalos — Página inicial"
             style={{
               display: "flex",
-              alignItems: "baseline",
-              gap: "0.35rem",
+              alignItems: "center",
+              gap: "0.4rem",
               textDecoration: "none",
             }}
           >
             <span
+              className="font-sans"
               style={{
-                fontFamily: "'Inter', sans-serif",
-                fontWeight: 300,
-                fontSize: "0.58rem",
-                letterSpacing: "0.26em",
+                fontWeight: 800,
+                fontSize: "clamp(0.9rem, 1.3vw, 1.15rem)",
+                letterSpacing: "0.18em",
                 textTransform: "uppercase",
-                color: "var(--gold-light)",
-              }}
-            >
-              Mundo dos
-            </span>
-            <span
-              style={{
-                fontFamily: "'Cormorant Garamond', Georgia, serif",
-                fontWeight: 600,
-                fontSize: "1.35rem",
-                letterSpacing: "0.04em",
                 color: "var(--off-white)",
-                textTransform: "uppercase",
               }}
             >
-              Cavalos
+              MUNDO DOS <span style={{ color: "var(--gold-light)", fontWeight: 700 }}>CAVALOS</span>
             </span>
           </Link>
 
@@ -120,16 +110,17 @@ export default function Header() {
               alignItems: "center",
               gap: "0.4rem",
               fontFamily: "'Inter', sans-serif",
-              fontWeight: 500,
+              fontWeight: 600,
               fontSize: "0.65rem",
               letterSpacing: "0.14em",
               textTransform: "uppercase",
               color: "var(--off-white)",
-              backgroundColor: "rgba(157, 132, 82, 0.16)",
-              border: "1px solid var(--gold)",
-              padding: "0.35rem 0.8rem",
+              backgroundColor: "rgba(157, 132, 82, 0.18)",
+              border: "1px solid var(--gold-light)",
+              padding: "0.4rem 0.85rem",
               borderRadius: "2px",
               whiteSpace: "nowrap",
+              transition: "all 0.3s ease",
             }}
           >
             <svg
@@ -150,7 +141,7 @@ export default function Header() {
           </Link>
         </div>
 
-        {/* ── LINHA 2 (INFERIOR): NAVEGAÇÃO COM SCROLL HORIZONTAL COMPLETO ── */}
+        {/* ── LINHA 2 (INFERIOR): NAVEGAÇÃO COM ROLAGEM HORIZONTAL E INDICADOR ── */}
         <div
           style={{
             position: "relative",
@@ -182,7 +173,7 @@ export default function Header() {
                 href={item.href}
                 style={{
                   fontFamily: "'Inter', sans-serif",
-                  fontWeight: 400,
+                  fontWeight: 500,
                   fontSize: "0.72rem",
                   letterSpacing: "0.14em",
                   textTransform: "uppercase",
@@ -191,6 +182,7 @@ export default function Header() {
                   scrollSnapAlign: "start",
                   flexShrink: 0,
                   padding: "0.2rem 0",
+                  transition: "color 0.2s ease",
                 }}
               >
                 {item.label}
@@ -237,4 +229,3 @@ export default function Header() {
     </header>
   );
 }
-

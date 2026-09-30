@@ -32,17 +32,19 @@ export default function CourseModules() {
               <span
                 className="text-label font-sans"
                 style={{
-                  color: "var(--gold)",
+                  color: "var(--gold-light)",
                   display: "block",
                   marginBottom: "0.5rem",
                   textTransform: "uppercase",
+                  letterSpacing: "0.22em",
+                  fontWeight: 600,
                 }}
               >
-                CONTEÚDO PROGRAMÁTICO
+                CATÁLOGO DE APRENDIZADO
               </span>
               <h2
-                className="font-serif text-heading"
-                style={{ color: "var(--off-white)" }}
+                className="font-sans text-heading"
+                style={{ color: "var(--off-white)", fontWeight: 800, textTransform: "uppercase", letterSpacing: "-0.01em" }}
               >
                 Módulos do Curso
               </h2>
@@ -408,108 +410,40 @@ export default function CourseModules() {
               </p>
             </div>
 
-            {/* Product Card Grid */}
+            {/* Linha Horizontal Compacta de Informações do Curso (Sem Empilhamento Vertical) */}
             <div
               style={{
-                display: "grid",
-                gridTemplateColumns:
-                  "repeat(auto-fit, minmax(min(100%, 140px), 1fr))",
-                gap: "1.25rem",
+                display: "flex",
+                flexWrap: "nowrap",
+                alignItems: "center",
+                justifyContent: "center",
+                gap: "clamp(0.5rem, 3vw, 1.5rem)",
+                padding: "0.85rem clamp(0.75rem, 3vw, 2rem)",
+                backgroundColor: "rgba(13, 12, 10, 0.75)",
+                border: "1px solid rgba(196, 169, 110, 0.25)",
+                borderRadius: "2px",
                 width: "100%",
-                maxWidth: "700px",
+                maxWidth: "680px",
+                overflowX: "auto",
               }}
             >
-              <div
-                style={{
-                  backgroundColor: "rgba(13, 12, 10, 0.6)",
-                  padding: "1.25rem 1rem",
-                  border: "1px solid rgba(244, 239, 228, 0.08)",
-                  borderRadius: "2px",
-                }}
-              >
-                <span
-                  style={{
-                    display: "block",
-                    fontFamily: "'Cormorant Garamond', Georgia, serif",
-                    fontSize: "2rem",
-                    color: "var(--gold-light)",
-                  }}
-                >
-                  4
-                </span>
-                <span
-                  style={{
-                    fontFamily: "'Inter', sans-serif",
-                    fontSize: "0.68rem",
-                    color: "var(--stone-light)",
-                    textTransform: "uppercase",
-                    letterSpacing: "0.1em",
-                  }}
-                >
-                  Módulos Práticos
-                </span>
+              <div style={{ display: "flex", alignItems: "center", gap: "0.35rem", whiteSpace: "nowrap" }}>
+                <span className="font-sans" style={{ fontSize: "0.6rem", textTransform: "uppercase", letterSpacing: "0.12em", color: "var(--stone-light)" }}>Formato</span>
+                <span className="font-sans" style={{ fontSize: "0.75rem", fontWeight: 700, color: "var(--gold-light)" }}>CURSO PRÁTICO</span>
               </div>
 
-              <div
-                style={{
-                  backgroundColor: "rgba(13, 12, 10, 0.6)",
-                  padding: "1.25rem 1rem",
-                  border: "1px solid rgba(244, 239, 228, 0.08)",
-                  borderRadius: "2px",
-                }}
-              >
-                <span
-                  style={{
-                    display: "block",
-                    fontFamily: "'Cormorant Garamond', Georgia, serif",
-                    fontSize: "2rem",
-                    color: "var(--gold-light)",
-                  }}
-                >
-                  100%
-                </span>
-                <span
-                  style={{
-                    fontFamily: "'Inter', sans-serif",
-                    fontSize: "0.68rem",
-                    color: "var(--stone-light)",
-                    textTransform: "uppercase",
-                    letterSpacing: "0.1em",
-                  }}
-                >
-                  Online & Flexível
-                </span>
+              <span style={{ color: "rgba(196, 169, 110, 0.35)", fontSize: "0.8rem" }}>|</span>
+
+              <div style={{ display: "flex", alignItems: "center", gap: "0.35rem", whiteSpace: "nowrap" }}>
+                <span className="font-sans" style={{ fontSize: "0.6rem", textTransform: "uppercase", letterSpacing: "0.12em", color: "var(--stone-light)" }}>Duração</span>
+                <span className="font-sans" style={{ fontSize: "0.75rem", fontWeight: 700, color: "var(--off-white)" }}>12 HORAS</span>
               </div>
 
-              <div
-                style={{
-                  backgroundColor: "rgba(13, 12, 10, 0.6)",
-                  padding: "1.25rem 1rem",
-                  border: "1px solid rgba(244, 239, 228, 0.08)",
-                  borderRadius: "2px",
-                }}
-              >
-                <span
-                  style={{
-                    display: "block",
-                    fontFamily: "'Cormorant Garamond', Georgia, serif",
-                    fontSize: "2rem",
-                    color: "var(--gold-light)",
-                  }}
-                >
-                  Sim
-                </span>
-                <span
-                  style={{
-                    fontFamily: "'Inter', sans-serif",
-                    fontSize: "0.68rem",
-                    color: "var(--stone-light)",
-                    textTransform: "uppercase",
-                    letterSpacing: "0.1em",
-                  }}
-                >
-                  Certificado Incluso
-                </span>
+              <span style={{ color: "rgba(196, 169, 110, 0.35)", fontSize: "0.8rem" }}>|</span>
+
+              <div style={{ display: "flex", alignItems: "center", gap: "0.35rem", whiteSpace: "nowrap" }}>
+                <span className="font-sans" style={{ fontSize: "0.6rem", textTransform: "uppercase", letterSpacing: "0.12em", color: "var(--stone-light)" }}>Módulos</span>
+                <span className="font-sans" style={{ fontSize: "0.75rem", fontWeight: 700, color: "var(--off-white)" }}>4 MÓDULOS</span>
               </div>
             </div>
 

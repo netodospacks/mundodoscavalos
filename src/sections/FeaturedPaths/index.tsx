@@ -15,11 +15,11 @@ export default function FeaturedPaths() {
         <SectionReveal type="up">
           <div style={{ marginBottom: "clamp(2rem, 4vw, 3.5rem)", display: "flex", justifyContent: "space-between", alignItems: "flex-end", flexWrap: "wrap", gap: "1rem" }}>
             <div>
-              <span className="text-label font-sans" style={{ color: "var(--gold)", display: "block", marginBottom: "0.5rem", textTransform: "uppercase" }}>
-                EXPLORAÇÃO & CONHECIMENTO
+              <span className="text-label font-sans" style={{ color: "var(--gold-light)", display: "block", marginBottom: "0.5rem", textTransform: "uppercase", letterSpacing: "0.22em", fontWeight: 600 }}>
+                CATEGORIAS DE CONTEÚDO
               </span>
-              <h2 className="font-serif text-heading" style={{ color: "var(--off-white)" }}>
-                Três Caminhos
+              <h2 className="font-sans text-heading" style={{ color: "var(--off-white)", fontWeight: 800, textTransform: "uppercase", letterSpacing: "-0.01em" }}>
+                Explore o Mundo dos Cavalos
               </h2>
             </div>
 
