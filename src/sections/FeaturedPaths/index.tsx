@@ -19,7 +19,7 @@ export default function FeaturedPaths() {
                 CATEGORIAS DE CONTEÚDO
               </span>
               <h2 className="font-sans text-heading" style={{ color: "var(--off-white)", fontWeight: 800, textTransform: "uppercase", letterSpacing: "-0.01em" }}>
-                Explore o Mundo dos Cavalos
+                Pilares do Conhecimento
               </h2>
             </div>
 

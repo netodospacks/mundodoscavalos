@@ -399,25 +399,57 @@ export function NetflixLoginModal({ isOpen, onClose }: NetflixLoginModalProps) {
                   ⚡ ACESSO RÁPIDO DEMO (1-CLIQUE)
                 </button>
 
-                {/* NOTA DISCRETA DE DISPOSITIVOS & APP ANDROID */}
+                {/* DISPOSITIVOS & BOTÃO DE DOWNLOAD APP ANDROID */}
                 <div
                   style={{
                     marginTop: "0.5rem",
                     textAlign: "center",
-                    borderTop: "1px solid rgba(244,239,228,0.08)",
-                    paddingTop: "0.65rem",
+                    borderTop: "1px solid rgba(244,239,228,0.1)",
+                    paddingTop: "0.75rem",
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "center",
+                    gap: "0.45rem",
                   }}
                 >
                   <span
                     style={{
                       fontSize: "0.65rem",
-                      color: "rgba(244,239,228,0.55)",
+                      color: "rgba(244,239,228,0.65)",
                       display: "block",
                       lineHeight: 1.4,
                     }}
                   >
-                    Disponível para Web, Smart TV e App Android dedicado.
+                    Você utiliza Android? Baixe nosso aplicativo oficial:
                   </span>
+
+                  <button
+                    type="button"
+                    onClick={() => {
+                      alert("📱 Baixando aplicativo oficial Mundo dos Cavalos (.APK) para Android...");
+                    }}
+                    style={{
+                      display: "inline-flex",
+                      alignItems: "center",
+                      gap: "0.4rem",
+                      backgroundColor: "rgba(196, 169, 110, 0.15)",
+                      border: "1px solid var(--gold-light)",
+                      borderRadius: "20px",
+                      padding: "0.4rem 0.95rem",
+                      color: "var(--gold-light)",
+                      fontFamily: "'Inter', sans-serif",
+                      fontSize: "0.68rem",
+                      fontWeight: 700,
+                      letterSpacing: "0.05em",
+                      cursor: "pointer",
+                      transition: "all 0.25s ease",
+                      boxShadow: "0 4px 12px rgba(0,0,0,0.4)",
+                    }}
+                    className="hover:scale-105"
+                  >
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M17.523 15.3414c-.5511 0-.9993-.4486-.9993-.9997 0-.551.4482-.9993.9993-.9993.5516 0 .9997.4483.9997.9993 0 .5511-.4481.9997-.9997.9997zm-11.046 0c-.5511 0-.9993-.4486-.9993-.9997 0-.551.4482-.9993.9993-.9993.5516 0 .9997.4483.9997.9993 0 .5511-.4481.9997-.9997.9997zm11.4045-6.02l1.9973-3.4592c.1232-.2132.05-.4858-.1632-.609-.2133-.123-.4858-.0498-.609.1634l-2.0234 3.5042c-1.4442-.6608-3.0906-1.0326-4.8332-1.0326s-3.389.3718-4.8332 1.0326l-2.0234-3.5042c-.1232-.2132-.3957-.2864-.609-.1634-.2132.1232-.2864.3958-.1632.609l1.9973 3.4592c-3.153 1.7188-5.3094 4.8872-5.597 8.6586h21.9546c-.2876-3.7714-2.444-6.9398-5.597-8.6586z"/></svg>
+                    <span>BAIXAR APP ANDROID (.APK)</span>
+                  </button>
                 </div>
               </form>
             </div>
