@@ -1,0 +1,369 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600&family=Inter:wght@300;400;500;600&display=swap');
+
+@import "tailwindcss";
+
+/* ============================================================
+   MUNDO DOS CAVALOS — Design System
+   Paleta: Preto profundo · Off-white quente · Terrosos · Dourado discreto
+   ============================================================ */
+
+:root {
+  /* Identidade */
+  --ink:          #0d0c0a;
+  --ink-soft:     #1a1814;
+  --ink-mid:      #252219;
+  --off-white:    #f4efe4;
+  --cream:        #ede5d0;
+  --cream-deep:   #dfd4b8;
+
+  /* Terrosos */
+  --earth-1:      #3d2b1a;
+  --earth-2:      #6b4a2a;
+  --earth-3:      #a07540;
+  --amber:        #c49a50;
+  --stone:        #8c8070;
+  --stone-light:  #b5ac9e;
+
+  /* Dourado */
+  --gold:         #9d8452;
+  --gold-light:   #c4a96e;
+
+  /* Tipografia sobre fundos escuros */
+  --text-hero:    #f4efe4;
+  --text-muted-dark: rgba(244, 239, 228, 0.55);
+
+  /* Tipografia sobre fundos claros */
+  --text-dark:    #1a1510;
+  --text-mid-light: #4a3f30;
+  --text-muted-light: #7a6e5e;
+
+  /* Transições */
+  --ease-out:     cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out:  cubic-bezier(0.76, 0, 0.24, 1);
+  --dur-fast:     0.22s;
+  --dur-mid:      0.45s;
+  --dur-slow:     0.7s;
+}
+
+/* ─── Reset ────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+  overflow-x: hidden;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  color: var(--text-dark);
+  background-color: var(--ink);
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+a { text-decoration: none; color: inherit; }
+img, video { max-width: 100%; display: block; }
+button { cursor: pointer; border: none; background: none; font: inherit; }
+
+/* ─── Tipografia ────────────────────────────────── */
+.font-serif {
+  font-family: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+}
+
+.font-sans {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+/* Escala display — títulos principais */
+.text-display {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(3.5rem, 9vw, 8rem);
+  font-weight: 300;
+  line-height: 0.95;
+  letter-spacing: -0.02em;
+}
+
+.text-display-md {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(2.8rem, 6vw, 5.5rem);
+  font-weight: 300;
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+
+.text-heading {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  font-weight: 400;
+  line-height: 1.1;
+  letter-spacing: -0.015em;
+}
+
+.text-subheading {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(1.4rem, 2.5vw, 2rem);
+  font-weight: 400;
+  line-height: 1.25;
+}
+
+.text-label {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.text-body {
+  font-family: 'Inter', sans-serif;
+  font-size: clamp(0.95rem, 1.2vw, 1.05rem);
+  line-height: 1.75;
+  font-weight: 300;
+}
+
+/* ─── Layout ────────────────────────────────────── */
+.container {
+  width: 100%;
+  max-width: 1380px;
+  margin: 0 auto;
+  padding: 0 clamp(1.25rem, 5vw, 4rem);
+}
+
+.container-tight {
+  width: 100%;
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 clamp(1.25rem, 5vw, 4rem);
+}
+
+.section-gap {
+  padding-top: clamp(5rem, 10vw, 10rem);
+  padding-bottom: clamp(5rem, 10vw, 10rem);
+}
+
+.section-gap-sm {
+  padding-top: clamp(3rem, 6vw, 6rem);
+  padding-bottom: clamp(3rem, 6vw, 6rem);
+}
+
+/* ─── Cores de Seção ────────────────────────────── */
+.bg-dark   { background-color: var(--ink); }
+.bg-dark-2 { background-color: var(--ink-soft); }
+.bg-dark-3 { background-color: var(--ink-mid); }
+.bg-cream  { background-color: var(--cream); }
+.bg-cream-deep { background-color: var(--cream-deep); }
+.bg-earth  { background-color: var(--earth-1); }
+
+/* ─── Divisor ───────────────────────────────────── */
+.divider-gold {
+  display: block;
+  width: 48px;
+  height: 1px;
+  background: var(--gold);
+  margin: 2rem 0;
+}
+
+.divider-gold-center {
+  margin: 2rem auto;
+}
+
+/* ─── Botões ────────────────────────────────────── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  transition: all var(--dur-mid) var(--ease-out);
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-primary-dark {
+  background: var(--off-white);
+  color: var(--ink);
+  padding: 1.1rem 2.5rem;
+}
+
+.btn-primary-dark:hover {
+  background: var(--cream);
+  transform: translateY(-2px);
+}
+
+.btn-outline-light {
+  background: transparent;
+  color: var(--off-white);
+  padding: 1.1rem 2.5rem;
+  border: 1px solid rgba(244, 239, 228, 0.35);
+}
+
+.btn-outline-light:hover {
+  border-color: var(--off-white);
+  background: rgba(244, 239, 228, 0.07);
+  transform: translateY(-2px);
+}
+
+.btn-outline-dark {
+  background: transparent;
+  color: var(--ink);
+  padding: 1.1rem 2.5rem;
+  border: 1px solid rgba(13, 12, 10, 0.4);
+}
+
+.btn-outline-dark:hover {
+  background: var(--ink);
+  color: var(--off-white);
+  transform: translateY(-2px);
+}
+
+/* ─── Scrollbar ─────────────────────────────────── */
+::-webkit-scrollbar       { width: 5px; }
+::-webkit-scrollbar-track { background: var(--ink); }
+::-webkit-scrollbar-thumb { background: var(--earth-2); border-radius: 2px; }
+::-webkit-scrollbar-thumb:hover { background: var(--amber); }
+
+/* ─── Focus ─────────────────────────────────────── */
+:focus-visible {
+  outline: 1px solid var(--gold-light);
+  outline-offset: 3px;
+}
+
+/* ─── Animações ─────────────────────────────────── */
+@keyframes slideRight {
+  0%, 100% { transform: translateX(0); }
+  50%       { transform: translateX(6px); }
+}
+
+@keyframes pulse-slow {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.6; }
+}
+
+@keyframes grain {
+  0%, 100% { transform: translate(0, 0); }
+  10%       { transform: translate(-2%, -3%); }
+  20%       { transform: translate(2%, 1%); }
+  30%       { transform: translate(-1%, 3%); }
+  40%       { transform: translate(3%, -1%); }
+  50%       { transform: translate(-3%, 2%); }
+  60%       { transform: translate(1%, -2%); }
+  70%       { transform: translate(-2%, 1%); }
+  80%       { transform: translate(2%, 3%); }
+  90%       { transform: translate(-1%, -1%); }
+}
+
+.animate-slide-right {
+  animation: slideRight 1.8s ease-in-out infinite;
+}
+
+/* ─── Reveal (Intersection Observer) ───────────── */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity var(--dur-slow) var(--ease-out),
+              transform var(--dur-slow) var(--ease-out);
+}
+
+.reveal.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-fade {
+  opacity: 0;
+  transition: opacity var(--dur-slow) var(--ease-out);
+}
+
+.reveal-fade.revealed {
+  opacity: 1;
+}
+
+/* delays para stagger */
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.35s; }
+.reveal-delay-4 { transition-delay: 0.5s; }
+
+/* ─── Overlay ───────────────────────────────────── */
+.overlay-dark {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(13, 12, 10, 0.25) 0%,
+    rgba(13, 12, 10, 0.55) 60%,
+    rgba(13, 12, 10, 0.85) 100%
+  );
+}
+
+.overlay-dark-top {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(13, 12, 10, 0.7) 0%,
+    rgba(13, 12, 10, 0.3) 50%,
+    rgba(13, 12, 10, 0.6) 100%
+  );
+}
+
+/* ─── Grain Texture ─────────────────────────────── */
+.grain::after {
+  content: '';
+  position: fixed;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
+  opacity: 0.025;
+  pointer-events: none;
+  animation: grain 8s steps(10) infinite;
+  z-index: 9999;
+}
+
+/* ─── Responsive helpers ────────────────────────── */
+@media (max-width: 768px) {
+  .hide-mobile { display: none !important; }
+}
+@media (min-width: 769px) {
+  .hide-desktop { display: none !important; }
+}
+
+/* ─── Image fill helper ─────────────────────────── */
+.img-fill {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ─── Nav scroll horizontal ─────────────────────── */
+.nav-scroll {
+  display: flex;
+  gap: 2rem;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  padding-bottom: 2px;
+}
+
+.nav-scroll::-webkit-scrollbar { display: none; }
+
+.nav-scroll > * {
+  scroll-snap-align: start;
+  flex-shrink: 0;
+}
