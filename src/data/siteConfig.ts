@@ -25,9 +25,8 @@ export const siteConfig = {
   cursoTratadores: {
     price: "R$ 1.200,00",
     priceRaw: 1200,
-    // Destino configurável centralizado para inscrição/checkout
-    // Pode ser substituído por link de checkout (ex: Hotmart, Eduzz, Kiwify, Asaas) ou canal de matrícula
-    enrollmentUrl: "#contato-matricula",
+    // Destino de checkout profissional do curso
+    enrollmentUrl: "/checkout",
     contactEmail: "contato@mundodoscavalos.com.br",
   },
 
