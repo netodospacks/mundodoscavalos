@@ -1,54 +1,49 @@
-// ─── PLACEHOLDER ──────────────────────────────────────────────
-// Os dados abaixo são estruturais.
-// Aguardando informações reais do docente responsável.
-// Substituir: nome, formação, experiência, foto e apresentação.
-// ──────────────────────────────────────────────────────────────
-
 export interface FacultyMember {
   id: string;
-  name: string;          // PLACEHOLDER — preencher com nome real
-  title: string;         // PLACEHOLDER — ex.: "Med. Veterinário CRMV-SP 00000"
-  formation: string[];   // PLACEHOLDER — formação acadêmica
-  experience: string[];  // PLACEHOLDER — experiência profissional
-  specialties: string[]; // PLACEHOLDER — áreas de atuação
-  bio: string;           // PLACEHOLDER — apresentação curta
-  photo: string;         // PLACEHOLDER — substituir pela foto real
+  name: string;
+  title: string;
+  formation: string[];
+  experience: string[];
+  specialties: string[];
+  bio: string;
+  photo: string;
   photoAlt: string;
-  photoSecondary: string;  // segunda foto (seção FacultyQuote)
+  photoSecondary: string;
   photoSecondaryAlt: string;
-  quote: string;           // PLACEHOLDER — frase do docente
+  quote: string;
 }
 
 export const faculty: FacultyMember[] = [
   {
-    id: "docente-principal",
-    name: "[ Nome do Docente ]",
-    title: "[ Cargo / Credencial Profissional ]",
+    id: "pollyanna-carrazzoni",
+    name: "Pollyanna Santiago Carrazzoni",
+    title: "Médica Veterinária • Especialista em Equinocultura",
     formation: [
-      "[ Graduação — Instituição, Ano ]",
-      "[ Especialização / Pós-graduação — Instituição, Ano ]",
-      "[ Certificação ou Formação Complementar ]",
+      "Graduação em Medicina Veterinária",
+      "Especialização em Manejo e Produção de Equinos",
+      "Formação em Equoterapia e Bem-Estar Animal",
     ],
     experience: [
-      "[ Experiência 1 — Cargo / Local / Período ]",
-      "[ Experiência 2 — Cargo / Local / Período ]",
-      "[ Experiência 3 — Cargo / Local / Período ]",
+      "Médica veterinária atuante no Haras Nossa Senhora Aparecida",
+      "Experiência prática em manejo, nutrição e reprodução equina",
+      "Facilitadora de programas de equoterapia e desenvolvimento humano",
+      "Gestão e cuidado de equinos de diversas raças e finalidades",
     ],
     specialties: [
       "Manejo Geral de Equinos",
-      "Nutrição Equina",
-      "Bem-estar Animal",
-      "Produção de Equinos",
+      "Nutrição e Alimentação Equina",
+      "Bem-estar e Saúde Animal",
+      "Produção e Reprodução Equina",
     ],
-    bio: "[ Apresentação curta do docente — descreva brevemente sua trajetória, motivação e conexão com o universo dos cavalos. Este texto será visível na página inicial da plataforma. ]",
+    bio: "Médica veterinária com profunda conexão com o universo equino, Pollyanna Santiago Carrazzoni une ciência e prática no Haras Nossa Senhora Aparecida. Sua missão é levar conhecimento real, responsável e acessível para quem deseja cuidar de cavalos com excelência.",
     photo:
-      "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&q=80",
-    photoAlt: "Foto do docente responsável",
+      "/images/pollyanna.jpg",
+    photoAlt: "Pollyanna Santiago Carrazzoni — Zootecnista e Médica Veterinária",
     photoSecondary:
-      "https://images.unsplash.com/photo-1560250097-0b93528c311a?w=800&q=80",
-    photoSecondaryAlt: "Docente com cavalos no haras",
+      "https://images.unsplash.com/photo-1553284965-83fd3e82fa5a?w=800&q=80",
+    photoSecondaryAlt: "Pollyanna com cavalos no Haras Nossa Senhora Aparecida",
     quote:
-      "Conhecimento não está apenas nos livros. Está na prática, na observação diária e no respeito genuíno ao animal.",
+      "O cavalo ensina quem está disposto a observar. Cuidar com ciência e respeito é o que transforma um tratador comum em um profissional de excelência.",
   },
 ];
 

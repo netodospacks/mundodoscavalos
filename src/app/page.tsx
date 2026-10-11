@@ -1,49 +1,46 @@
 import type { Metadata } from "next";
 import { siteConfig } from "@/data/siteConfig";
+
+// Seções refinadas da Página Principal
 import Hero from "@/sections/Hero";
+import CoursesSection from "@/sections/CoursesSection";
 import PlatformPurpose from "@/sections/PlatformPurpose";
-import ImpactQuote from "@/sections/ImpactQuote";
-import FeaturedPaths from "@/sections/FeaturedPaths";
-import Faculty from "@/sections/Faculty";
-import FacultyQuote from "@/sections/FacultyQuote";
-import Testimonials from "@/sections/Testimonials";
-import CourseModules from "@/sections/CourseModules";
-import WantToLearnCTA from "@/sections/WantToLearnCTA";
 
 export const metadata: Metadata = {
-  title: siteConfig.seoTitle,
-  description: siteConfig.seoDescription,
+  title: "Mundo dos Cavalos — Haras Nossa Senhora Aparecida",
+  description:
+    "Plataforma educacional e institucional dedicada ao universo equino. Cursos de manejo, bem-estar, nutrição e formação profissional com o Haras Nossa Senhora Aparecida.",
+  keywords: [
+    "curso tratador de equinos",
+    "capacitação equinos",
+    "manejo de cavalos",
+    "curso cavalos presencial",
+    "mundo dos cavalos",
+    "haras nossa senhora aparecida",
+    "equinocultura",
+    "zootecnia equina",
+  ],
+  openGraph: {
+    title: "Mundo dos Cavalos — Haras Nossa Senhora Aparecida",
+    description:
+      "Aprenda a cuidar de cavalos com ciência e respeito. Formação prática e capacitação profissional com o Haras Nossa Senhora Aparecida.",
+    type: "website",
+    url: siteConfig.url,
+  },
 };
 
 export default function HomePage() {
   return (
-    <>
-      {/* 1. Apresentação cinematográfica com vídeo de fundo */}
+    <main>
+      {/* 1. HERO: Apresentação cinematográfica e boas-vindas */}
       <Hero />
 
-      {/* 2. Por que a plataforma existe / Objetivo */}
+      {/* 2. ÁREA DE CURSOS: Apresentação do Curso em Destaque (Presencial) */}
+      {/* Cursos online "Em breve" oculto na home, visível na aba Cursos */}
+      <CoursesSection showOnlineNotice={false} />
+
+      {/* 3. PROPÓSITO INSTITUCIONAL & HARAS NOSSA SENHORA APARECIDA */}
       <PlatformPurpose />
-
-      {/* 4. Frase de impacto */}
-      <ImpactQuote />
-
-      {/* 5. Três Pilares do Conhecimento (Destaque Ativo Sequencial 1 -> 2 -> 3 no Scroll) */}
-      <FeaturedPaths />
-
-      {/* 6. Corpo docente — quem ensina */}
-      <Faculty />
-
-      {/* 8. Citação do docente com foto */}
-      <FacultyQuote />
-
-      {/* 9. Módulos e Conteúdo Programático */}
-      <CourseModules />
-
-      {/* 10. Depoimentos de alunos */}
-      <Testimonials />
-
-      {/* 11. CTA final — Quero Aprender */}
-      <WantToLearnCTA />
-    </>
+    </main>
   );
 }

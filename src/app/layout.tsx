@@ -16,10 +16,11 @@ export const metadata: Metadata = {
     "bem-estar animal",
     "curso equinos",
     "haras",
-    "nutrição equina",
     "Mundo dos Cavalos",
+    "Curso de Tratadores",
+    "Haras Nossa Senhora Aparecida",
   ],
-  authors: [{ name: "Mundo dos Cavalos" }],
+  authors: [{ name: "Mundo dos Cavalos — Haras Nossa Senhora Aparecida" }],
   openGraph: {
     title: siteConfig.seoTitle,
     description: siteConfig.seoDescription,

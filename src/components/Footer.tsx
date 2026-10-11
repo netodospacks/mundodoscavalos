@@ -1,9 +1,18 @@
+"use client";
+
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { siteConfig } from "@/data/siteConfig";
 import { navItems } from "@/data/navigation";
 
 export default function Footer() {
+  const pathname = usePathname();
   const year = new Date().getFullYear();
+
+  // A página do Shopping JAR 2026 possui encerramento visual próprio conforme referência
+  if (pathname?.startsWith("/shopping-jar-2026")) {
+    return null;
+  }
 
   return (
     <footer
@@ -45,7 +54,7 @@ export default function Footer() {
                   marginBottom: "2px",
                 }}
               >
-                Mundo dos
+                Plataforma
               </span>
               <span
                 style={{
@@ -58,7 +67,7 @@ export default function Footer() {
                   color: "var(--off-white)",
                 }}
               >
-                Cavalos
+                Mundo dos Cavalos
               </span>
             </div>
             <p
@@ -71,7 +80,7 @@ export default function Footer() {
                 maxWidth: "260px",
               }}
             >
-              Plataforma educacional dedicada ao universo equino — conhecimento, manejo e respeito ao animal.
+              Plataforma educacional dedicada ao manejo e bem-estar equino — conhecimento, manejo e respeito ao animal.
             </p>
           </div>
 
@@ -98,6 +107,8 @@ export default function Footer() {
                 <Link
                   key={item.href}
                   href={item.href}
+                  target={item.target}
+                  rel={item.rel}
                   className="footer-nav-link"
                   style={{
                     fontFamily: "'Inter', sans-serif",

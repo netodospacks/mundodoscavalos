@@ -2,13 +2,18 @@ export interface NavItem {
   label: string;
   href: string;
   isHighlighted?: boolean;
+  target?: string;
+  rel?: string;
 }
 
 export const navItems: NavItem[] = [
-  { label: "Quem Somos", href: "/quem-somos" },
-  { label: "Nossa História", href: "/nossa-historia" },
-  { label: "Pacotes de Cursos", href: "/pacotes" },
-  { label: "Programas", href: "/programas" },
-  { label: "Haras NS Aparecida", href: "/haras" },
-  { label: "Conta / Login", href: "/login", isHighlighted: true },
+  { label: "Cursos", href: "/cursos" },
+  { label: "História do Haras", href: "/historia" },
+  { label: "Shopping JAR 2026", href: "/shopping-jar-2026", isHighlighted: true },
+  {
+    label: "Projeto Bem Viver",
+    href: "https://bemviverecoterapia1-two.vercel.app",
+    target: "_blank",
+    rel: "noopener noreferrer",
+  },
 ];

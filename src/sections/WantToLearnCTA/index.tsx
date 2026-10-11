@@ -87,7 +87,7 @@ export default function WantToLearnCTA() {
                     color: "var(--gold-light)",
                   }}
                 >
-                  PLATAFORMA MUNDO DOS CAVALOS • ACESSO VITALÍCIO
+                  MUNDO DOS CAVALOS • CURSO COMPLETO
                 </span>
               </div>
 

@@ -59,7 +59,7 @@ export default function CourseModules() {
                 margin: "0.1rem 0",
               }}
             >
-              Explore o Mundo dos Cavalos
+              Explore o Curso Mundo dos Cavalos
             </h2>
 
             <div
