@@ -525,6 +525,7 @@ export function HistoryChapter({
 
 export default function HistoryInteractiveView() {
   const [activePhoto, setActivePhoto] = useState<HistoryPhotoItem | null>(null);
+  const [activeFilter, setActiveFilter] = useState<string>("todos");
 
   // Fechar com ESC e navegação com setas
   const handleKeyDown = useCallback(
@@ -550,8 +551,72 @@ export default function HistoryInteractiveView() {
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [handleKeyDown]);
 
+  const filteredPhotos =
+    activeFilter === "todos"
+      ? HISTORY_PHOTOS
+      : HISTORY_PHOTOS.filter((p) =>
+          activeFilter === "imprensa"
+            ? p.id === "jornal-paraiba"
+            : activeFilter === "cavalos"
+            ? p.id === "ana-rita-cavalo" || p.id === "ana-rita-filha-chapeu"
+            : activeFilter === "guzera"
+            ? p.id === "ana-rita-touro"
+            : p.id === "ana-rita-filha-uniao" || p.id === "ana-rita-familia-jardim"
+        );
+
   return (
     <>
+      {/* ── BARRA DE DESTAQUE / PONTOS CHAVE DA NARRATIVA ── */}
+      <div
+        style={{
+          margin: "2.5rem 0 1rem",
+          display: "grid",
+          gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))",
+          gap: "1rem",
+        }}
+      >
+        {[
+          { label: "Pioneirismo Feminino", desc: "Dona Ana Rita à frente da lida" },
+          { label: "Marca JAR", desc: "José & Ana Rita: selo de confiança" },
+          { label: "Projeção Global", desc: "Exportação zebuína aos EUA" },
+          { label: "Tropa de Sela", desc: "Marcha, nobreza e temperamento" },
+        ].map((highlight, hi) => (
+          <div
+            key={hi}
+            style={{
+              backgroundColor: "rgba(22, 20, 17, 0.7)",
+              border: "1px solid rgba(196, 169, 110, 0.2)",
+              borderRadius: "4px",
+              padding: "1rem 1.25rem",
+              borderLeft: "3px solid var(--gold)",
+            }}
+          >
+            <div
+              style={{
+                fontFamily: "'Inter', sans-serif",
+                fontSize: "0.78rem",
+                fontWeight: 800,
+                color: "var(--gold-light)",
+                textTransform: "uppercase",
+                letterSpacing: "0.08em",
+                marginBottom: "0.2rem",
+              }}
+            >
+              {highlight.label}
+            </div>
+            <div
+              style={{
+                fontFamily: "'Inter', sans-serif",
+                fontSize: "0.75rem",
+                color: "rgba(244, 239, 228, 0.7)",
+              }}
+            >
+              {highlight.desc}
+            </div>
+          </div>
+        ))}
+      </div>
+
       {/* ── SEÇÃO 1: A HISTÓRIA DE ANA RITA ── */}
       <HistoryChapter
         number="01"
@@ -563,19 +628,17 @@ export default function HistoryInteractiveView() {
           "O respeito conquistado por Dona Ana Rita atravessou fronteiras, tornando-se referência de liderança feminina no agronegócio e na criação de animais de alta linhagem no Brasil.",
         ]}
         photo={HISTORY_PHOTOS[4]} // ana-rita-filha-uniao
-        secondaryPhoto={HISTORY_PHOTOS[5]} // ana-rita-familia-jardim
         onOpenPhoto={setActivePhoto}
       />
 
       {/* ── SEÇÃO 2: A FUNDAÇÃO DO HARAS ── */}
       <HistoryChapter
         number="02"
-        tag="Fundação & Devoção"
-        title="A Fundação do Haras Nossa Senhora Aparecida"
+        tag="Origens & Conquistas"
+        title="Da Paraíba para o Brasil: O Nascimento do Haras"
         paragraphs={[
-          "Fundado sob a bênção e a profunda devoção a Nossa Senhora Aparecida, padroeira do Brasil e guardiã da família, o Haras nasceu como a realização de um sonho de vida guiado pela fé e pelo trabalho incansável.",
-          "Vindos da Paraíba com bagagem secular de pecuária forte, José e Ana Rita Tavares de Melo trouxeram o conhecimento profundo do semiárido e a disciplina de quem sabe que a verdadeira criação se faz com dedicação ininterrupta, paciência e seleção implacável.",
-          "Registros históricos da época atestam como a criação familiar despontou rapidamente em grandes exposições e feiras, conquistando as maiores premiações e o reconhecimento unânime das principais autoridades e instituições do setor agropecuário.",
+          "Com conhecimento adquirido em décadas de lida no semiárido nordestino, José e Ana Rita Tavares de Melo transformaram a vocação rural em referência nacional de pecuária de seleção.",
+          "Registros da grande imprensa dos anos 1970 documentam a aclamação da família: premiados em exposições agropecuárias em diversas capitais brasileiras com reprodutores de alta linhagem, o casal firmou o nome do Haras Nossa Senhora Aparecida como sinônimo de credibilidade zootécnica.",
         ]}
         photo={HISTORY_PHOTOS[0]} // jornal-paraiba
         reverse
@@ -585,26 +648,25 @@ export default function HistoryInteractiveView() {
       {/* ── SEÇÃO 3: A MARCA JAR — ORIGEM E EVOLUÇÃO ── */}
       <HistoryChapter
         number="03"
-        tag="Identidade Zootécnica"
-        title="A Origem e a Evolução da Marca JAR"
+        tag="Símbolo & Rigor"
+        title="A Marca JAR: O Ferro que Assina a Excelência"
         paragraphs={[
-          "A marca JAR é o selo definitivo dessa história. Nascida da junção sagrada dos nomes de seus fundadores — José e Ana Rita —, o ferro JAR tornou-se símbolo supremo de pureza racial, integridade comercial e solidez zootécnica.",
-          "Gravar a marca JAR em um animal é assumir um compromisso inegociável de qualidade: aprumos perfeitos, temperamento dócil, funcionalidade superior e uma carga genética provada e aprovada ao longo de sucessivas gerações.",
-          "Nas pistas de julgamento e nos leilões mais disputados do país, ver a marca JAR sempre foi sinônimo de segurança absoluta para criadores que buscam animais com pedigree consistente e capacidade comprovada de transmissão genética.",
+          "A sigla JAR nasce do entrelaçamento dos nomes dos fundadores: José e Ana Rita. Mais do que um ferro gravado a fogo, transformou-se no selo de confiança de compradores de todo o país.",
+          "Ter a marca JAR em um lote é garantia de aprumos equilibrados, nobreza zootécnica e genética comprovada por gerações de seleção rigorosa.",
         ]}
         photo={HISTORY_PHOTOS[3]} // ana-rita-filha-chapeu
+        secondaryPhoto={HISTORY_PHOTOS[5]} // ana-rita-familia-jardim
         onOpenPhoto={setActivePhoto}
       />
 
       {/* ── SEÇÃO 4: VENDA DE TOUROS E PROJEÇÃO INTERNACIONAL ── */}
       <HistoryChapter
         number="04"
-        tag="Reconhecimento Internacional"
-        title="A Seleção Guzerá & Venda de Touros nos EUA"
+        tag="Fronteiras Superadas"
+        title="Projeção Internacional: Touros Guzerá para os EUA"
         paragraphs={[
-          "A visão zootécnica da família Tavares de Melo alcançou notoriedade que extrapolou as fronteiras nacionais. Na pecuária de elite, a seleção da raça Guzerá destacou-se pela conformação perfeita, rusticidade extrema e capacidade leiteira e de corte sem igual.",
-          "Dona Ana Rita conduzia pessoalmente com naturalidade touros imponentes, comprovando o manejo racional e o temperamento equilibrado de seus reprodutores. Essa genética de ponta chamou a atenção de selecionadores internacionais, resultando em históricas negociações e na exportação de reprodutores de excelência para os Estados Unidos.",
-          "Esse marco histórico consagrou a chancela JAR como uma das forças mais respeitadas do melhoramento genético zebuíno e equino das Américas.",
+          "O manejo manso e a conformação de ponta dos animais selecionados por Dona Ana Rita atraíram os olhares de criadores estrangeiros. Reprodutores de grande porte eram conduzidos com serenidade e respeito no pasto, refletindo um manejo pioneiro e ético.",
+          "Essa excelência culminou em negociações históricas e na exportação de reprodutores de elite para os Estados Unidos, levando a genética nordestina para o cenário agropecuário global.",
         ]}
         photo={HISTORY_PHOTOS[1]} // ana-rita-touro
         reverse
@@ -614,12 +676,11 @@ export default function HistoryInteractiveView() {
       {/* ── SEÇÃO 5: AS TROPAS DE ELITE DO HARAS ── */}
       <HistoryChapter
         number="05"
-        tag="Seleção de Cavalos"
-        title="As Tropas de Elite do Haras"
+        tag="Equinocultura de Elite"
+        title="A Tropa de Cavalos: Marcha, Nobreza & Bem-Estar"
         paragraphs={[
-          "Na equinocultura, o Haras Nossa Senhora Aparecida construiu tropas de elite reconhecidas pela marcha, comodidade, beleza zootécnica e índole impecável. O cavalo é tratado no haras como um membro da família, com respeito à sua natureza e treino pautado na confiança.",
-          "A sensibilidade de Dona Ana Rita para o convívio com os equinos forjou animais confiáveis para a lida, para o lazer da família e para as disputas de pista. Cada potro nascido com o ferro JAR carrega um legado de décadas de cruzamentos criteriosos e manejo de ponta.",
-          "Hoje, essa tradição vive e se renova no Shopping JAR 2026 e nas iniciativas de capacitação e ecoterapia, mantendo o mesmo amor e os mesmos ideais de sua origem.",
+          "No haras, o cavalo sempre foi compreendido em sua essência: temperamento equilibrado, andamento cômodo e parceria leal com o cavaleiro. O treino e o convívio diário fundamentaram o conceito de manejo racional praticado na propriedade.",
+          "Hoje, essa tradição centenária se desdobra na plataforma Mundo dos Cavalos, nos projetos de equoterapia Bem Viver e nos leilões do Shopping JAR 2026.",
         ]}
         photo={HISTORY_PHOTOS[2]} // ana-rita-cavalo
         onOpenPhoto={setActivePhoto}
@@ -675,15 +736,65 @@ export default function HistoryInteractiveView() {
               fontSize: "clamp(0.92rem, 1.2vw, 1.05rem)",
               color: "rgba(244, 239, 228, 0.75)",
               maxWidth: "760px",
-              margin: "0 auto",
+              margin: "0 auto 2rem",
               lineHeight: 1.7,
             }}
           >
             Todas as fotos originais que documentam a caminhada de Dona Ana Rita Tavares de Melo, a fundação familiar e os marcos que eternizaram o Haras Nossa Senhora Aparecida. Clique em qualquer imagem para abrir em alta resolução.
           </p>
+
+          {/* BOTÕES DE FILTRO */}
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              flexWrap: "wrap",
+              gap: "0.5rem",
+              margin: "0 auto 2.5rem",
+            }}
+          >
+            {[
+              { id: "todos", label: "Todas as Fotos (6)" },
+              { id: "imprensa", label: "Imprensa & Prêmios" },
+              { id: "cavalos", label: "Tropa de Cavalos" },
+              { id: "guzera", label: "Genética Guzerá" },
+              { id: "familia", label: "Família & Raízes" },
+            ].map((btn) => (
+              <button
+                key={btn.id}
+                type="button"
+                onClick={() => setActiveFilter(btn.id)}
+                style={{
+                  fontFamily: "'Inter', sans-serif",
+                  fontSize: "0.72rem",
+                  fontWeight: 700,
+                  letterSpacing: "0.08em",
+                  textTransform: "uppercase",
+                  padding: "0.5rem 1rem",
+                  borderRadius: "3px",
+                  cursor: "pointer",
+                  border:
+                    activeFilter === btn.id
+                      ? "1px solid var(--gold)"
+                      : "1px solid rgba(196, 169, 110, 0.25)",
+                  backgroundColor:
+                    activeFilter === btn.id
+                      ? "rgba(196, 169, 110, 0.2)"
+                      : "rgba(22, 20, 17, 0.6)",
+                  color:
+                    activeFilter === btn.id
+                      ? "var(--gold-light)"
+                      : "rgba(244, 239, 228, 0.7)",
+                  transition: "all 0.2s ease",
+                }}
+              >
+                {btn.label}
+              </button>
+            ))}
+          </div>
         </div>
 
-        {/* GRID COM TODAS AS FOTOS */}
+        {/* GRID COM FOTOS FILTRADAS */}
         <div
           style={{
             display: "grid",
@@ -691,7 +802,7 @@ export default function HistoryInteractiveView() {
             gap: "1.75rem",
           }}
         >
-          {HISTORY_PHOTOS.map((item, index) => (
+          {filteredPhotos.map((item, index) => (
             <div
               key={item.id}
               onClick={() => setActivePhoto(item)}

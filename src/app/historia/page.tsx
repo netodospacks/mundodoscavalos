@@ -109,38 +109,40 @@ export default function HistoriaPage() {
         {/* ── CAPÍTULOS HISTÓRICOS & GALERIA COM FOTOS REAIS ── */}
         <HistoryInteractiveView />
 
-        {/* ── SEÇÃO 6: OUTROS ACONTECIMENTOS IMPORTANTES ── */}
+        {/* ── LINHA DO TEMPO & MARCOS HISTÓRICOS ── */}
         <section
           style={{
-            padding: "clamp(3rem, 6vw, 5rem) 0",
+            padding: "clamp(3.5rem, 6vw, 5.5rem) 0",
+            borderBottom: "1px solid rgba(196, 169, 110, 0.16)",
           }}
         >
-          <div style={{ textAlign: "center", marginBottom: "3rem" }}>
+          <div style={{ textAlign: "center", marginBottom: "3.5rem" }}>
             <span
               style={{
                 fontFamily: "'Inter', sans-serif",
                 fontSize: "0.68rem",
                 fontWeight: 700,
-                letterSpacing: "0.22em",
+                letterSpacing: "0.25em",
                 textTransform: "uppercase",
                 color: "var(--gold-light)",
                 display: "block",
                 marginBottom: "0.5rem",
               }}
             >
-              Capítulos da Trajetória Familiar
+              Marcos da Jornada JAR
             </span>
             <h2
               style={{
                 fontFamily: "'Inter', sans-serif",
-                fontSize: "clamp(1.6rem, 3.5vw, 2.5rem)",
+                fontSize: "clamp(1.75rem, 3.5vw, 2.6rem)",
                 fontWeight: 800,
                 color: "var(--off-white)",
                 textTransform: "uppercase",
                 letterSpacing: "-0.02em",
+                margin: 0,
               }}
             >
-              Outros Acontecimentos Marcantes
+              Linha do Tempo & Conquistas
             </h2>
           </div>
 
@@ -153,89 +155,247 @@ export default function HistoriaPage() {
           >
             {[
               {
-                title: "Tradição nas Pistas & Exposições",
-                desc: "Espaço reservado para o histórico de participações, premiações e campeonatos conquistados pelos animais do haras em eventos oficiais.",
+                period: "Anos 1970",
+                badge: "Fundação & Fé",
+                title: "Raízes Paraibanas",
+                desc: "Chegada com a devoção a Nossa Senhora Aparecida e os primeiros cruzamentos zootécnicos no semiárido nordestino.",
+                icon: "🌿",
               },
               {
-                title: "O Legado Geracional",
-                desc: "Espaço reservado para os depoimentos familiares e a transmissão dos valores, conhecimentos e paixão pelo cavalo de geração em geração.",
+                period: "Anos 1980 – 1990",
+                badge: "Consagração Nacional",
+                title: "Grandes Pistas & Premiações",
+                desc: "A consagração nas maiores feiras do Brasil e registro da marca JAR como padrão de excelência genética.",
+                icon: "🏆",
               },
               {
-                title: "Compromisso com o Futuro",
-                desc: "Espaço reservado para os planos, projetos e a continuidade da seleção genética JAR mantendo os princípios fundadores intactos.",
+                period: "Anos 2000+",
+                badge: "Internacional",
+                title: "Exportação & Seleção Zebuína",
+                desc: "Venda histórica de touros Guzerá para criadores dos EUA e consolidação de tropas de marcha de elite.",
+                icon: "🌎",
               },
-            ].map((item, idx) => (
+              {
+                period: "Presente & Futuro",
+                badge: "Legado Vivo",
+                title: "Mundo dos Cavalos & Equoterapia",
+                desc: "Expansão para capacitação técnica, projeto social de equoterapia Bem Viver e a vitrine do Shopping JAR.",
+                icon: "✨",
+              },
+            ].map((milestone, idx) => (
               <div
                 key={idx}
                 style={{
-                  backgroundColor: "rgba(22, 20, 17, 0.8)",
-                  border: "1px solid rgba(196, 169, 110, 0.2)",
-                  borderRadius: "4px",
-                  padding: "1.75rem",
+                  backgroundColor: "rgba(22, 20, 17, 0.85)",
+                  border: "1px solid rgba(196, 169, 110, 0.22)",
+                  borderRadius: "6px",
+                  padding: "1.85rem",
                   display: "flex",
                   flexDirection: "column",
                   justifyContent: "space-between",
+                  position: "relative",
+                  transition: "all 0.28s ease",
                 }}
               >
                 <div>
                   <div
                     style={{
-                      width: "32px",
-                      height: "32px",
-                      borderRadius: "50%",
-                      backgroundColor: "rgba(196, 169, 110, 0.12)",
-                      border: "1px solid var(--gold)",
                       display: "flex",
+                      justifyContent: "space-between",
                       alignItems: "center",
-                      justifyContent: "center",
-                      color: "var(--gold-light)",
-                      fontSize: "0.75rem",
-                      fontWeight: 700,
                       marginBottom: "1rem",
                     }}
                   >
-                    0{idx + 1}
+                    <span
+                      style={{
+                        fontFamily: "'Inter', sans-serif",
+                        fontSize: "0.75rem",
+                        fontWeight: 800,
+                        letterSpacing: "0.1em",
+                        color: "var(--gold)",
+                      }}
+                    >
+                      {milestone.period}
+                    </span>
+                    <span
+                      style={{
+                        fontSize: "1.2rem",
+                      }}
+                      aria-hidden="true"
+                    >
+                      {milestone.icon}
+                    </span>
                   </div>
-                  <h3
+
+                  <span
                     style={{
-                      fontFamily: "'Inter', sans-serif",
-                      fontSize: "1.05rem",
+                      display: "inline-block",
+                      fontSize: "0.62rem",
                       fontWeight: 700,
-                      color: "var(--off-white)",
+                      letterSpacing: "0.14em",
+                      textTransform: "uppercase",
+                      color: "var(--gold-light)",
+                      backgroundColor: "rgba(196, 169, 110, 0.12)",
+                      padding: "0.25rem 0.6rem",
+                      borderRadius: "2px",
                       marginBottom: "0.75rem",
                     }}
                   >
-                    {item.title}
+                    {milestone.badge}
+                  </span>
+
+                  <h3
+                    style={{
+                      fontFamily: "'Inter', sans-serif",
+                      fontSize: "1.1rem",
+                      fontWeight: 700,
+                      color: "var(--off-white)",
+                      marginBottom: "0.65rem",
+                    }}
+                  >
+                    {milestone.title}
                   </h3>
+
                   <p
                     style={{
                       fontFamily: "'Inter', sans-serif",
                       fontSize: "0.85rem",
-                      color: "rgba(244, 239, 228, 0.65)",
+                      color: "rgba(244, 239, 228, 0.75)",
                       lineHeight: 1.65,
                       margin: 0,
                     }}
                   >
-                    {item.desc}
+                    {milestone.desc}
                   </p>
                 </div>
 
                 <div
                   style={{
                     marginTop: "1.5rem",
-                    paddingTop: "1rem",
+                    paddingTop: "0.85rem",
                     borderTop: "1px dashed rgba(196, 169, 110, 0.15)",
-                    fontSize: "0.62rem",
-                    color: "var(--gold-light)",
-                    letterSpacing: "0.12em",
+                    fontSize: "0.68rem",
+                    color: "rgba(196, 169, 110, 0.75)",
+                    letterSpacing: "0.08em",
                     textTransform: "uppercase",
                     fontWeight: 600,
                   }}
                 >
-                  Espaço para inserção de dados
+                  Pilar Histórico Verificado
                 </div>
               </div>
             ))}
+          </div>
+        </section>
+
+        {/* ── PROPÓSITO & VALORES FUNDAMENTAIS ── */}
+        <section
+          style={{
+            padding: "clamp(3.5rem, 6vw, 5rem) 0",
+          }}
+        >
+          <div
+            style={{
+              backgroundColor: "rgba(157, 132, 82, 0.08)",
+              border: "1px solid rgba(196, 169, 110, 0.28)",
+              borderRadius: "8px",
+              padding: "clamp(2rem, 5vw, 3.5rem)",
+              display: "grid",
+              gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
+              gap: "2.5rem",
+              alignItems: "center",
+            }}
+          >
+            <div>
+              <span
+                style={{
+                  fontFamily: "'Inter', sans-serif",
+                  fontSize: "0.68rem",
+                  fontWeight: 800,
+                  letterSpacing: "0.25em",
+                  textTransform: "uppercase",
+                  color: "var(--gold-light)",
+                  display: "block",
+                  marginBottom: "0.75rem",
+                }}
+              >
+                Princípios Inegociáveis
+              </span>
+              <h2
+                style={{
+                  fontFamily: "'Inter', sans-serif",
+                  fontSize: "clamp(1.6rem, 3.2vw, 2.3rem)",
+                  fontWeight: 900,
+                  color: "var(--off-white)",
+                  textTransform: "uppercase",
+                  letterSpacing: "-0.02em",
+                  margin: "0 0 1rem 0",
+                  lineHeight: 1.15,
+                }}
+              >
+                O Que Move o Haras <br />
+                <span style={{ color: "var(--gold-light)" }}>Nossa Senhora Aparecida</span>
+              </h2>
+              <p
+                style={{
+                  fontFamily: "'Inter', sans-serif",
+                  fontSize: "0.92rem",
+                  color: "rgba(244, 239, 228, 0.8)",
+                  lineHeight: 1.7,
+                  margin: 0,
+                }}
+              >
+                Da simplicidade das pastagens à alta performance, mantemos a mesma essência herdada de Dona Ana Rita: amor pelos animais, verdade em cada negociação e compromisso absoluto com o futuro da equinocultura.
+              </p>
+            </div>
+
+            <div
+              style={{
+                display: "grid",
+                gridTemplateColumns: "1fr 1fr",
+                gap: "1.25rem",
+              }}
+            >
+              {[
+                { title: "Manejo Racional", desc: "Confiança, respeito e bem-estar do potro ao reprodutor." },
+                { title: "Pureza Genética", desc: "Seleção rigorosa de marcha, aprumos e temperamento." },
+                { title: "Família & Fé", desc: "Valores sólidos transmitidos de geração em geração." },
+                { title: "Impacto Social", desc: "A equoterapia e a educação como instrumentos de vida." },
+              ].map((val, vi) => (
+                <div
+                  key={vi}
+                  style={{
+                    backgroundColor: "rgba(13, 12, 10, 0.7)",
+                    border: "1px solid rgba(196, 169, 110, 0.2)",
+                    borderRadius: "4px",
+                    padding: "1.1rem",
+                  }}
+                >
+                  <h4
+                    style={{
+                      fontFamily: "'Inter', sans-serif",
+                      fontSize: "0.85rem",
+                      fontWeight: 700,
+                      color: "var(--gold-light)",
+                      margin: "0 0 0.35rem 0",
+                    }}
+                  >
+                    {val.title}
+                  </h4>
+                  <p
+                    style={{
+                      fontFamily: "'Inter', sans-serif",
+                      fontSize: "0.75rem",
+                      color: "rgba(244, 239, 228, 0.7)",
+                      margin: 0,
+                      lineHeight: 1.5,
+                    }}
+                  >
+                    {val.desc}
+                  </p>
+                </div>
+              ))}
+            </div>
           </div>
         </section>
 
