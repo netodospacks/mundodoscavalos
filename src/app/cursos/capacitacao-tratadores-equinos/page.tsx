@@ -14,8 +14,12 @@ import {
   CheckCircle2,
   ArrowRight,
   Sparkles,
-  HeartHandshake,
-  Stethoscope,
+  Calendar,
+  Bed,
+  UtensilsCrossed,
+  FileCheck,
+  CreditCard,
+  QrCode,
   ChevronDown,
   Mail,
   Copy,
@@ -54,7 +58,7 @@ export default function CursoTratadoresSalesPage() {
     setTimeout(() => setCopiedContact(false), 2500);
   };
 
-  // Mapeamento de ícones distintos para a composição visual dos 7 benefícios (Item 1)
+  // Mapeamento de ícones distintos para os 7 benefícios da apresentação (Item 1)
   const benefitIcons = [
     BookOpen,
     MapPin,
@@ -62,6 +66,18 @@ export default function CursoTratadoresSalesPage() {
     Eye,
     Headphones,
     Award,
+    Users,
+  ];
+
+  // Mapeamento de ícones expressivos para os 8 itens inclusos na experiência completa (Alteração 3 - Item 2)
+  const includedExperienceIcons = [
+    Calendar,
+    BookOpen,
+    Award,
+    Bed,
+    UtensilsCrossed,
+    FileCheck,
+    Headphones,
     Users,
   ];
 
@@ -73,8 +89,8 @@ export default function CursoTratadoresSalesPage() {
           - Título: Curso de Capacitação de Tratadores de Equinos — Nível I
           - Apresentação: Aprenda fundamentos essenciais de manejo, alimentação,
             higiene, controle de parasitas e avaliação de equinos.
-          - Composição visual organizada dos 7 benefícios
-          - Investimento: R$ 1.200,00
+          - Composição visual organizada dos benefícios
+          - Investimento por participante com tudo incluso
           - Botão: QUERO GARANTIR MINHA VAGA
       ══════════════════════════════════════════════════════════════════ */}
       <section
@@ -178,7 +194,7 @@ export default function CursoTratadoresSalesPage() {
                       backgroundColor: "#c4a96e",
                     }}
                   />
-                  {cursoTratadoresData.badge}
+                  {cursoTratadoresData.badge} • 7 E 8 DE NOVEMBRO
                 </span>
               </div>
 
@@ -213,7 +229,7 @@ export default function CursoTratadoresSalesPage() {
                 {cursoTratadoresData.subtitle}
               </p>
 
-              {/* ── COMPOSIÇÃO VISUAL ORGANIZADA DOS 7 BENEFÍCIOS (Item 1) ── */}
+              {/* ── COMPOSIÇÃO VISUAL DOS BENEFÍCIOS ── */}
               <div
                 style={{
                   backgroundColor: "rgba(32, 27, 22, 0.75)",
@@ -293,7 +309,7 @@ export default function CursoTratadoresSalesPage() {
                 </div>
               </div>
 
-              {/* Bloco de Conversão: Preço + Botão Principal */}
+              {/* Bloco de Conversão: Preço com contextualização de Hospedagem + Alimentação + Botão */}
               <div
                 style={{
                   backgroundColor: "rgba(35, 30, 24, 0.9)",
@@ -323,18 +339,28 @@ export default function CursoTratadoresSalesPage() {
                     >
                       {cursoTratadoresData.price}
                     </span>
+                    <span
+                      style={{
+                        fontFamily: "'Inter', sans-serif",
+                        fontSize: "0.78rem",
+                        color: "#d8be86",
+                        fontWeight: 600,
+                      }}
+                    >
+                      / participante
+                    </span>
                   </div>
                   <span
                     style={{
                       fontFamily: "'Inter', sans-serif",
-                      fontSize: "0.8rem",
+                      fontSize: "0.78rem",
                       color: "#c4a96e",
                       fontWeight: 500,
                       display: "block",
                       marginTop: "0.2rem",
                     }}
                   >
-                    {cursoTratadoresData.priceLabel}
+                    Hospedagem e alimentação completas inclusas • Turma limitada a 30 vagas
                   </span>
                 </div>
 
@@ -374,8 +400,6 @@ export default function CursoTratadoresSalesPage() {
           SEÇÃO 2 — IMAGEM DE DESTAQUE DO HARAS (Item 2)
           - Fotografia ampla e representativa do ambiente do Haras
           - Preparada para receber a fotografia dos cavalos bebendo água
-          - Transmite ambiente real, cuidado com os animais, tranquilidade
-            e profissionalismo
       ══════════════════════════════════════════════════════════════════ */}
       <section
         style={{
@@ -509,7 +533,7 @@ export default function CursoTratadoresSalesPage() {
           - Título: Sobre a Formação
           - Subtítulo: Aprenda a cuidar de equinos com mais conhecimento
             e responsabilidade.
-          - Texto integral em 5 parágrafos com alto contraste e tipografia nobre
+          - 5 parágrafos oficiais com alto contraste e tipografia nobre
       ══════════════════════════════════════════════════════════════════ */}
       <section
         id="sobre-a-formacao"
@@ -671,8 +695,7 @@ export default function CursoTratadoresSalesPage() {
           - Título: Grade Técnica
           - Subtítulo: O que você vai aprender
           - Introdução: Conheça os principais temas abordados durante a capacitação.
-          - 8 tópicos organizados em seção própria, numerados de 01 a 08,
-            com boa leitura e aparência profissional.
+          - 8 tópicos organizados em seção própria, numerados de 01 a 08
       ══════════════════════════════════════════════════════════════════ */}
       <section
         id="grade-tecnica"
@@ -1316,10 +1339,15 @@ export default function CursoTratadoresSalesPage() {
       </section>
 
       {/* ══════════════════════════════════════════════════════════════════
-          SEÇÃO 7 — INVESTIMENTO E INSCRIÇÃO
-          - Título: Invista na sua capacitação
-          - Valor: R$ 1.200,00
-          - Botão: QUERO ME INSCREVER
+          SEÇÃO 7 — INVESTIMENTO E CONVERSÃO (ALTERAÇÃO 3 COMPLETA)
+          - Título: INVESTIMENTO NA CAPACITAÇÃO
+          - Subtítulo: Conhecimento que acompanha você para além desses dois dias.
+          - Texto introdutório em 3 parágrafos
+          - Tudo o que está incluído em cards de alto destaque
+          - Investimento por participante: R$ 1.200,00
+          - Turma limitada a 30 participantes
+          - Área de parcelamento e opções de pagamento configuráveis
+          - Botão de ação oficial
       ══════════════════════════════════════════════════════════════════ */}
       <section
         id="investimento"
@@ -1338,23 +1366,15 @@ export default function CursoTratadoresSalesPage() {
             position: "absolute",
             inset: 0,
             background:
-              "radial-gradient(circle at 50% 30%, rgba(196, 169, 110, 0.12) 0%, transparent 60%)",
+              "radial-gradient(circle at 50% 25%, rgba(196, 169, 110, 0.16) 0%, transparent 65%)",
             pointerEvents: "none",
           }}
         />
 
-        <div className="container" style={{ maxWidth: "860px", margin: "0 auto", padding: "0 1.5rem", position: "relative", zIndex: 2 }}>
+        <div className="container" style={{ maxWidth: "1140px", margin: "0 auto", padding: "0 1.5rem", position: "relative", zIndex: 2 }}>
+          {/* Cabeçalho da Seção de Investimento */}
           <SectionReveal type="up">
-            <div
-              style={{
-                backgroundColor: "rgba(28, 24, 19, 0.95)",
-                border: "1px solid rgba(196, 169, 110, 0.35)",
-                borderRadius: "16px",
-                padding: "clamp(2rem, 5vw, 3.5rem)",
-                textAlign: "center",
-                boxShadow: "0 25px 60px rgba(0,0,0,0.6)",
-              }}
-            >
+            <div style={{ textAlign: "center", marginBottom: "clamp(2.5rem, 5vw, 4rem)" }}>
               <span
                 style={{
                   fontFamily: "'Inter', sans-serif",
@@ -1367,97 +1387,320 @@ export default function CursoTratadoresSalesPage() {
                   marginBottom: "0.75rem",
                 }}
               >
-                INSCRIÇÃO OFICIAL
+                {cursoTratadoresData.investmentSection.sectionBadge}
               </span>
 
               <h2
                 className="font-serif"
                 style={{
-                  fontSize: "clamp(2.2rem, 4.5vw, 3.4rem)",
+                  fontSize: "clamp(2.3rem, 5vw, 3.8rem)",
                   fontWeight: 600,
                   color: "#fbfaf7",
                   lineHeight: 1.15,
-                  margin: "0 0 0.5rem 0",
-                  letterSpacing: "-0.01em",
+                  margin: "0 0 1rem 0",
+                  letterSpacing: "-0.015em",
                 }}
               >
-                Invista na sua capacitação
+                {cursoTratadoresData.investmentSection.title}
               </h2>
 
-              <h3
-                className="font-sans"
+              <p
+                className="font-serif"
                 style={{
-                  fontSize: "clamp(1.1rem, 1.8vw, 1.35rem)",
-                  fontWeight: 600,
+                  fontSize: "clamp(1.2rem, 2.2vw, 1.65rem)",
                   color: "#e8dfce",
-                  margin: "0 0 0.5rem 0",
+                  fontWeight: 500,
+                  margin: "0 auto 1.75rem auto",
+                  maxWidth: "760px",
+                  lineHeight: 1.35,
                 }}
               >
-                {cursoTratadoresData.title}
-              </h3>
+                {cursoTratadoresData.investmentSection.subtitle}
+              </p>
 
+              {/* Texto Introdutório Oficial em 3 Parágrafos */}
               <div
                 style={{
-                  display: "inline-block",
-                  backgroundColor: "rgba(196, 169, 110, 0.15)",
-                  color: "#d8be86",
-                  border: "1px solid rgba(196, 169, 110, 0.35)",
+                  maxWidth: "820px",
+                  margin: "0 auto",
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: "1rem",
+                  textAlign: "center",
+                  fontSize: "clamp(0.98rem, 1.3vw, 1.08rem)",
+                  color: "rgba(244, 239, 228, 0.82)",
+                  lineHeight: 1.8,
+                  fontWeight: 300,
+                }}
+              >
+                <p style={{ margin: 0 }}>
+                  {cursoTratadoresData.investmentSection.introParagraphs[0]}
+                </p>
+                <p style={{ margin: 0, fontWeight: 500, color: "#fbfaf7" }}>
+                  {cursoTratadoresData.investmentSection.introParagraphs[1]}
+                </p>
+                <p style={{ margin: 0 }}>
+                  {cursoTratadoresData.investmentSection.introParagraphs[2]}
+                </p>
+              </div>
+            </div>
+          </SectionReveal>
+
+          {/* ── TUDO O QUE ESTÁ INCLUÍDO (Item 2) ── */}
+          <SectionReveal type="up">
+            <div style={{ marginBottom: "clamp(2.5rem, 5vw, 4rem)" }}>
+              <div
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  gap: "0.75rem",
+                  marginBottom: "1.75rem",
+                }}
+              >
+                <Sparkles style={{ width: "18px", height: "18px", color: "#c4a96e" }} />
+                <h3
+                  className="font-serif"
+                  style={{
+                    fontSize: "clamp(1.4rem, 2.6vw, 1.95rem)",
+                    color: "#fbfaf7",
+                    fontWeight: 600,
+                    margin: 0,
+                    textAlign: "center",
+                  }}
+                >
+                  Tudo o que está incluído na sua formação
+                </h3>
+              </div>
+
+              {/* Grid dos 8 Benefícios em Destaque Visual Nobre */}
+              <div
+                style={{
+                  display: "grid",
+                  gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 260px), 1fr))",
+                  gap: "1.25rem",
+                }}
+              >
+                {cursoTratadoresData.investmentSection.includedItems.map((item, idx) => {
+                  const Icon = includedExperienceIcons[idx] || CheckCircle2;
+                  return (
+                    <div
+                      key={idx}
+                      style={{
+                        backgroundColor: "rgba(35, 30, 24, 0.8)",
+                        backdropFilter: "blur(8px)",
+                        WebkitBackdropFilter: "blur(8px)",
+                        border: "1px solid rgba(196, 169, 110, 0.3)",
+                        borderRadius: "14px",
+                        padding: "1.6rem 1.4rem",
+                        display: "flex",
+                        flexDirection: "column",
+                        gap: "0.85rem",
+                        boxShadow: "0 8px 24px rgba(0,0,0,0.35)",
+                        transition: "all 0.25s ease",
+                      }}
+                      className="included-experience-card"
+                    >
+                      <div
+                        style={{
+                          width: "38px",
+                          height: "38px",
+                          borderRadius: "8px",
+                          backgroundColor: "rgba(196, 169, 110, 0.15)",
+                          border: "1px solid rgba(196, 169, 110, 0.4)",
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                          color: "#c4a96e",
+                          flexShrink: 0,
+                        }}
+                      >
+                        <Icon style={{ width: "19px", height: "19px" }} />
+                      </div>
+
+                      <p
+                        className="font-sans"
+                        style={{
+                          fontSize: "0.95rem",
+                          fontWeight: 600,
+                          color: "#fbfaf7",
+                          lineHeight: 1.5,
+                          margin: 0,
+                        }}
+                      >
+                        {item}
+                      </p>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          </SectionReveal>
+
+          {/* ── CARD MESTRE DE PREÇO, CONDIÇÕES E PARCELAMENTO (Itens 3 e 4) ── */}
+          <SectionReveal type="up">
+            <div
+              style={{
+                backgroundColor: "rgba(28, 24, 19, 0.96)",
+                border: "1px solid rgba(196, 169, 110, 0.45)",
+                borderRadius: "18px",
+                padding: "clamp(2rem, 5vw, 3.5rem)",
+                maxWidth: "760px",
+                margin: "0 auto",
+                textAlign: "center",
+                boxShadow: "0 25px 60px rgba(0,0,0,0.65)",
+                position: "relative",
+              }}
+            >
+              {/* Selo de Exclusividade e Limite de Participantes */}
+              <div
+                style={{
+                  display: "inline-flex",
+                  alignItems: "center",
+                  gap: "0.5rem",
+                  backgroundColor: "rgba(196, 169, 110, 0.18)",
+                  border: "1px solid rgba(196, 169, 110, 0.5)",
+                  color: "#f4efe4",
                   fontFamily: "'Inter', sans-serif",
-                  fontSize: "0.7rem",
+                  fontSize: "0.78rem",
                   fontWeight: 700,
-                  letterSpacing: "0.15em",
+                  letterSpacing: "0.12em",
                   textTransform: "uppercase",
-                  padding: "0.3rem 0.85rem",
+                  padding: "0.45rem 1.15rem",
                   borderRadius: "100px",
                   marginBottom: "1.75rem",
                 }}
               >
-                Modalidade: {cursoTratadoresData.modality}
+                <Users style={{ width: "15px", height: "15px", color: "#c4a96e" }} />
+                <span>{cursoTratadoresData.investmentSection.spotsLimit}</span>
               </div>
 
-              {/* Valor em destaque */}
-              <div style={{ marginBottom: "1.5rem" }}>
+              {/* Rótulo de Investimento */}
+              <span
+                style={{
+                  fontFamily: "'Inter', sans-serif",
+                  fontSize: "0.85rem",
+                  fontWeight: 600,
+                  color: "#d8be86",
+                  textTransform: "uppercase",
+                  letterSpacing: "0.1em",
+                  display: "block",
+                  marginBottom: "0.5rem",
+                }}
+              >
+                Investimento por participante:
+              </span>
+
+              {/* Valor em Destaque */}
+              <div style={{ marginBottom: "1.75rem" }}>
                 <span
                   style={{
                     fontFamily: "'Inter', sans-serif",
-                    fontSize: "clamp(2.6rem, 5.5vw, 3.8rem)",
+                    fontSize: "clamp(2.8rem, 6vw, 4.2rem)",
                     fontWeight: 900,
                     color: "#fbfaf7",
                     letterSpacing: "-0.02em",
                     lineHeight: 1,
                   }}
                 >
-                  {cursoTratadoresData.price}
+                  {cursoTratadoresData.investmentSection.price}
                 </span>
                 <span
                   style={{
                     display: "block",
                     fontFamily: "'Inter', sans-serif",
-                    fontSize: "0.85rem",
-                    color: "#c4a96e",
+                    fontSize: "0.82rem",
+                    color: "rgba(244, 239, 228, 0.7)",
                     marginTop: "0.5rem",
+                    fontWeight: 400,
                   }}
                 >
-                  {cursoTratadoresData.priceLabel}
+                  Valor único da experiência completa • Haras Nossa Senhora Aparecida
                 </span>
               </div>
 
-              <p
-                className="font-sans"
+              {/* ── ÁREA DE PARCELAMENTO E CONDIÇÕES DE PAGAMENTO (Item 4) ── */}
+              <div
                 style={{
-                  fontSize: "clamp(0.95rem, 1.2vw, 1.05rem)",
-                  color: "rgba(244, 239, 228, 0.8)",
-                  lineHeight: 1.7,
-                  maxWidth: "580px",
-                  margin: "0 auto 2.25rem",
-                  fontWeight: 300,
+                  backgroundColor: "rgba(18, 15, 12, 0.8)",
+                  border: "1px solid rgba(196, 169, 110, 0.25)",
+                  borderRadius: "12px",
+                  padding: "1.25rem 1.5rem",
+                  marginBottom: "2rem",
+                  textAlign: "left",
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: "0.85rem",
                 }}
               >
-                Dê o próximo passo para compreender os fundamentos do manejo e aplicar esse conhecimento na rotina prática com os animais.
-              </p>
+                <div style={{ display: "flex", alignItems: "flex-start", gap: "0.75rem" }}>
+                  <div
+                    style={{
+                      width: "28px",
+                      height: "28px",
+                      borderRadius: "6px",
+                      backgroundColor: "rgba(16, 185, 129, 0.15)",
+                      border: "1px solid rgba(16, 185, 129, 0.3)",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      color: "#10b981",
+                      flexShrink: 0,
+                      marginTop: "1px",
+                    }}
+                  >
+                    <QrCode style={{ width: "15px", height: "15px" }} />
+                  </div>
+                  <div>
+                    <strong style={{ fontSize: "0.86rem", color: "#fbfaf7", display: "block" }}>
+                      Pagamento com aprovação instantânea
+                    </strong>
+                    <span style={{ fontSize: "0.8rem", color: "rgba(244, 239, 228, 0.75)", lineHeight: 1.5 }}>
+                      {cursoTratadoresData.investmentSection.paymentOptions.pix}
+                    </span>
+                  </div>
+                </div>
 
-              {/* Botão: QUERO ME INSCREVER */}
-              <div id="contato-matricula" style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "1rem" }}>
+                <div
+                  style={{
+                    paddingTop: "0.75rem",
+                    borderTop: "1px solid rgba(196, 169, 110, 0.15)",
+                    display: "flex",
+                    alignItems: "flex-start",
+                    gap: "0.75rem",
+                  }}
+                >
+                  <div
+                    style={{
+                      width: "28px",
+                      height: "28px",
+                      borderRadius: "6px",
+                      backgroundColor: "rgba(196, 169, 110, 0.15)",
+                      border: "1px solid rgba(196, 169, 110, 0.3)",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      color: "#c4a96e",
+                      flexShrink: 0,
+                      marginTop: "1px",
+                    }}
+                  >
+                    <CreditCard style={{ width: "15px", height: "15px" }} />
+                  </div>
+                  <div>
+                    <strong style={{ fontSize: "0.86rem", color: "#fbfaf7", display: "block" }}>
+                      Condições de parcelamento e pagamento
+                    </strong>
+                    <span style={{ fontSize: "0.8rem", color: "rgba(244, 239, 228, 0.75)", lineHeight: 1.5 }}>
+                      {cursoTratadoresData.investmentSection.paymentOptions.installmentsConfigurable ||
+                        cursoTratadoresData.investmentSection.paymentOptions.installmentNote}
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Botão Principal de Inscrição */}
+              <div id="contato-matricula" style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "1.25rem" }}>
                 <button
                   onClick={handleEnrollment}
                   style={{
@@ -1465,41 +1708,43 @@ export default function CursoTratadoresSalesPage() {
                     color: "#16130f",
                     fontFamily: "'Inter', sans-serif",
                     fontWeight: 800,
-                    fontSize: "0.9rem",
+                    fontSize: "0.92rem",
                     letterSpacing: "0.14em",
                     textTransform: "uppercase",
-                    padding: "1.15rem 2.8rem",
+                    padding: "1.2rem 3rem",
                     borderRadius: "6px",
                     border: "none",
                     cursor: "pointer",
-                    boxShadow: "0 8px 25px rgba(196, 169, 110, 0.4)",
+                    boxShadow: "0 8px 25px rgba(196, 169, 110, 0.45)",
                     transition: "all 0.25s ease",
                     display: "inline-flex",
                     alignItems: "center",
-                    gap: "0.6rem",
+                    gap: "0.65rem",
+                    width: "100%",
+                    maxWidth: "420px",
+                    justifyContent: "center",
                   }}
                   className="btn-garantir-vaga"
                 >
-                  <span>QUERO ME INSCREVER</span>
-                  <ArrowRight style={{ width: "16px", height: "16px" }} />
+                  <span>GARANTIR MINHA INSCRIÇÃO</span>
+                  <ArrowRight style={{ width: "18px", height: "18px" }} />
                 </button>
 
-                {/* Canal de Atendimento / Matrícula */}
+                {/* Canal Oficial de Atendimento */}
                 <div
                   style={{
-                    marginTop: "1rem",
-                    padding: "1rem 1.5rem",
+                    padding: "0.85rem 1.25rem",
                     backgroundColor: "rgba(13, 12, 10, 0.6)",
                     borderRadius: "8px",
                     border: "1px solid rgba(196, 169, 110, 0.2)",
-                    maxWidth: "500px",
+                    maxWidth: "480px",
                     width: "100%",
                   }}
                 >
                   <span
                     style={{
                       fontFamily: "'Inter', sans-serif",
-                      fontSize: "0.72rem",
+                      fontSize: "0.7rem",
                       fontWeight: 700,
                       letterSpacing: "0.1em",
                       color: "#c4a96e",
@@ -1508,7 +1753,7 @@ export default function CursoTratadoresSalesPage() {
                       marginBottom: "0.35rem",
                     }}
                   >
-                    Canal Oficial de Atendimento & Matrícula
+                    Atendimento Oficial & Dúvidas
                   </span>
                   <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "0.75rem", flexWrap: "wrap" }}>
                     <span style={{ fontSize: "0.85rem", color: "#fbfaf7", fontFamily: "'Inter', sans-serif" }}>
@@ -1685,8 +1930,9 @@ export default function CursoTratadoresSalesPage() {
       </section>
 
       {/* ══════════════════════════════════════════════════════════════════
-          SEÇÃO 9 — CHAMADA FINAL
-          - O cuidado com os cavalos começa com conhecimento.
+          SEÇÃO 9 — CHAMADA FINAL CONTEXTUALIZADA (Item 5)
+          - O valor aparece junto do resumo dos benefícios, hospedagem,
+            alimentação, condições de pagamento e convite à inscrição
       ══════════════════════════════════════════════════════════════════ */}
       <section
         style={{
@@ -1696,7 +1942,7 @@ export default function CursoTratadoresSalesPage() {
           borderTop: "1px solid rgba(140, 110, 61, 0.15)",
         }}
       >
-        <div className="container" style={{ maxWidth: "860px", margin: "0 auto", padding: "0 1.5rem", textAlign: "center" }}>
+        <div className="container" style={{ maxWidth: "880px", margin: "0 auto", padding: "0 1.5rem", textAlign: "center" }}>
           <SectionReveal type="up">
             <div>
               <span
@@ -1734,53 +1980,109 @@ export default function CursoTratadoresSalesPage() {
                   fontSize: "clamp(0.95rem, 1.2vw, 1.1rem)",
                   color: "#5f5547",
                   lineHeight: 1.7,
-                  maxWidth: "620px",
+                  maxWidth: "680px",
                   margin: "0 auto 2rem",
                   fontWeight: 400,
                 }}
               >
-                Aprenda a cuidar de equinos com mais conhecimento, responsabilidade e segurança na rotina do haras.
+                Participe de dois dias de imersão presencial no Haras Nossa Senhora Aparecida (7 e 8 de novembro) com aulas práticas, orientação de profissional qualificada, hospedagem e alimentação completas inclusas.
               </p>
 
-              {/* Box de Resumo e Preço */}
+              {/* Box de Resumo Contextualizado do Investimento (Item 5) */}
               <div
                 style={{
                   backgroundColor: "#ffffff",
                   border: "1px solid rgba(140, 110, 61, 0.25)",
-                  borderRadius: "12px",
-                  padding: "1.75rem 2rem",
-                  display: "inline-flex",
+                  borderRadius: "16px",
+                  padding: "clamp(1.75rem, 4vw, 2.5rem)",
+                  display: "flex",
                   flexDirection: "column",
                   alignItems: "center",
-                  gap: "0.5rem",
-                  marginBottom: "2rem",
-                  boxShadow: "0 6px 20px rgba(28, 24, 19, 0.04)",
+                  gap: "0.85rem",
+                  marginBottom: "2.25rem",
+                  boxShadow: "0 8px 24px rgba(28, 24, 19, 0.05)",
                 }}
               >
+                {/* Selo de Vagas */}
                 <span
                   style={{
+                    backgroundColor: "rgba(140, 110, 61, 0.12)",
+                    color: "#8c6e3d",
                     fontFamily: "'Inter', sans-serif",
-                    fontSize: "0.85rem",
+                    fontSize: "0.75rem",
                     fontWeight: 700,
+                    letterSpacing: "0.1em",
+                    textTransform: "uppercase",
+                    padding: "0.3rem 0.85rem",
+                    borderRadius: "100px",
+                  }}
+                >
+                  Turma limitada a 30 participantes • 7 e 8 de novembro
+                </span>
+
+                <h3
+                  className="font-serif"
+                  style={{
+                    fontSize: "clamp(1.2rem, 2vw, 1.45rem)",
+                    fontWeight: 600,
                     color: "#1c1813",
+                    margin: 0,
                   }}
                 >
                   {cursoTratadoresData.title}
-                </span>
-                <span
+                </h3>
+
+                {/* Síntese visual do que está incluso */}
+                <div
                   style={{
+                    display: "flex",
+                    flexWrap: "wrap",
+                    justifyContent: "center",
+                    gap: "0.5rem 1rem",
+                    fontSize: "0.82rem",
+                    color: "#554c3e",
                     fontFamily: "'Inter', sans-serif",
-                    fontSize: "1.75rem",
-                    fontWeight: 900,
-                    color: "#8c6e3d",
-                    letterSpacing: "-0.02em",
+                    margin: "0.25rem 0",
                   }}
                 >
-                  {cursoTratadoresData.price}
-                </span>
-                <span style={{ fontSize: "0.72rem", color: "#7a6e5e", textTransform: "uppercase", letterSpacing: "0.1em" }}>
-                  Modalidade Presencial • Haras Nossa Senhora Aparecida
-                </span>
+                  <span>✓ 2 dias de imersão</span>
+                  <span>•</span>
+                  <span>✓ Hospedagem inclusa</span>
+                  <span>•</span>
+                  <span>✓ Refeições completas</span>
+                  <span>•</span>
+                  <span>✓ Prática no Haras</span>
+                  <span>•</span>
+                  <span>✓ Certificado</span>
+                </div>
+
+                {/* Preço e condições */}
+                <div style={{ marginTop: "0.25rem" }}>
+                  <span
+                    style={{
+                      fontFamily: "'Inter', sans-serif",
+                      fontSize: "clamp(2.2rem, 4vw, 2.8rem)",
+                      fontWeight: 900,
+                      color: "#8c6e3d",
+                      letterSpacing: "-0.02em",
+                      display: "block",
+                      lineHeight: 1,
+                    }}
+                  >
+                    {cursoTratadoresData.price}
+                  </span>
+                  <span
+                    style={{
+                      fontSize: "0.78rem",
+                      color: "#7a6e5e",
+                      display: "block",
+                      marginTop: "0.35rem",
+                      fontFamily: "'Inter', sans-serif",
+                    }}
+                  >
+                    Investimento por participante • Pagamento via Pix com liberação imediata
+                  </span>
+                </div>
               </div>
 
               <div>
@@ -1791,10 +2093,10 @@ export default function CursoTratadoresSalesPage() {
                     color: "#fbfaf7",
                     fontFamily: "'Inter', sans-serif",
                     fontWeight: 800,
-                    fontSize: "0.9rem",
+                    fontSize: "0.92rem",
                     letterSpacing: "0.14em",
                     textTransform: "uppercase",
-                    padding: "1.15rem 2.8rem",
+                    padding: "1.15rem 3rem",
                     borderRadius: "6px",
                     border: "none",
                     cursor: "pointer",
@@ -1831,6 +2133,11 @@ export default function CursoTratadoresSalesPage() {
           border-color: rgba(140, 110, 61, 0.55) !important;
           transform: translateY(-4px);
           box-shadow: 0 12px 28px rgba(28, 24, 19, 0.08) !important;
+        }
+        .included-experience-card:hover {
+          border-color: rgba(196, 169, 110, 0.6) !important;
+          transform: translateY(-3px);
+          box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5) !important;
         }
       `}} />
     </main>

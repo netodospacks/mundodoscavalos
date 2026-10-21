@@ -12,6 +12,11 @@ export interface CareerExperience {
   details?: string[];
 }
 
+export interface IncludedExperienceItem {
+  title: string;
+  description: string;
+}
+
 export const cursoTratadoresData = {
   id: "capacitacao-tratadores-equinos",
   slug: "capacitacao-tratadores-equinos",
@@ -39,7 +44,7 @@ export const cursoTratadoresData = {
     "Acesso ao grupo para troca de experiências e auxílio técnico.",
   ],
 
-  // Seção Sobre a Formação (Textos Oficiais da Alteração 2 - Item 3)
+  // Seção Sobre a Formação (Textos Oficiais da Alteração 2)
   aboutSection: {
     title: "Sobre a Formação",
     subtitle: "Aprenda a cuidar de equinos com mais conhecimento e responsabilidade.",
@@ -54,7 +59,7 @@ export const cursoTratadoresData = {
       "Mais do que executar tarefas, é importante compreender como e por que os cuidados devem ser realizados.",
   },
 
-  // Seção Grade Técnica (Item 4)
+  // Seção Grade Técnica
   technicalGrid: {
     sectionBadge: "GRADE TÉCNICA",
     title: "Grade Técnica",
@@ -62,7 +67,7 @@ export const cursoTratadoresData = {
     intro: "Conheça os principais temas abordados durante a capacitação.",
   },
 
-  // 8 Tópicos da Grade Técnica — Numeração Clara e Textos Oficiais (Item 4)
+  // 8 Tópicos da Grade Técnica — Numeração Clara e Textos Oficiais
   topics: [
     {
       number: "01",
@@ -114,7 +119,7 @@ export const cursoTratadoresData = {
     },
   ] as ProgramTopic[],
 
-  // Instrutora — Seção Exclusiva e Destacada (Item 6)
+  // Instrutora — Seção Exclusiva e Destacada
   instructor: {
     name: "Pollyanna Santiago Carrazzoni",
     title: "Zootecnista • Universidade Federal da Paraíba",
@@ -176,7 +181,7 @@ export const cursoTratadoresData = {
     ] as CareerExperience[],
   },
 
-  // Para quem é — Comunicação voltada ao aluno (Item 5)
+  // Para quem é — Comunicação voltada ao aluno
   targetAudience: [
     "Você que já atua no manejo diário e deseja aprofundar suas habilidades com técnica e segurança.",
     "Você que pretende ingressar no trabalho em criatórios e quer aprender as rotinas corretas desde o primeiro dia.",
@@ -184,17 +189,53 @@ export const cursoTratadoresData = {
     "Você que ama cavalos e busca desenvolver um olhar atento para observar sinais de comportamento e saúde no dia a dia.",
   ],
 
+  // ══════════════════════════════════════════════════════════════════
+  // SEÇÃO DE INVESTIMENTO E CONVERSÃO (Alteração 3)
+  // Reestruturada para demonstrar tudo o que está incluído antes do preço
+  // ══════════════════════════════════════════════════════════════════
+  investmentSection: {
+    sectionBadge: "EXPERIÊNCIA COMPLETA",
+    title: "INVESTIMENTO NA CAPACITAÇÃO",
+    subtitle: "Conhecimento que acompanha você para além desses dois dias.",
+    introParagraphs: [
+      "Aprender, trocar experiências e aprimorar o manejo são investimentos que podem gerar benefícios muito além do período da capacitação.",
+      "Nos dias 7 e 8 de novembro, você terá a oportunidade de participar de uma experiência presencial no Haras Nossa Senhora Aparecida, com conteúdo teórico e prático, orientação profissional, hospedagem e alimentação incluídas.",
+      "Mais do que participar de um curso, é dedicar tempo e recursos para ampliar conhecimentos que podem fazer diferença na rotina, na qualidade dos cuidados e na prevenção de problemas.",
+    ],
+    // 8 Itens com destaque visual claro
+    includedItems: [
+      "Dois dias de capacitação presencial.",
+      "Conteúdo técnico e atividades práticas.",
+      "Orientação de profissional com experiência no setor equino.",
+      "Hospedagem durante a experiência.",
+      "Alimentação durante o evento, incluindo jantar, almoço e café da manhã.",
+      "Certificado de participação.",
+      "Suporte e tira-dúvidas após o curso.",
+      "Acesso ao grupo para troca de experiências e auxílio técnico.",
+    ],
+    price: "R$ 1.200,00",
+    priceLabel: "Investimento por participante: R$ 1.200,00",
+    spotsLimit: "Turma limitada a 30 participantes.",
+    paymentOptions: {
+      pix: "Pagamento à vista via Pix com confirmação imediata.",
+      // Mantido configurável para preenchimento posterior sem dados fictícios
+      installmentNote:
+        "Condições de parcelamento e opções adicionais sob consulta no atendimento ou diretamente no momento do checkout.",
+      installmentsConfigurable: null as string | null,
+    },
+  },
+
   // Dúvidas Frequentes atualizadas com foco no aluno
   faqs: [
     {
-      question: "O curso é presencial?",
+      question: "O curso é presencial e quando será realizado?",
       answer:
-        "Sim. A capacitação é 100% presencial, realizada nas instalações do Haras Nossa Senhora Aparecida, com vivência prática no ambiente real do criatório.",
+        "Sim. A capacitação é 100% presencial, realizada nos dias 7 e 8 de novembro nas instalações do Haras Nossa Senhora Aparecida, com vivência prática no ambiente real do criatório, com hospedagem e alimentação completas inclusas.",
     },
     {
-      question: "Qual é o valor do investimento?",
+      question: "Qual é o valor do investimento e o que está incluído?",
       answer:
-        "O investimento é de R$ 1.200,00, contemplando toda a capacitação técnica, material de apoio, prática em ambiente de haras e certificado de conclusão.",
+        "O investimento por participante é de R$ 1.200,00 (turma limitada a 30 vagas). Inclui dois dias de capacitação, atividades práticas, orientação de profissional experiente, hospedagem, alimentação completa (café da manhã, almoço e jantar), certificado de participação, suporte pós-curso e acesso ao grupo de troca técnica.",
     },
     {
       question: "Quais assuntos você vai aprender?",
