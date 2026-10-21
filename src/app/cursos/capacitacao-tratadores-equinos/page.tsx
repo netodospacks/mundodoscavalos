@@ -24,6 +24,8 @@ import {
   Mail,
   Copy,
   Check,
+  GraduationCap,
+  Quote,
 } from "lucide-react";
 import SectionReveal from "@/components/ui/SectionReveal";
 import { cursoTratadoresData } from "@/data/cursoTratadores";
@@ -861,9 +863,11 @@ export default function CursoTratadoresSalesPage() {
       </section>
 
       {/* ══════════════════════════════════════════════════════════════════
-          SEÇÃO 5 — EXCLUSIVA DA INSTRUTORA POLLYANNA (Item 6)
-          - Totalmente separada dos cards dos tópicos programáticos
-          - Hierarquia visual própria e destaque para mentoria prática
+          SEÇÃO 5 — EXCLUSIVA DA INSTRUTORA (Alteração 4)
+          - Aparência editorial, elegante e profissional
+          - Seção independente da grade curricular
+          - Fotografia em destaque com credenciais lado a lado em telas maiores
+          - Preserva integralmente todas as qualificações e trajetórias existentes
       ══════════════════════════════════════════════════════════════════ */}
       <section
         id="instrutora"
@@ -871,11 +875,28 @@ export default function CursoTratadoresSalesPage() {
           paddingTop: "clamp(5rem, 8vw, 8rem)",
           paddingBottom: "clamp(5rem, 8vw, 8rem)",
           backgroundColor: "#fbfaf7",
+          borderTop: "1px solid rgba(140, 110, 61, 0.16)",
+          borderBottom: "1px solid rgba(140, 110, 61, 0.16)",
+          position: "relative",
+          overflow: "hidden",
         }}
       >
-        <div className="container" style={{ maxWidth: "1200px", margin: "0 auto", padding: "0 1.5rem" }}>
+        {/* Glow de iluminação ambiente editorial */}
+        <div
+          aria-hidden="true"
+          style={{
+            position: "absolute",
+            inset: 0,
+            background:
+              "radial-gradient(circle at 12% 25%, rgba(196, 169, 110, 0.08) 0%, transparent 55%), radial-gradient(circle at 88% 75%, rgba(140, 110, 61, 0.06) 0%, transparent 50%)",
+            pointerEvents: "none",
+          }}
+        />
+
+        <div className="container" style={{ maxWidth: "1200px", margin: "0 auto", padding: "0 1.5rem", position: "relative", zIndex: 1 }}>
+          {/* Cabeçalho Editorial da Seção */}
           <SectionReveal type="up">
-            <div style={{ textAlign: "center", marginBottom: "clamp(2.5rem, 5vw, 4rem)" }}>
+            <div style={{ textAlign: "center", maxWidth: "780px", margin: "0 auto clamp(3rem, 6vw, 4.5rem)" }}>
               <span
                 style={{
                   fontFamily: "'Inter', sans-serif",
@@ -885,10 +906,10 @@ export default function CursoTratadoresSalesPage() {
                   textTransform: "uppercase",
                   color: "#8c6e3d",
                   display: "block",
-                  marginBottom: "0.65rem",
+                  marginBottom: "0.75rem",
                 }}
               >
-                CORPO DOCENTE & EXPERIÊNCIA PRÁTICA
+                {cursoTratadoresData.instructor.sectionBadge}
               </span>
 
               <h2
@@ -898,152 +919,284 @@ export default function CursoTratadoresSalesPage() {
                   fontWeight: 600,
                   color: "#1c1813",
                   lineHeight: 1.15,
-                  margin: "0 0 0.5rem 0",
+                  margin: "0 0 1rem 0",
                   letterSpacing: "-0.015em",
                 }}
               >
-                Conheça sua instrutora
+                {cursoTratadoresData.instructor.sectionTitle}
               </h2>
 
-              <p
-                className="font-serif"
+              <div
                 style={{
-                  fontSize: "clamp(1.4rem, 2.5vw, 1.85rem)",
-                  color: "#8c6e3d",
-                  fontWeight: 600,
-                  margin: "0 0 1rem 0",
+                  width: "54px",
+                  height: "2px",
+                  backgroundColor: "#c4a96e",
+                  margin: "0 auto 1.25rem",
                 }}
-              >
-                {cursoTratadoresData.instructor.name}
-              </p>
+              />
 
               <p
                 className="font-sans"
                 style={{
-                  fontSize: "0.95rem",
-                  color: "#6b5d4b",
-                  maxWidth: "580px",
-                  margin: "0 auto",
+                  fontSize: "clamp(0.95rem, 1.2vw, 1.05rem)",
+                  color: "#5f5547",
+                  lineHeight: 1.6,
+                  margin: 0,
                 }}
               >
-                {cursoTratadoresData.instructor.title}
+                {cursoTratadoresData.instructor.sectionSubtitle}
               </p>
             </div>
           </SectionReveal>
 
-          {/* Bloco Bio + Identificação Acadêmica */}
+          {/* Layout Editorial: Lado a Lado em Telas Maiores, Empilhado em Mobile */}
           <SectionReveal type="up">
-            <div
-              style={{
-                backgroundColor: "#ffffff",
-                border: "1px solid rgba(140, 110, 61, 0.22)",
-                borderRadius: "16px",
-                padding: "clamp(1.75rem, 4vw, 3rem)",
-                marginBottom: "3.5rem",
-                boxShadow: "0 8px 30px rgba(28, 24, 19, 0.04)",
-              }}
-            >
-              <div
-                style={{
-                  display: "grid",
-                  gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 320px), 1fr))",
-                  gap: "2.5rem",
-                  alignItems: "center",
-                }}
-              >
-                {/* Fotografia Profissional da Instrutora */}
-                <div>
+            <div className="instructor-editorial-container">
+              {/* COLUNA ESQUERDA: Fotografia em Destaque + Identificação Acadêmica */}
+              <div>
+                {/* Fotografia Profissional em Destaque Editorial */}
+                <div
+                  style={{
+                    aspectRatio: "3/4",
+                    borderRadius: "14px",
+                    overflow: "hidden",
+                    border: "1px solid rgba(140, 110, 61, 0.35)",
+                    position: "relative",
+                    boxShadow: "0 18px 45px rgba(28, 24, 19, 0.14)",
+                    backgroundColor: "#16130f",
+                    marginBottom: "1.5rem",
+                  }}
+                >
+                  <img
+                    src="/images/pollyanna.jpg"
+                    alt="Pollyanna Santiago Carrazzoni — Zootecnista e Instrutora no Haras Nossa Senhora Aparecida"
+                    style={{
+                      width: "100%",
+                      height: "100%",
+                      objectFit: "cover",
+                      objectPosition: "center top",
+                      display: "block",
+                    }}
+                  />
                   <div
                     style={{
-                      aspectRatio: "3/4",
-                      borderRadius: "14px",
-                      overflow: "hidden",
-                      border: "1px solid rgba(140, 110, 61, 0.35)",
-                      position: "relative",
-                      boxShadow: "0 14px 38px rgba(28, 24, 19, 0.16)",
-                      backgroundColor: "#16130f",
+                      position: "absolute",
+                      bottom: 0,
+                      left: 0,
+                      right: 0,
+                      height: "50%",
+                      background:
+                        "linear-gradient(to top, rgba(22, 19, 15, 0.94) 0%, transparent 100%)",
+                      pointerEvents: "none",
+                    }}
+                  />
+                  <div
+                    style={{
+                      position: "absolute",
+                      bottom: "1.25rem",
+                      left: "1.25rem",
+                      right: "1.25rem",
+                      color: "#fbfaf7",
                     }}
                   >
-                    <img
-                      src="/images/pollyanna.jpg"
-                      alt="Pollyanna Santiago Carrazzoni com cavalo no Haras Nossa Senhora Aparecida"
+                    <span
                       style={{
-                        width: "100%",
-                        height: "100%",
-                        objectFit: "cover",
-                        objectPosition: "center top",
+                        fontFamily: "'Inter', sans-serif",
+                        fontSize: "0.65rem",
+                        fontWeight: 700,
+                        letterSpacing: "0.16em",
+                        textTransform: "uppercase",
+                        color: "#c4a96e",
                         display: "block",
-                      }}
-                    />
-                    <div
-                      style={{
-                        position: "absolute",
-                        bottom: 0,
-                        left: 0,
-                        right: 0,
-                        height: "45%",
-                        background:
-                          "linear-gradient(to top, rgba(22, 19, 15, 0.92) 0%, transparent 100%)",
-                        pointerEvents: "none",
-                      }}
-                    />
-                    <div
-                      style={{
-                        position: "absolute",
-                        bottom: "1.25rem",
-                        left: "1.25rem",
-                        right: "1.25rem",
-                        color: "#fbfaf7",
+                        marginBottom: "0.25rem",
                       }}
                     >
-                      <span
-                        style={{
-                          fontFamily: "'Inter', sans-serif",
-                          fontSize: "0.65rem",
-                          fontWeight: 700,
-                          letterSpacing: "0.15em",
-                          textTransform: "uppercase",
-                          color: "#c4a96e",
-                          display: "block",
-                          marginBottom: "0.25rem",
-                        }}
-                      >
-                        Sua Instrutora no Haras
-                      </span>
-                      <span
-                        style={{
-                          fontFamily: "'Inter', sans-serif",
-                          fontSize: "1rem",
-                          fontWeight: 700,
-                        }}
-                      >
-                        {cursoTratadoresData.instructor.name}
-                      </span>
-                    </div>
+                      Instrutora Responsável
+                    </span>
+                    <span
+                      className="font-serif"
+                      style={{
+                        fontSize: "1.25rem",
+                        fontWeight: 600,
+                        display: "block",
+                        lineHeight: 1.2,
+                      }}
+                    >
+                      {cursoTratadoresData.instructor.name}
+                    </span>
+                    <span
+                      style={{
+                        fontFamily: "'Inter', sans-serif",
+                        fontSize: "0.78rem",
+                        color: "rgba(251, 250, 247, 0.82)",
+                        marginTop: "0.2rem",
+                        display: "block",
+                      }}
+                    >
+                      {cursoTratadoresData.instructor.title}
+                    </span>
                   </div>
                 </div>
 
-                {/* Texto da Instrutora & Identificação Acadêmica */}
-                <div>
+                {/* Identificação Acadêmica Oficial (Aparência Editorial Elegante) */}
+                <div
+                  style={{
+                    backgroundColor: "#ffffff",
+                    border: "1px solid rgba(140, 110, 61, 0.22)",
+                    borderRadius: "12px",
+                    padding: "1.5rem",
+                    boxShadow: "0 6px 22px rgba(28, 24, 19, 0.04)",
+                  }}
+                >
+                  <div
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      gap: "0.75rem",
+                      marginBottom: "0.95rem",
+                      paddingBottom: "0.75rem",
+                      borderBottom: "1px solid rgba(140, 110, 61, 0.16)",
+                    }}
+                  >
+                    <div
+                      style={{
+                        width: "34px",
+                        height: "34px",
+                        borderRadius: "8px",
+                        backgroundColor: "rgba(140, 110, 61, 0.12)",
+                        border: "1px solid rgba(140, 110, 61, 0.25)",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        color: "#8c6e3d",
+                        flexShrink: 0,
+                      }}
+                    >
+                      <GraduationCap size={18} />
+                    </div>
+                    <div>
+                      <span
+                        style={{
+                          fontFamily: "'Inter', sans-serif",
+                          fontSize: "0.68rem",
+                          fontWeight: 700,
+                          letterSpacing: "0.15em",
+                          textTransform: "uppercase",
+                          color: "#8c6e3d",
+                          display: "block",
+                        }}
+                      >
+                        IDENTIFICAÇÃO ACADÊMICA
+                      </span>
+                      <span
+                        style={{
+                          fontFamily: "'Inter', sans-serif",
+                          fontSize: "0.88rem",
+                          fontWeight: 700,
+                          color: "#1c1813",
+                        }}
+                      >
+                        {cursoTratadoresData.instructor.academic.degree} • UFPB
+                      </span>
+                    </div>
+                  </div>
+
+                  <div
+                    style={{
+                      display: "flex",
+                      flexDirection: "column",
+                      gap: "0.5rem",
+                      fontSize: "0.84rem",
+                      color: "#463d33",
+                      fontFamily: "'Inter', sans-serif",
+                      lineHeight: 1.5,
+                    }}
+                  >
+                    <div>
+                      <strong style={{ color: "#1c1813" }}>Formação:</strong>{" "}
+                      {cursoTratadoresData.instructor.academic.degree}
+                    </div>
+                    <div>
+                      <strong style={{ color: "#1c1813" }}>Instituição:</strong>{" "}
+                      {cursoTratadoresData.instructor.academic.institution}
+                    </div>
+                    <div>
+                      <strong style={{ color: "#1c1813" }}>Centro:</strong>{" "}
+                      {cursoTratadoresData.instructor.academic.center}
+                    </div>
+                    <div>
+                      <strong style={{ color: "#1c1813" }}>Local:</strong>{" "}
+                      {cursoTratadoresData.instructor.academic.location}
+                    </div>
+                    <div>
+                      <strong style={{ color: "#1c1813" }}>Conclusão da graduação:</strong>{" "}
+                      {cursoTratadoresData.instructor.academic.graduationPeriod}
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* COLUNA DIREITA: Apresentação Editorial + Trajetória Profissional */}
+              <div>
+                {/* Bloco de Apresentação e Credibilidade */}
+                <div style={{ marginBottom: "2.25rem" }}>
+                  <span
+                    style={{
+                      fontFamily: "'Inter', sans-serif",
+                      fontSize: "0.72rem",
+                      fontWeight: 700,
+                      letterSpacing: "0.18em",
+                      textTransform: "uppercase",
+                      color: "#8c6e3d",
+                      display: "block",
+                      marginBottom: "0.5rem",
+                    }}
+                  >
+                    ORIENTAÇÃO TÉCNICA E PRÁTICA
+                  </span>
+
                   <h3
                     className="font-serif"
                     style={{
-                      fontSize: "clamp(1.5rem, 2.5vw, 2rem)",
+                      fontSize: "clamp(1.9rem, 3.4vw, 2.75rem)",
                       fontWeight: 600,
                       color: "#1c1813",
-                      marginBottom: "1rem",
-                      lineHeight: 1.25,
+                      lineHeight: 1.15,
+                      margin: "0 0 0.5rem 0",
+                      letterSpacing: "-0.015em",
                     }}
                   >
-                    Orientação Prática e Experiência Técnica na Rotina Equina
+                    {cursoTratadoresData.instructor.name}
                   </h3>
 
                   <p
                     className="font-sans"
                     style={{
-                      fontSize: "0.98rem",
-                      color: "#463d33",
-                      lineHeight: 1.75,
+                      fontSize: "1.02rem",
+                      color: "#8c6e3d",
+                      fontWeight: 600,
+                      margin: "0 0 1.25rem 0",
+                    }}
+                  >
+                    {cursoTratadoresData.instructor.title}
+                  </p>
+
+                  <div
+                    style={{
+                      width: "48px",
+                      height: "2px",
+                      backgroundColor: "#c4a96e",
+                      marginBottom: "1.75rem",
+                    }}
+                  />
+
+                  {/* Texto Editorial */}
+                  <p
+                    className="font-sans"
+                    style={{
+                      fontSize: "1.02rem",
+                      color: "#3d352b",
+                      lineHeight: 1.8,
                       marginBottom: "1.75rem",
                       fontWeight: 400,
                     }}
@@ -1051,171 +1204,190 @@ export default function CursoTratadoresSalesPage() {
                     {cursoTratadoresData.instructor.presentation}
                   </p>
 
-                  {/* Identificação Acadêmica Detalhada */}
+                  {/* Citação Editorial Humanizada */}
                   <div
                     style={{
-                      backgroundColor: "#f7f4ec",
-                      border: "1px solid rgba(140, 110, 61, 0.2)",
-                      borderRadius: "10px",
-                      padding: "1.35rem",
+                      backgroundColor: "rgba(140, 110, 61, 0.06)",
+                      borderLeft: "3px solid #8c6e3d",
+                      borderRadius: "0 8px 8px 0",
+                      padding: "1.15rem 1.35rem",
+                      display: "flex",
+                      gap: "0.85rem",
+                      alignItems: "flex-start",
                     }}
                   >
+                    <Quote size={22} style={{ color: "#8c6e3d", flexShrink: 0, marginTop: "0.15rem" }} />
+                    <p
+                      className="font-serif"
+                      style={{
+                        fontSize: "0.98rem",
+                        fontStyle: "italic",
+                        color: "#463d33",
+                        lineHeight: 1.65,
+                        margin: 0,
+                      }}
+                    >
+                      O manejo responsável une olhar atento e procedimento técnico embasado. O objetivo desta capacitação é proporcionar a você clareza e segurança real na lida diária com os cavalos.
+                    </p>
+                  </div>
+                </div>
+
+                {/* Trajetória e Atuação Profissional (Apresentação Editorial Contínua) */}
+                <div>
+                  <div
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "space-between",
+                      marginBottom: "1.25rem",
+                      paddingBottom: "0.75rem",
+                      borderBottom: "1px solid rgba(140, 110, 61, 0.18)",
+                    }}
+                  >
+                    <h4
+                      className="font-serif"
+                      style={{
+                        fontSize: "clamp(1.3rem, 2.2vw, 1.7rem)",
+                        fontWeight: 600,
+                        color: "#1c1813",
+                        margin: 0,
+                      }}
+                    >
+                      Trajetória e Atuação no Setor Equino
+                    </h4>
                     <span
                       style={{
                         fontFamily: "'Inter', sans-serif",
-                        fontSize: "0.68rem",
+                        fontSize: "0.72rem",
                         fontWeight: 700,
-                        letterSpacing: "0.15em",
+                        letterSpacing: "0.12em",
                         textTransform: "uppercase",
                         color: "#8c6e3d",
-                        display: "block",
-                        marginBottom: "0.75rem",
                       }}
                     >
-                      IDENTIFICAÇÃO ACADÊMICA
+                      CREDENCIAIS OFICIAIS
                     </span>
-
-                    <div style={{ display: "flex", flexDirection: "column", gap: "0.4rem", fontSize: "0.85rem", color: "#3d352b", fontFamily: "'Inter', sans-serif" }}>
-                      <div><strong>Formação:</strong> {cursoTratadoresData.instructor.academic.degree}</div>
-                      <div><strong>Instituição:</strong> {cursoTratadoresData.instructor.academic.institution}</div>
-                      <div><strong>Centro:</strong> {cursoTratadoresData.instructor.academic.center}</div>
-                      <div><strong>Local:</strong> {cursoTratadoresData.instructor.academic.location}</div>
-                      <div><strong>Conclusão da graduação:</strong> {cursoTratadoresData.instructor.academic.graduationPeriod}</div>
-                    </div>
                   </div>
-                </div>
-              </div>
-            </div>
-          </SectionReveal>
 
-          {/* Cards de Experiências Profissionais */}
-          <SectionReveal type="up">
-            <div>
-              <h3
-                className="font-serif"
-                style={{
-                  fontSize: "clamp(1.5rem, 3vw, 2.2rem)",
-                  fontWeight: 600,
-                  color: "#1c1813",
-                  marginBottom: "1.75rem",
-                  textAlign: "center",
-                }}
-              >
-                Trajetória e Atuação Profissional
-              </h3>
-
-              <div
-                style={{
-                  display: "grid",
-                  gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 340px), 1fr))",
-                  gap: "1.35rem",
-                }}
-              >
-                {cursoTratadoresData.instructor.experiences.map((exp) => (
-                  <div
-                    key={exp.number}
-                    style={{
-                      backgroundColor: "#ffffff",
-                      border: "1px solid rgba(140, 110, 61, 0.2)",
-                      borderRadius: "12px",
-                      padding: "1.6rem",
-                      display: "flex",
-                      flexDirection: "column",
-                      justifyContent: "space-between",
-                      boxShadow: "0 4px 16px rgba(28, 24, 19, 0.03)",
-                    }}
-                  >
-                    <div>
+                  {/* Lista Editorial de Experiências Profissionais */}
+                  <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
+                    {cursoTratadoresData.instructor.experiences.map((exp, expIdx) => (
                       <div
+                        key={expIdx}
+                        className="instructor-credential-item"
                         style={{
+                          backgroundColor: "#ffffff",
+                          border: "1px solid rgba(140, 110, 61, 0.18)",
+                          borderRadius: "10px",
+                          padding: "1.15rem 1.35rem",
                           display: "flex",
-                          alignItems: "center",
-                          justifyContent: "space-between",
-                          marginBottom: "0.85rem",
+                          alignItems: "flex-start",
+                          gap: "1rem",
+                          boxShadow: "0 2px 10px rgba(28, 24, 19, 0.02)",
                         }}
                       >
-                        <span
-                          style={{
-                            fontFamily: "'Inter', sans-serif",
-                            fontSize: "0.78rem",
-                            fontWeight: 800,
-                            color: "#8c6e3d",
-                            backgroundColor: "rgba(140, 110, 61, 0.1)",
-                            padding: "0.25rem 0.6rem",
-                            borderRadius: "4px",
-                          }}
-                        >
-                          {exp.number}
-                        </span>
-                      </div>
-
-                      <h4
-                        className="font-serif"
-                        style={{
-                          fontSize: "1.2rem",
-                          fontWeight: 600,
-                          color: "#1c1813",
-                          margin: "0 0 0.4rem 0",
-                          lineHeight: 1.3,
-                        }}
-                      >
-                        {exp.role}
-                      </h4>
-
-                      <p
-                        className="font-sans"
-                        style={{
-                          fontSize: "0.85rem",
-                          fontWeight: 600,
-                          color: "#8c6e3d",
-                          margin: "0 0 0.5rem 0",
-                        }}
-                      >
-                        {exp.institution}
-                      </p>
-
-                      <p
-                        className="font-sans"
-                        style={{
-                          fontSize: "0.82rem",
-                          color: "#5f5547",
-                          lineHeight: 1.5,
-                          margin: "0 0 0.75rem 0",
-                        }}
-                      >
-                        {exp.periodOrDate}
-                      </p>
-
-                      {exp.details && (
                         <div
                           style={{
-                            marginTop: "0.5rem",
-                            paddingTop: "0.5rem",
-                            borderTop: "1px dashed rgba(140, 110, 61, 0.2)",
+                            width: "32px",
+                            height: "32px",
+                            borderRadius: "50%",
+                            backgroundColor: "rgba(140, 110, 61, 0.1)",
+                            border: "1px solid rgba(140, 110, 61, 0.22)",
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "center",
+                            color: "#8c6e3d",
+                            flexShrink: 0,
+                            marginTop: "0.1rem",
                           }}
                         >
-                          <span
+                          <Award size={16} />
+                        </div>
+
+                        <div style={{ flex: 1 }}>
+                          <h5
+                            className="font-serif"
                             style={{
-                              fontFamily: "'Inter', sans-serif",
-                              fontSize: "0.72rem",
-                              fontWeight: 700,
+                              fontSize: "1.08rem",
+                              fontWeight: 600,
                               color: "#1c1813",
-                              display: "block",
-                              marginBottom: "0.25rem",
+                              margin: "0 0 0.25rem 0",
+                              lineHeight: 1.3,
                             }}
                           >
-                            Disciplinas informadas:
-                          </span>
-                          <ul style={{ margin: 0, paddingLeft: "1.2rem", fontSize: "0.8rem", color: "#5f5547" }}>
-                            {exp.details.map((d, di) => (
-                              <li key={di}>{d}</li>
-                            ))}
-                          </ul>
+                            {exp.role}
+                          </h5>
+
+                          <p
+                            className="font-sans"
+                            style={{
+                              fontSize: "0.86rem",
+                              fontWeight: 600,
+                              color: "#8c6e3d",
+                              margin: "0 0 0.25rem 0",
+                              lineHeight: 1.4,
+                            }}
+                          >
+                            {exp.institution}
+                          </p>
+
+                          <p
+                            className="font-sans"
+                            style={{
+                              fontSize: "0.8rem",
+                              color: "#6b5d4b",
+                              margin: 0,
+                              lineHeight: 1.45,
+                            }}
+                          >
+                            {exp.periodOrDate}
+                          </p>
+
+                          {exp.details && (
+                            <div
+                              style={{
+                                marginTop: "0.6rem",
+                                paddingTop: "0.6rem",
+                                borderTop: "1px dashed rgba(140, 110, 61, 0.2)",
+                              }}
+                            >
+                              <span
+                                style={{
+                                  fontFamily: "'Inter', sans-serif",
+                                  fontSize: "0.72rem",
+                                  fontWeight: 700,
+                                  color: "#1c1813",
+                                  display: "block",
+                                  marginBottom: "0.35rem",
+                                }}
+                              >
+                                Disciplinas ministradas:
+                              </span>
+                              <div style={{ display: "flex", flexWrap: "wrap", gap: "0.35rem" }}>
+                                {exp.details.map((d, di) => (
+                                  <span
+                                    key={di}
+                                    style={{
+                                      fontFamily: "'Inter', sans-serif",
+                                      fontSize: "0.72rem",
+                                      color: "#3d352b",
+                                      backgroundColor: "#f7f4ec",
+                                      border: "1px solid rgba(140, 110, 61, 0.2)",
+                                      padding: "0.2rem 0.55rem",
+                                      borderRadius: "4px",
+                                    }}
+                                  >
+                                    {d}
+                                  </span>
+                                ))}
+                              </div>
+                            </div>
+                          )}
                         </div>
-                      )}
-                    </div>
+                      </div>
+                    ))}
                   </div>
-                ))}
+                </div>
               </div>
             </div>
           </SectionReveal>
@@ -2138,6 +2310,33 @@ export default function CursoTratadoresSalesPage() {
           border-color: rgba(196, 169, 110, 0.6) !important;
           transform: translateY(-3px);
           box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5) !important;
+        }
+        .instructor-editorial-container {
+          display: grid;
+          grid-template-columns: 1fr;
+          gap: 2.5rem;
+          align-items: start;
+        }
+        @media (min-width: 960px) {
+          .instructor-editorial-container {
+            grid-template-columns: 380px 1fr;
+            gap: 3.5rem;
+          }
+        }
+        @media (min-width: 1200px) {
+          .instructor-editorial-container {
+            grid-template-columns: 420px 1fr;
+            gap: 4.5rem;
+          }
+        }
+        .instructor-credential-item {
+          transition: all 0.25s ease;
+        }
+        .instructor-credential-item:hover {
+          background-color: #ffffff !important;
+          border-color: rgba(140, 110, 61, 0.45) !important;
+          transform: translateY(-2px);
+          box-shadow: 0 8px 24px rgba(28, 24, 19, 0.06) !important;
         }
       `}} />
     </main>

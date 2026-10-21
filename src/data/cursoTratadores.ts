@@ -119,8 +119,12 @@ export const cursoTratadoresData = {
     },
   ] as ProgramTopic[],
 
-  // Instrutora — Seção Exclusiva e Destacada
+  // Instrutora — Seção Exclusiva e Destacada (Alteração 4)
   instructor: {
+    sectionBadge: "CORPO DOCENTE & EXPERIÊNCIA PRÁTICA",
+    sectionTitle: "Quem vai conduzir sua formação",
+    sectionSubtitle:
+      "Conhecimento técnico e vivência prática na rotina com equinos para orientar seu aprendizado passo a passo.",
     name: "Pollyanna Santiago Carrazzoni",
     title: "Zootecnista • Universidade Federal da Paraíba",
     presentation:
