@@ -2,7 +2,10 @@ import { NextRequest, NextResponse } from "next/server";
 import { orderService } from "@/services/payment/orderService";
 import { CreateOrderInput } from "@/services/payment/types";
 
-// Simples rate-limiting em memória para evitar abuso de criação de pedidos
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
+// Rate-limiting em memória para proteção contra abuso e DDoS
 const ipRateLimits = new Map<string, { count: number; resetAt: number }>();
 
 function checkRateLimit(ip: string): boolean {
@@ -14,8 +17,8 @@ function checkRateLimit(ip: string): boolean {
     return true;
   }
 
-  if (record.count >= 15) {
-    // Máximo de 15 pedidos por minuto por IP
+  if (record.count >= 20) {
+    // Máximo de 20 pedidos por minuto por IP
     return false;
   }
 
@@ -25,25 +28,36 @@ function checkRateLimit(ip: string): boolean {
 
 export async function POST(req: NextRequest) {
   try {
-    const ip = req.headers.get("x-forwarded-for") || "unknown-ip";
+    const ip = req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() || "unknown-ip";
     if (!checkRateLimit(ip)) {
       return NextResponse.json(
-        { error: "Muitas requisições. Por favor, aguarde um momento antes de tentar novamente." },
+        { error: "Muitas requisições. Por favor, aguarde um minuto antes de tentar novamente." },
         { status: 429 }
       );
     }
 
-    const body = (await req.json()) as CreateOrderInput;
+    const body = (await req.json().catch(() => null)) as CreateOrderInput | null;
 
-    if (!body || !body.productId || !body.customer) {
+    if (!body || !body.customer) {
       return NextResponse.json(
-        { error: "Dados incompletos para a criação do pedido." },
+        { error: "Dados cadastrais do cliente são obrigatórios." },
+        { status: 400 }
+      );
+    }
+
+    const hasItems = (body.items && body.items.length > 0) || Boolean(body.productId);
+    if (!hasItems) {
+      return NextResponse.json(
+        { error: "Selecione ao menos um produto ou curso válido." },
         { status: 400 }
       );
     }
 
     const result = await orderService.createOrder({
-      productId: String(body.productId),
+      items: body.items,
+      productId: body.productId,
+      quantity: body.quantity,
+      idempotencyKey: body.idempotencyKey ? String(body.idempotencyKey) : undefined,
       customer: {
         name: String(body.customer.name || ""),
         email: String(body.customer.email || ""),
@@ -53,7 +67,11 @@ export async function POST(req: NextRequest) {
     });
 
     if (!result.success || !result.order) {
-      return NextResponse.json({ error: result.error || "Erro ao processar pedido." }, { status: 400 });
+      const isDbFailure = result.error?.toLowerCase().includes("banco de dados");
+      return NextResponse.json(
+        { error: result.error || "Erro ao processar criação do pedido." },
+        { status: isDbFailure ? 503 : 400 }
+      );
     }
 
     return NextResponse.json(
@@ -61,8 +79,14 @@ export async function POST(req: NextRequest) {
         orderId: result.order.id,
         accessToken: result.order.accessToken,
         status: result.order.status,
+        chargeStatus: result.order.chargeStatus,
+        createdAt: result.order.createdAt,
         pricing: result.order.pricing,
+        delivery: result.order.delivery,
+        items: result.order.items,
+        customer: result.order.customer,
         pix: result.order.pix,
+        isDurable: Boolean(result.order.id && !result.order.pix?.isDemonstrationMode),
       },
       { status: 201 }
     );

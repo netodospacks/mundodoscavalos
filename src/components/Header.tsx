@@ -52,7 +52,7 @@ export default function Header() {
     setMenuOpen(false);
   }, [pathname]);
 
-  if (pathname?.startsWith("/shopping-jar-2026")) {
+  if (pathname?.startsWith("/shopping-jar-2026") || pathname?.startsWith("/checkout")) {
     return null;
   }
 
@@ -65,16 +65,18 @@ export default function Header() {
         right: 0,
         zIndex: 100,
         transition:
-          "background 0.35s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.35s ease, backdrop-filter 0.35s ease, box-shadow 0.35s ease",
+          "background 0.3s ease, border-color 0.3s ease, backdrop-filter 0.3s ease, box-shadow 0.3s ease",
         background: scrolled
-          ? "rgba(13, 12, 10, 0.96)"
-          : "linear-gradient(to bottom, rgba(13, 12, 10, 0.88) 0%, rgba(13, 12, 10, 0.45) 70%, transparent 100%)",
-        backdropFilter: scrolled ? "blur(18px) saturate(1.2)" : "none",
-        WebkitBackdropFilter: scrolled ? "blur(18px) saturate(1.2)" : "none",
+          ? "rgba(12, 11, 9, 0.94)"
+          : "rgba(12, 11, 9, 0.78)",
+        backdropFilter: "blur(18px) saturate(1.4)",
+        WebkitBackdropFilter: "blur(18px) saturate(1.4)",
         borderBottom: scrolled
-          ? "1px solid rgba(196, 169, 110, 0.22)"
-          : "1px solid rgba(255, 255, 255, 0.05)",
-        boxShadow: scrolled ? "0 10px 30px rgba(0,0,0,0.5)" : "none",
+          ? "1px solid rgba(196, 169, 110, 0.28)"
+          : "1px solid rgba(196, 169, 110, 0.15)",
+        boxShadow: scrolled
+          ? "0 8px 30px rgba(0, 0, 0, 0.55)"
+          : "0 4px 20px rgba(0, 0, 0, 0.3)",
       }}
       role="banner"
     >
@@ -87,7 +89,7 @@ export default function Header() {
           display: "flex",
           alignItems: "center",
           justifyContent: "space-between",
-          minHeight: "74px",
+          minHeight: "clamp(58px, 6.5vw, 68px)",
           position: "relative",
         }}
       >
@@ -122,13 +124,13 @@ export default function Header() {
               style={{
                 fontFamily: "'Inter', sans-serif",
                 fontWeight: 800,
-                fontSize: "clamp(0.82rem, 1.15vw, 0.95rem)",
-                letterSpacing: "0.14em",
+                fontSize: "clamp(0.72rem, 1.05vw, 0.92rem)",
+                letterSpacing: "0.08em",
                 textTransform: "uppercase",
                 color: "#f4efe4",
               }}
             >
-              HARAS <span style={{ color: "#c4a96e", fontWeight: 700 }}>NS APARECIDA</span>
+              HARAS <span style={{ color: "#c4a96e", fontWeight: 700 }}>NOSSA SENHORA APARECIDA</span>
             </span>
             <span
               style={{
@@ -243,11 +245,11 @@ export default function Header() {
                   style={{
                     fontFamily: "'Inter', sans-serif",
                     fontSize: "0.6rem",
-                    color: "rgba(244, 239, 228, 0.4)",
+                    color: "rgba(244, 239, 228, 0.5)",
                     letterSpacing: "0.08em",
                   }}
                 >
-                  Haras NS Aparecida
+                  Haras Nossa Senhora Aparecida
                 </span>
               </div>
 

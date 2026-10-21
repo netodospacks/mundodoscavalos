@@ -9,8 +9,8 @@ export default function Footer() {
   const pathname = usePathname();
   const year = new Date().getFullYear();
 
-  // A página do Shopping JAR 2026 possui encerramento visual próprio conforme referência
-  if (pathname?.startsWith("/shopping-jar-2026")) {
+  // As páginas do Shopping JAR 2026 e Checkout possuem encerramento visual próprio
+  if (pathname?.startsWith("/shopping-jar-2026") || pathname?.startsWith("/checkout")) {
     return null;
   }
 

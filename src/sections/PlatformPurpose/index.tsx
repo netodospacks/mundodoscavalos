@@ -45,7 +45,7 @@ export default function PlatformPurpose() {
                   marginBottom: "0.75rem",
                 }}
               >
-                A PLATAFORMA & NOSSA HISTÓRIA
+                HARAS NOSSA SENHORA APARECIDA
               </span>
               
               <h2
@@ -60,7 +60,7 @@ export default function PlatformPurpose() {
                   letterSpacing: "-0.01em",
                 }}
               >
-                Por que o Mundo dos Cavalos existe?
+                O MUNDO DOS CAVALOS
               </h2>
               
               <div style={{ width: "48px", height: "2px", backgroundColor: "#c4a96e", marginBottom: "1.75rem" }} />
@@ -68,14 +68,14 @@ export default function PlatformPurpose() {
               <p
                 className="font-sans"
                 style={{
-                  color: "#4a4135",
-                  fontWeight: 400,
-                  fontSize: "clamp(0.95rem, 1.15vw, 1.05rem)",
-                  lineHeight: 1.8,
+                  color: "#2a231b",
+                  fontWeight: 500,
+                  fontSize: "clamp(1.02rem, 1.25vw, 1.15rem)",
+                  lineHeight: 1.7,
                   marginBottom: "1.25rem",
                 }}
               >
-                Levar conhecimento prático e responsável para quem deseja compreender melhor os cavalos, seu manejo, sua saúde, sua alimentação e seu bem-estar. Não apenas como tradição — mas como ciência aplicada com respeito ao animal.
+                Cuidar de cavalos vai além da tradição. É paixão, conhecimento técnico, manejo e respeito pelo animal.
               </p>
               
               <p
@@ -88,7 +88,7 @@ export default function PlatformPurpose() {
                   marginBottom: "2rem",
                 }}
               >
-                Esta plataforma nasceu da experiência real com equinos, do Haras Nossa Senhora Aparecida, e do desejo de compartilhar esse conhecimento de forma acessível, séria e profissional.
+                Desde 1984, o Haras Nossa Senhora Aparecida reúne experiência e conhecimento na criação equina. O Mundo dos Cavalos compartilha essa experiência, aliada ao conhecimento técnico e profissional, em conteúdos sobre manejo, bem-estar, saúde, nutrição e reprodução equina, contribuindo para práticas mais assertivas, preventivas e qualificadas.
               </p>
               
               <Link
@@ -191,7 +191,7 @@ export default function PlatformPurpose() {
                       color: "#f4efe4",
                     }}
                   >
-                    Haras NS Aparecida
+                    Haras Nossa Senhora Aparecida
                   </span>
                 </div>
 

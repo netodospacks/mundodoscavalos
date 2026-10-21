@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { siteConfig } from "@/data/siteConfig";
 
 /**
@@ -9,6 +10,9 @@ import { siteConfig } from "@/data/siteConfig";
  * Example: "https://wa.me/5511999999999?text=Ol%C3%A1"
  */
 export default function WhatsAppButton() {
+  const pathname = usePathname();
+  if (pathname?.startsWith("/checkout")) return null;
+
   const raw = siteConfig.whatsapp;
   if (!raw || raw === "#") return null;
 

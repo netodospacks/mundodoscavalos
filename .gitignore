@@ -45,3 +45,8 @@ next-env.d.ts
 /public/videos JAR/
 /public/videos-jar/
 
+# Temporary test crops and previews
+/public/images/test-*
+/public/images/preview-*
+/public/images/*-backup-*
+

@@ -76,6 +76,10 @@ export default function RootLayout({
           href="https://fonts.gstatic.com"
           crossOrigin="anonymous"
         />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&display=swap"
+          rel="stylesheet"
+        />
       </head>
       <body>
         <Header />

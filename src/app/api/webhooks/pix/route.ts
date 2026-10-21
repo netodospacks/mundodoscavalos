@@ -2,13 +2,17 @@ import { NextRequest, NextResponse } from "next/server";
 import { getPaymentProvider } from "@/services/payment/providers";
 import { orderRepository } from "@/services/payment/repository";
 
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 /**
  * Endpoint de Webhook para Notificações Instantâneas do Banco (Pix).
  *
  * REGRAS DE SEGURANÇA E CONTRATO:
- * 1. NUNCA atualiza pedido sem validar a autenticidade da assinatura bancária.
- * 2. Processamento idempotente: se o pedido já estiver como 'paid', ignora reprocessamento.
+ * 1. NUNCA atualiza pedido sem validar a autenticidade da assinatura criptográfica bancária HMAC-SHA256 / mTLS.
+ * 2. Processamento estritamente idempotente: se o pedido já estiver como 'paid', ignora reprocessamento.
  * 3. Rejeita requisições sem assinatura válida com HTTP 401.
+ * 4. Registra histórico e timestamps para auditoria financeira.
  */
 export async function POST(req: NextRequest) {
   try {
@@ -17,33 +21,74 @@ export async function POST(req: NextRequest) {
       rawHeaders[key.toLowerCase()] = value;
     });
 
-    const body = await req.json().catch(() => null);
-    if (!body) {
-      return NextResponse.json({ error: "Payload inválido" }, { status: 400 });
+    // Lê o corpo bruto como string antes de converter para JSON para cálculo exato de HMAC
+    const rawBody = await req.text();
+    if (!rawBody || rawBody.trim() === "") {
+      return NextResponse.json({ error: "Payload vazio" }, { status: 400 });
     }
 
     const provider = getPaymentProvider();
 
-    // 1. Validação Criptográfica de Autenticidade
-    const isAuthentic = provider.validateWebhookSignature(body, rawHeaders);
+    // 1. Verificação de ativação do webhook bancário real
+    // Enquanto a API bancária real não estiver configurada, o webhook permanece rigorosamente desativado.
+    if (provider.mode !== "bank_api" || !process.env.PIX_WEBHOOK_SECRET) {
+      console.warn(
+        "[WEBHOOK_DISABLED] Tentativa de acionamento do webhook rejeitada: API bancária não configurada ou PIX_WEBHOOK_SECRET ausente. Modo de demonstração ativo."
+      );
+      return NextResponse.json(
+        {
+          error:
+            "Webhook Pix desativado: integração bancária em modo de homologação/demonstração. Confirmações automáticas de pagamento não estão ativas.",
+        },
+        { status: 503 }
+      );
+    }
+
+    // 2. Validação Criptográfica de Autenticidade (HMAC-SHA256 com o segredo do webhook)
+    const isAuthentic = provider.validateWebhookSignature(rawBody, rawHeaders);
 
     if (!isAuthentic) {
-      console.warn("[SECURITY_WARNING] Tentativa de webhook rejeitada por assinatura inválida.");
+      console.warn("[SECURITY_AUDIT] Tentativa de chamada ao webhook rejeitada por assinatura inválida.");
       return NextResponse.json(
         { error: "Assinatura do webhook não autenticada." },
         { status: 401 }
       );
     }
 
-    // 2. Extração do Identificador do Pedido / Cobrança
-    const orderId = body.orderId || body.txid;
+    interface WebhookPayload {
+      orderId?: string;
+      txid?: string;
+      external_reference?: string;
+      event?: string;
+      status?: string;
+      pix?: Array<{
+        status?: string;
+        valor?: string | number;
+        horario?: string;
+      }>;
+      [key: string]: unknown;
+    }
+
+    let body: WebhookPayload;
+    try {
+      body = JSON.parse(rawBody) as WebhookPayload;
+    } catch {
+      return NextResponse.json({ error: "Formato JSON inválido" }, { status: 400 });
+    }
+
+    // 2. Extração do Identificador do Pedido / Cobrança Pix
+    // O BACEN padroniza 'txid'; outros gateways utilizam 'orderId' ou 'external_reference'
+    const orderId = body.orderId || body.txid || body.external_reference;
     if (!orderId) {
-      return NextResponse.json({ error: "Identificador do pedido ausente no webhook" }, { status: 400 });
+      return NextResponse.json(
+        { error: "Identificador do pedido (txid/orderId) ausente no webhook" },
+        { status: 400 }
+      );
     }
 
     const existingOrder = await orderRepository.findById(orderId);
     if (!existingOrder) {
-      return NextResponse.json({ error: "Pedido não localizado" }, { status: 404 });
+      return NextResponse.json({ error: "Pedido não localizado no sistema" }, { status: 404 });
     }
 
     // 3. Idempotência: Se já foi pago, retorna 200 imediatamente sem duplicar eventos
@@ -51,12 +96,33 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ received: true, status: "already_paid" }, { status: 200 });
     }
 
-    // 4. Atualização autorizada do status
-    if (body.event === "PAYMENT_CONFIRMED" || body.status === "CONCLUIDA") {
+    // 4. Tratamento de Confirmação de Pagamento Autorizada
+    const isConfirmed =
+      body.event === "PAYMENT_CONFIRMED" ||
+      body.status === "CONCLUIDA" ||
+      body.pix?.[0]?.status === "CONCLUIDA" ||
+      Boolean(body.pix?.[0]?.valor);
+
+    if (isConfirmed) {
+      const paidAt = body.pix?.[0]?.horario || new Date().toISOString();
       await orderRepository.updateStatus(
         orderId,
         "paid",
-        `Pagamento Pix confirmado via webhook bancário oficial (${provider.name}).`
+        `Pagamento Pix de R$ ${(existingOrder.pricing.total / 100).toFixed(
+          2
+        )} confirmado com sucesso via webhook bancário oficial (${provider.name}).`,
+        paidAt
+      );
+
+      return NextResponse.json({ received: true, status: "paid" }, { status: 200 });
+    }
+
+    // 5. Tratamento de Expiração / Devolução
+    if (body.status === "EXPIRADA") {
+      await orderRepository.updateStatus(
+        orderId,
+        "expired",
+        "Cobrança Pix marcada como expirada pela instituição bancária."
       );
     }
 

@@ -128,7 +128,7 @@ export default function ShoppingJar2026Page() {
               className="hover:border-[#c4a96e] hover:bg-[rgba(196,169,110,0.15)]"
             >
               <span aria-hidden="true">←</span>
-              <span>Haras NS Aparecida</span>
+              <span>Haras Nossa Senhora Aparecida</span>
             </Link>
           </div>
 

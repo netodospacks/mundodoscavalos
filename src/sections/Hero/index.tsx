@@ -14,6 +14,7 @@ export default function Hero() {
   return (
     <section
       ref={sectionRef}
+      className="hero-section"
       aria-label="Mundo dos Cavalos — Haras Nossa Senhora Aparecida"
       style={{
         position: "relative",
@@ -23,11 +24,12 @@ export default function Hero() {
         overflow: "hidden",
         display: "flex",
         flexDirection: "column",
-        justifyContent: "center",
+        justifyContent: "flex-start",
       }}
     >
       {/* ── IMAGEM DE FUNDO CINEMATOGRÁFICA ── */}
       <div
+        className="hero-bg-cover"
         aria-hidden="true"
         style={{
           position: "absolute",
@@ -40,126 +42,129 @@ export default function Hero() {
         }}
       />
 
-      {/* ── OVERLAY ESCURO CENTRAL PARA MÁXIMA LEGIBILIDADE ── */}
+      {/* ── CAMADA DE CONTRASTE FOTOGRÁFICO UNIFORME E PROFISSIONAL (SEM DEGRADÊS SUJOS) ── */}
       <div
         aria-hidden="true"
         style={{
           position: "absolute",
           inset: 0,
-          background:
-            "radial-gradient(ellipse 75% 85% at 50% 50%, rgba(10,9,7,0.52) 0%, rgba(10,9,7,0.25) 60%, transparent 100%)",
-          zIndex: 1,
-        }}
-      />
-      {/* Escurecimento sutil nas laterais */}
-      <div
-        aria-hidden="true"
-        style={{
-          position: "absolute",
-          inset: 0,
-          background:
-            "linear-gradient(to right, rgba(10,9,7,0.45) 0%, transparent 28%, transparent 72%, rgba(10,9,7,0.45) 100%)",
-          zIndex: 1,
-        }}
-      />
-      {/* Gradiente inferior — transição suave com a seção de cursos */}
-      <div
-        aria-hidden="true"
-        style={{
-          position: "absolute",
-          bottom: 0,
-          left: 0,
-          right: 0,
-          height: "240px",
-          background:
-            "linear-gradient(to top, #f7f5f0 0%, rgba(247,245,240,0.85) 25%, rgba(10,9,7,0.7) 65%, transparent 100%)",
-          zIndex: 1,
-        }}
-      />
-      {/* Gradiente superior suave para contraste do header */}
-      <div
-        aria-hidden="true"
-        style={{
-          position: "absolute",
-          top: 0,
-          left: 0,
-          right: 0,
-          height: "140px",
-          background:
-            "linear-gradient(to bottom, rgba(10,9,7,0.65) 0%, transparent 100%)",
+          backgroundColor: "rgba(10, 9, 7, 0.44)",
           zIndex: 1,
         }}
       />
 
-      {/* ── CONTEÚDO PRINCIPAL — CENTRALIZADO E ELEGANTE ── */}
+      {/* ── TRANSIÇÃO ARQUITETÔNICA ELEGANTE PARA A SEÇÃO DE CURSOS (SEM DEGRADÊ EMBAÇADO) ── */}
       <div
+        aria-hidden="true"
+        style={{
+          position: "absolute",
+          bottom: -1,
+          left: 0,
+          right: 0,
+          height: "44px",
+          zIndex: 3,
+          pointerEvents: "none",
+        }}
+      >
+        <svg
+          viewBox="0 0 1440 44"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          preserveAspectRatio="none"
+          style={{ width: "100%", height: "100%", display: "block" }}
+        >
+          <path
+            d="M0,44 L1440,44 L1440,16 C1050,44 390,44 0,16 Z"
+            fill="#f7f5f0"
+          />
+          <path
+            d="M0,16 C390,44 1050,44 1440,16"
+            stroke="#c4a96e"
+            strokeWidth="1.5"
+            strokeOpacity="0.45"
+            fill="none"
+          />
+        </svg>
+      </div>
+
+      {/* ── CONTEÚDO PRINCIPAL — POSICIONADO MAIS ACIMA COM ELEVADA PRESENÇA ── */}
+      <div
+        className="hero-content-wrap"
         style={{
           position: "relative",
           zIndex: 2,
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
-          justifyContent: "center",
           textAlign: "center",
-          padding: "clamp(6.5rem, 14vh, 9.5rem) clamp(1.5rem, 6vw, 5rem) clamp(4rem, 8vh, 6rem)",
+          padding: "clamp(4.8rem, 9.5vh, 7.2rem) clamp(1.25rem, 5vw, 4rem) clamp(2.5rem, 5vh, 4rem)",
         }}
       >
-        {/* TÍTULO PRINCIPAL: MUNDO DOS CAVALOS */}
-        <div
-          className={`hero-anim ${mounted ? "hero-anim-in" : "hero-anim-out"}`}
-          style={{ transitionDelay: "60ms" }}
-        >
-          <h1
-            style={{
-              fontFamily: "'Inter', 'Helvetica Neue', Arial, sans-serif",
-              fontWeight: 900,
-              fontSize: "clamp(3.4rem, 9.5vw, 8rem)",
-              lineHeight: 0.92,
-              letterSpacing: "-0.025em",
-              color: "#f4efe4",
-              margin: 0,
-              textTransform: "uppercase",
-              textShadow: "0 4px 50px rgba(0,0,0,0.75)",
-            }}
-          >
-            <span style={{ display: "block" }}>MUNDO DOS</span>
-            <span
-              style={{
-                display: "block",
-                color: "#c4a96e",
-              }}
-            >
-              CAVALOS
-            </span>
-          </h1>
-        </div>
-
-        {/* LINHA DECORATIVA DOURADA */}
+        {/* ── EMBLEMA / LOGO OFICIAL HARAS NOSSA SENHORA APARECIDA ── */}
         <div
           className={`hero-anim ${mounted ? "hero-anim-in" : "hero-anim-out"}`}
           style={{
-            transitionDelay: "160ms",
-            margin: "1.6rem auto 0",
-            width: "56px",
-            height: "2px",
-            background: "linear-gradient(to right, transparent, #c4a96e, transparent)",
+            transitionDelay: "40ms",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            marginBottom: "clamp(0.6rem, 1.5vh, 1.1rem)",
           }}
-        />
+        >
+          <img
+            src="/images/logo-haras-transparente.png"
+            alt="Haras Nossa Senhora Aparecida"
+            style={{
+              height: "clamp(52px, 7.5vw, 76px)",
+              width: "auto",
+              display: "block",
+              filter: "drop-shadow(0 4px 18px rgba(0, 0, 0, 0.8)) drop-shadow(0 2px 6px rgba(196, 169, 110, 0.3))",
+            }}
+          />
+        </div>
+
+        {/* TÍTULO / LOGOMARCA PRINCIPAL: MUNDO DOS CAVALOS — 100% RECRIADA EM QUALIDADE ESTÚDIO 3D */}
+        <div
+          className={`hero-anim ${mounted ? "hero-anim-in" : "hero-anim-out"}`}
+          style={{
+            transitionDelay: "100ms",
+            width: "100%",
+            maxWidth: "clamp(300px, 86vw, 680px)",
+            margin: "0 auto",
+            display: "flex",
+            justifyContent: "center",
+          }}
+        >
+          <h1 style={{ margin: 0, width: "100%" }}>
+            <span className="sr-only">Mundo dos Cavalos — Haras Nossa Senhora Aparecida</span>
+            <img
+              src="/images/logo-mundo-dos-cavalos-recreated.png"
+              alt="Mundo dos Cavalos"
+              style={{
+                width: "100%",
+                height: "auto",
+                display: "block",
+                margin: "0 auto",
+                filter: "drop-shadow(0 8px 32px rgba(0, 0, 0, 0.95)) drop-shadow(0 2px 10px rgba(196, 169, 110, 0.2))",
+              }}
+            />
+          </h1>
+        </div>
 
         {/* SUBTÍTULO */}
         <div
           className={`hero-anim ${mounted ? "hero-anim-in" : "hero-anim-out"}`}
-          style={{ transitionDelay: "240ms", marginTop: "1.8rem", maxWidth: "620px" }}
+          style={{ transitionDelay: "240ms", marginTop: "1.25rem", maxWidth: "620px" }}
         >
           <p
             style={{
               fontFamily: "'Inter', sans-serif",
               fontWeight: 600,
-              fontSize: "clamp(1.05rem, 2.1vw, 1.25rem)",
-              lineHeight: 1.55,
+              fontSize: "clamp(0.98rem, 2vw, 1.2rem)",
+              lineHeight: 1.5,
               color: "#f4efe4",
               margin: 0,
-              textShadow: "0 2px 20px rgba(0,0,0,0.85)",
+              textShadow: "0 2px 16px rgba(0,0,0,0.9)",
             }}
           >
             Cuidar de cavalos não é apenas tradição.
@@ -173,17 +178,17 @@ export default function Hero() {
         {/* DESCRIÇÃO COMPLEMENTAR */}
         <div
           className={`hero-anim ${mounted ? "hero-anim-in" : "hero-anim-out"}`}
-          style={{ transitionDelay: "340ms", marginTop: "1.5rem", maxWidth: "520px" }}
+          style={{ transitionDelay: "320ms", marginTop: "1rem", maxWidth: "520px" }}
         >
           <p
             style={{
               fontFamily: "'Inter', sans-serif",
               fontWeight: 400,
-              fontSize: "clamp(0.85rem, 1.25vw, 0.98rem)",
-              lineHeight: 1.75,
-              color: "rgba(244,239,228,0.82)",
+              fontSize: "clamp(0.82rem, 1.2vw, 0.95rem)",
+              lineHeight: 1.65,
+              color: "rgba(244,239,228,0.88)",
               margin: 0,
-              textShadow: "0 2px 16px rgba(0,0,0,0.9)",
+              textShadow: "0 2px 14px rgba(0,0,0,0.9)",
             }}
           >
             Conhecimento prático e aplicável sobre bem-estar, saúde,
@@ -193,16 +198,28 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* ── ESTILOS DE ANIMAÇÃO ── */}
+      {/* ── ESTILOS DE ANIMAÇÃO E RESPONSIVIDADE ── */}
       <style dangerouslySetInnerHTML={{ __html: `
         .hero-anim-out {
           opacity: 0;
-          transform: translateY(22px);
+          transform: translateY(18px);
         }
         .hero-anim-in {
           opacity: 1;
           transform: translateY(0);
-          transition: opacity 0.8s cubic-bezier(0.16,1,0.3,1), transform 0.8s cubic-bezier(0.16,1,0.3,1);
+          transition: opacity 0.75s cubic-bezier(0.16,1,0.3,1), transform 0.75s cubic-bezier(0.16,1,0.3,1);
+        }
+        @media (max-width: 768px) {
+          .hero-section {
+            min-height: 87vh !important;
+          }
+          .hero-content-wrap {
+            padding-top: clamp(4.2rem, 7.5vh, 5.8rem) !important;
+            padding-bottom: clamp(1.2rem, 2.5vh, 2.2rem) !important;
+          }
+          .hero-bg-cover {
+            background-position: 72% center !important;
+          }
         }
       `}} />
     </section>

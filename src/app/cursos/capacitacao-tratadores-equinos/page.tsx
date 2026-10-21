@@ -18,6 +18,8 @@ export default function CursoTratadoresSalesPage() {
     const target = siteConfig.cursoTratadores?.enrollmentUrl || "#contato-matricula";
     if (target.startsWith("http")) {
       window.open(target, "_blank", "noopener,noreferrer");
+    } else if (target.startsWith("/")) {
+      window.location.href = target;
     } else {
       const el = document.querySelector(target);
       if (el) {

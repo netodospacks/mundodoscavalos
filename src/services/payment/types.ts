@@ -4,11 +4,18 @@
  */
 
 export type OrderStatus =
-  | "pending" // Pedido criado, aguardando pagamento
+  | "pending_payment" // Pedido criado, aguardando pagamento
   | "paid" // Pagamento verificado e confirmado no servidor
   | "expired" // Tempo limite do Pix esgotado
   | "cancelled" // Cancelado pelo usuário ou administração
-  | "failed"; // Erro no processamento
+  | "payment_failed"; // Erro ou rejeição no processamento
+
+export type ChargeStatus =
+  | "not_generated" // Cobrança ainda não enviada ao banco
+  | "charge_created" // Cobrança Pix criada com sucesso no gateway
+  | "charge_paid" // Cobrança liquidada no banco
+  | "charge_expired" // Cobrança expirada
+  | "charge_failed"; // Erro retornado pela API bancária
 
 export type PaymentMethod = "pix";
 
@@ -29,22 +36,31 @@ export interface OrderItem {
   image?: string;
   unitPrice: number; // Em centavos (ex: 120000 = R$ 1.200,00)
   quantity: number;
+  maxQuantity?: number;
 }
 
 export interface OrderPricing {
   subtotal: number; // Em centavos
   discount: number; // Em centavos
-  fee: number; // Em centavos
+  fee: number; // Em centavos (taxa de entrega / serviço)
   total: number; // Em centavos
 }
 
+export interface OrderDeliveryInfo {
+  type: "in_person" | "digital" | "shipping";
+  title: string;
+  location?: string;
+  fee: number; // Em centavos (0 = Grátis / Incluso)
+  instructions: string;
+}
+
 export interface PixChargeData {
-  provider: string; // Ex: "demo_provider", "efi", "asaas", "inter"
-  chargeId: string;
+  provider: string; // Ex: "demonstration_pix", "efi", "asaas", "inter"
+  chargeId?: string;
   qrCodeVisualAvailable: boolean;
-  qrCodeUrl?: string; // Imagem do QR Code quando retornado pela API real
-  copyAndPasteCode?: string; // Código Pix Copia e Cola real retornado pela API
-  expiresAt: string; // ISO 8601
+  qrCodeUrl?: string; // Imagem ou SVG do QR Code retornado pela API bancária real
+  copyAndPasteCode?: string; // Código Pix Copia e Cola retornado pela API
+  expiresAt?: string; // ISO 8601
   isDemonstrationMode: boolean;
   instructions: string[];
 }
@@ -60,18 +76,31 @@ export interface Order {
   accessToken: string; // Token seguro de leitura para o comprador visualizar APENAS seu pedido
   createdAt: string;
   updatedAt: string;
+  paidAt?: string;
   status: OrderStatus;
+  chargeStatus: ChargeStatus;
   customer: CustomerData;
-  item: OrderItem;
+  items: OrderItem[];
   pricing: OrderPricing;
   paymentMethod: PaymentMethod;
+  delivery: OrderDeliveryInfo;
+  idempotencyKey?: string;
   pix?: PixChargeData;
   events: OrderEvent[];
 }
 
-export interface CreateOrderInput {
+export interface CreateOrderItemInput {
   productId: string;
+  quantity?: number;
+}
+
+export interface CreateOrderInput {
+  // Suporte a múltiplos itens ou item único
+  items?: CreateOrderItemInput[];
+  productId?: string;
+  quantity?: number;
   customer: CustomerData;
+  idempotencyKey?: string;
 }
 
 export interface CreateOrderResult {
@@ -83,6 +112,7 @@ export interface CreateOrderResult {
 export interface PaymentStatusResult {
   orderId: string;
   status: OrderStatus;
+  chargeStatus: ChargeStatus;
   updatedAt: string;
   paidAt?: string;
   isDemonstrationMode: boolean;
@@ -114,10 +144,16 @@ export interface PaymentProvider {
   checkChargeStatus(chargeId: string): Promise<{
     status: OrderStatus;
     paidAt?: string;
+    rawResponse?: unknown;
   }>;
 
   /**
    * Valida a assinatura de autenticidade do webhook do banco
    */
-  validateWebhookSignature(payload: unknown, headers: Record<string, string>): boolean;
+  validateWebhookSignature(rawBody: string, headers: Record<string, string>): boolean;
+
+  /**
+   * Cancela uma cobrança Pix no banco (quando suportado)
+   */
+  cancelPixCharge?(chargeId: string): Promise<boolean>;
 }
