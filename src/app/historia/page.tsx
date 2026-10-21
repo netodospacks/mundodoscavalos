@@ -140,7 +140,7 @@ export default function HistoriaPage() {
                   marginBottom: "0.75rem",
                 }}
               >
-                Princípios Inegociáveis
+                PRINCÍPIOS INEGOCIÁVEIS
               </span>
               <h2
                 style={{
@@ -166,7 +166,7 @@ export default function HistoriaPage() {
                   margin: 0,
                 }}
               >
-                Da simplicidade das pastagens à alta performance, mantemos a mesma essência de José e Ana Rita Tavares de Melo: amor pelos animais, verdade em cada negociação e compromisso absoluto com o futuro da equinocultura.
+                Da simplicidade das pastagens à alta performance, mantemos a mesma essência desde 1984: amor pelos animais, verdade em cada negociação e compromisso absoluto com o futuro da equinocultura.
               </p>
             </div>
 

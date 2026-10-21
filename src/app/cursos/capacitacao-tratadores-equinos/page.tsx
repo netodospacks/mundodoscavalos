@@ -1871,6 +1871,22 @@ export default function CursoTratadoresSalesPage() {
                 </div>
               </div>
 
+              {/* Frase final da seção de investimento (sem aspas) */}
+              <p
+                className="font-sans"
+                style={{
+                  fontSize: "clamp(0.95rem, 1.2vw, 1.05rem)",
+                  color: "rgba(244, 239, 228, 0.85)",
+                  lineHeight: 1.6,
+                  maxWidth: "580px",
+                  margin: "0 auto 1.5rem",
+                  fontWeight: 400,
+                  textAlign: "center",
+                }}
+              >
+                Dê o próximo passo para aprofundar seus conhecimentos sobre as práticas de manejo e os cuidados essenciais com equinos.
+              </p>
+
               {/* Botão Principal de Inscrição */}
               <div id="contato-matricula" style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "1.25rem" }}>
                 <button
@@ -2146,12 +2162,27 @@ export default function CursoTratadoresSalesPage() {
                 O cuidado com os cavalos começa com conhecimento.
               </h2>
 
+              {/* Frase final do encerramento (sem aspas) */}
               <p
                 className="font-sans"
                 style={{
-                  fontSize: "clamp(0.95rem, 1.2vw, 1.1rem)",
+                  fontSize: "clamp(1rem, 1.3vw, 1.15rem)",
+                  color: "#3d352b",
+                  lineHeight: 1.6,
+                  maxWidth: "680px",
+                  margin: "0 auto 0.85rem",
+                  fontWeight: 500,
+                }}
+              >
+                Conheça as práticas essenciais de manejo e aprofunde sua compreensão sobre a rotina de um criatório de equinos.
+              </p>
+
+              <p
+                className="font-sans"
+                style={{
+                  fontSize: "clamp(0.92rem, 1.15vw, 1.02rem)",
                   color: "#5f5547",
-                  lineHeight: 1.7,
+                  lineHeight: 1.65,
                   maxWidth: "680px",
                   margin: "0 auto 2rem",
                   fontWeight: 400,
@@ -2228,8 +2259,8 @@ export default function CursoTratadoresSalesPage() {
                   <span>✓ Certificado</span>
                 </div>
 
-                {/* Preço e condições */}
-                <div style={{ marginTop: "0.25rem" }}>
+                {/* Preço e condições oficiais */}
+                <div style={{ marginTop: "0.25rem", textAlign: "center" }}>
                   <span
                     style={{
                       fontFamily: "'Inter', sans-serif",
@@ -2241,18 +2272,44 @@ export default function CursoTratadoresSalesPage() {
                       lineHeight: 1,
                     }}
                   >
-                    {cursoTratadoresData.price}
+                    {cursoTratadoresData.investmentSection.price}
                   </span>
                   <span
                     style={{
-                      fontSize: "0.78rem",
-                      color: "#7a6e5e",
+                      fontSize: "0.82rem",
+                      color: "#3d352b",
+                      fontWeight: 600,
                       display: "block",
-                      marginTop: "0.35rem",
+                      marginTop: "0.45rem",
                       fontFamily: "'Inter', sans-serif",
                     }}
                   >
-                    Investimento por participante • Pagamento via Pix com liberação imediata
+                    {cursoTratadoresData.investmentSection.priceLabel}
+                  </span>
+                  <span
+                    style={{
+                      fontSize: "0.8rem",
+                      color: "#5f5547",
+                      display: "block",
+                      marginTop: "0.3rem",
+                      fontFamily: "'Inter', sans-serif",
+                    }}
+                  >
+                    {cursoTratadoresData.investmentSection.paymentOptions.pix}
+                  </span>
+                  <span
+                    style={{
+                      fontSize: "0.76rem",
+                      color: "#7a6e5e",
+                      display: "block",
+                      marginTop: "0.25rem",
+                      fontFamily: "'Inter', sans-serif",
+                      maxWidth: "520px",
+                      margin: "0.25rem auto 0",
+                    }}
+                  >
+                    {cursoTratadoresData.investmentSection.paymentOptions.installmentsConfigurable ||
+                      cursoTratadoresData.investmentSection.paymentOptions.installmentNote}
                   </span>
                 </div>
               </div>
