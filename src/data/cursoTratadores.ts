@@ -15,103 +15,111 @@ export interface CareerExperience {
 export const cursoTratadoresData = {
   id: "capacitacao-tratadores-equinos",
   slug: "capacitacao-tratadores-equinos",
-  title: "Curso de Capacitação de Tratadores de Equinos",
+  title: "Curso de Capacitação de Tratadores de Equinos — Nível I",
   modality: "Presencial",
   badge: "FORMAÇÃO PRESENCIAL",
   subtitle:
-    "Conhecimento técnico e práticas essenciais para cuidar de equinos com responsabilidade, segurança e eficiência.",
+    "Aprenda fundamentos essenciais de manejo, alimentação, higiene, controle de parasitas e avaliação de equinos.",
   complementaryText:
-    "Uma formação voltada para quem deseja aprofundar seus conhecimentos sobre manejo, alimentação, higiene, ambiente, prevenção de problemas sanitários e avaliação dos animais.",
+    "Uma oportunidade prática para você desenvolver habilidades indispensáveis e aplicar esse conhecimento na rotina com os animais no Haras Nossa Senhora Aparecida.",
   price: "R$ 1.200,00",
   priceLabel: "Investimento na sua capacitação profissional.",
   heroImage: "/images/hero-bg.jpg",
+  // Fotografia de destaque do Haras (preparada para receber a fotografia oficial dos cavalos bebendo água)
+  harasEnvironmentImage: "/images/haras-ambiente-cavalos.jpg",
 
-  // Apresentação do Curso
-  presentation: {
-    title: "Aprenda a cuidar de equinos com mais conhecimento e responsabilidade",
-    text1:
-      "O manejo adequado dos cavalos exige atenção aos detalhes, compreensão das necessidades dos animais e aplicação de práticas corretas no dia a dia do criatório.",
-    text2:
-      "O Curso de Capacitação de Tratadores de Equinos foi estruturado para abordar conhecimentos essenciais relacionados à rotina de manejo, alimentação, higiene, ambiente, controle de parasitas e avaliação dos animais.",
-    text3:
-      "Uma oportunidade de aprofundar conhecimentos importantes para quem participa dos cuidados diários com equinos.",
-    pillars: [
-      {
-        title: "Manejo e rotina do criatório",
-        description:
-          "Organização dos processos diários, estratégias integradas e rotinas essenciais de cuidado aos animais.",
-      },
-      {
-        title: "Alimentação, higiene e ambiente",
-        description:
-          "Práticas de arraçoamento, conservação de baias e instalações, higienização de materiais e controle de parasitas.",
-      },
-      {
-        title: "Observação e avaliação dos animais",
-        description:
-          "Critérios práticos de condição corporal, comportamento e identificação precoce de alterações sanitárias.",
-      },
+  // 7 Benefícios Apresentados em Composição Visual Organizada (Item 1)
+  benefits: [
+    "Mais de 8 tópicos programáticos.",
+    "Prática real em ambiente de haras.",
+    "Prevenção sanitária e arraçoamento.",
+    "Avaliação e observação de equinos.",
+    "Suporte e tira-dúvidas após o curso.",
+    "Certificado.",
+    "Acesso ao grupo para troca de experiências e auxílio técnico.",
+  ],
+
+  // Seção Sobre a Formação (Textos Oficiais da Alteração 2 - Item 3)
+  aboutSection: {
+    title: "Sobre a Formação",
+    subtitle: "Aprenda a cuidar de equinos com mais conhecimento e responsabilidade.",
+    paragraphs: [
+      "O cuidado diário com os equinos exige conhecimento, atenção e decisões assertivas. A forma como os animais são alimentados, os ambientes são mantidos e os sinais do seu comportamento são observados pode fazer diferença no bem-estar, na saúde e na qualidade do manejo.",
+      "O Curso de Capacitação de Tratadores de Equinos — Nível I foi desenvolvido para aprofundar conhecimentos essenciais sobre manejo, alimentação, higiene, controle de parasitas e avaliação dos animais, unindo fundamentos técnicos à realidade prática de um haras.",
+      "Mais do que executar tarefas, é importante compreender como e por que os cuidados devem ser realizados.",
+      "Práticas adequadas e preventivas ajudam a reduzir riscos, identificar alterações com maior atenção e evitar que problemas se agravem, gerando custos e prejuízos que poderiam ser minimizados.",
+      "Investir em conhecimento é fortalecer a qualidade do manejo, preservar o bem-estar dos animais e proteger o valor de tudo aquilo que foi construído com dedicação.",
     ],
+    callout:
+      "Mais do que executar tarefas, é importante compreender como e por que os cuidados devem ser realizados.",
   },
 
-  // 8 Tópicos do Conteúdo Programático
+  // Seção Grade Técnica (Item 4)
+  technicalGrid: {
+    sectionBadge: "GRADE TÉCNICA",
+    title: "Grade Técnica",
+    subtitle: "O que você vai aprender",
+    intro: "Conheça os principais temas abordados durante a capacitação.",
+  },
+
+  // 8 Tópicos da Grade Técnica — Numeração Clara e Textos Oficiais (Item 4)
   topics: [
     {
       number: "01",
       title: "Introdução às práticas gerais de manejo dentro de um criatório de cavalos",
       description:
-        "Apresente os fundamentos das rotinas de manejo e dos cuidados necessários no ambiente de criação.",
+        "Conheça os princípios do manejo e os cuidados essenciais na rotina de um criatório.",
     },
     {
       number: "02",
       title: "Estratégias integradas de manejo",
       description:
-        "Aborde a importância da organização das rotinas e da integração das práticas de manejo.",
+        "Entenda a importância da organização das rotinas e da integração das práticas de manejo.",
     },
     {
       number: "03",
       title: "Principais cuidados nos ambientes dos animais",
       description:
-        "Apresente aspectos importantes de higiene, organização e conservação dos ambientes utilizados pelos equinos.",
+        "Conheça os principais cuidados com higiene, organização e conservação dos ambientes, reconhecendo fatores que podem comprometer a saúde, a segurança e o bem-estar dos equinos.",
     },
     {
       number: "04",
       title: "Limpeza de materiais e acessórios",
       description:
-        "Destaque a importância dos procedimentos adequados de limpeza e conservação dos materiais utilizados no manejo.",
+        "Aprenda sobre os procedimentos adequados de limpeza e conservação dos materiais utilizados no manejo.",
     },
     {
       number: "05",
       title: "Controle de parasitas e vetores de doenças",
       description:
-        "Apresente noções de prevenção, identificação de riscos e importância do controle sanitário adequado, respeitando a orientação dos profissionais responsáveis.",
+        "Conheça medidas preventivas e os principais cuidados relacionados ao controle de parasitas e vetores, entendendo a importância do manejo sanitário e da orientação dos profissionais responsáveis.",
     },
     {
       number: "06",
       title: "Estratégias de arraçoamento dos animais",
       description:
-        "Explique os fundamentos da organização da alimentação e da oferta de alimentos de acordo com as necessidades dos animais e a orientação técnica.",
+        "Compreenda os fundamentos da organização da alimentação e da oferta de alimentos de acordo com as necessidades dos animais e a orientação técnica.",
     },
     {
       number: "07",
       title: "Principais problemas relacionados às práticas alimentares incorretas",
       description:
-        "Aborde os riscos associados a erros alimentares e a importância de práticas adequadas de alimentação.",
+        "Conheça os principais riscos associados a erros na alimentação e entenda como práticas inadequadas podem comprometer a saúde dos animais.",
     },
     {
       number: "08",
       title: "Parâmetros básicos de avaliação dos animais",
       description:
-        "Apresente critérios básicos de observação dos equinos, incluindo condição corporal, comportamento e identificação de alterações que exijam avaliação especializada.",
+        "Desenvolva um olhar mais atento para a observação dos equinos, considerando aspectos como condição corporal, comportamento e sinais de alterações. Aprenda a reconhecer situações que exigem atenção e comunicação ao responsável ou avaliação veterinária.",
     },
   ] as ProgramTopic[],
 
-  // Instrutora
+  // Instrutora — Seção Exclusiva e Destacada (Item 6)
   instructor: {
     name: "Pollyanna Santiago Carrazzoni",
     title: "Zootecnista • Universidade Federal da Paraíba",
     presentation:
-      "Zootecnista formada pela Universidade Federal da Paraíba, Pollyanna Santiago Carrazzoni possui experiência profissional relacionada à equitação, equoterapia, avaliação de equinos, modalidades equestres e ensino na área de Zootecnia.",
+      "Zootecnista formada pela Universidade Federal da Paraíba, Pollyanna Santiago Carrazzoni une formação acadêmica de excelência a mais de 15 anos de atuação prática em criatórios, equitação, equoterapia, avaliação de animais e ensino na área de Zootecnia. Durante o curso, você receberá orientação técnica direta, aprendendo com quem vive a rotina e os desafios reais do manejo de cavalos.",
     academic: {
       degree: "Zootecnista",
       institution: "Universidade Federal da Paraíba — UFPB",
@@ -168,38 +176,40 @@ export const cursoTratadoresData = {
     ] as CareerExperience[],
   },
 
-  // Para quem é
+  // Para quem é — Comunicação voltada ao aluno (Item 5)
   targetAudience: [
-    "Pessoas que trabalham ou desejam trabalhar em criatórios de cavalos.",
-    "Tratadores que buscam aprofundar seus conhecimentos sobre manejo.",
-    "Profissionais envolvidos nas rotinas de cuidado e alimentação de equinos.",
-    "Pessoas interessadas em compreender melhor a higiene, o ambiente e a avaliação dos animais.",
+    "Você que já atua no manejo diário e deseja aprofundar suas habilidades com técnica e segurança.",
+    "Você que pretende ingressar no trabalho em criatórios e quer aprender as rotinas corretas desde o primeiro dia.",
+    "Você que deseja compreender os cuidados com alimentação, sanidade e conservação dos ambientes dos animais.",
+    "Você que ama cavalos e busca desenvolver um olhar atento para observar sinais de comportamento e saúde no dia a dia.",
   ],
 
-  // FAQ
+  // Dúvidas Frequentes atualizadas com foco no aluno
   faqs: [
     {
       question: "O curso é presencial?",
-      answer: "Sim. Esta formação foi planejada na modalidade presencial.",
-    },
-    {
-      question: "Qual é o valor do curso?",
-      answer: "O investimento informado é de R$ 1.200,00.",
-    },
-    {
-      question: "Quais assuntos serão abordados?",
       answer:
-        "O curso contempla oito temas, incluindo manejo, ambiente, higiene, controle de parasitas, alimentação e avaliação básica dos animais.",
+        "Sim. A capacitação é 100% presencial, realizada nas instalações do Haras Nossa Senhora Aparecida, com vivência prática no ambiente real do criatório.",
     },
     {
-      question: "Quem será a instrutora?",
+      question: "Qual é o valor do investimento?",
       answer:
-        "Pollyanna Santiago Carrazzoni, zootecnista formada pela Universidade Federal da Paraíba e profissional com experiência nas áreas apresentadas nesta página.",
+        "O investimento é de R$ 1.200,00, contemplando toda a capacitação técnica, material de apoio, prática em ambiente de haras e certificado de conclusão.",
     },
     {
-      question: "Como posso obter informações sobre inscrição e realização do curso?",
+      question: "Quais assuntos você vai aprender?",
       answer:
-        "Utilize o canal de matrícula disponibilizado no site para consultar as informações atualizadas sobre inscrição, datas, local e condições de participação.",
+        "O curso abrange 8 tópicos programáticos: práticas gerais de manejo, rotinas integradas, higiene e conservação das instalações, limpeza de materiais, controle de parasitas e sanidade, estratégias de arraçoamento, prevenção de problemas alimentares e parâmetros de avaliação física e comportamental dos animais.",
+    },
+    {
+      question: "Quem será a sua instrutora?",
+      answer:
+        "Pollyanna Santiago Carrazzoni, zootecnista formada pela Universidade Federal da Paraíba (UFPB), inspetora e juíza oficial da ABQM, com vasta experiência em manejo, equitação e ensino.",
+    },
+    {
+      question: "Como você garante sua vaga no curso?",
+      answer:
+        "Clique no botão de inscrição nesta página para ser direcionado ao checkout oficial seguro ou utilize o canal de atendimento para tirar suas dúvidas e confirmar sua participação.",
     },
   ],
 };

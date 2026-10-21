@@ -2,6 +2,25 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
+import {
+  BookOpen,
+  MapPin,
+  ShieldCheck,
+  Eye,
+  Headphones,
+  Award,
+  Users,
+  CheckCircle2,
+  ArrowRight,
+  Sparkles,
+  HeartHandshake,
+  Stethoscope,
+  ChevronDown,
+  Mail,
+  Copy,
+  Check,
+} from "lucide-react";
 import SectionReveal from "@/components/ui/SectionReveal";
 import { cursoTratadoresData } from "@/data/cursoTratadores";
 import { siteConfig } from "@/data/siteConfig";
@@ -9,13 +28,14 @@ import { siteConfig } from "@/data/siteConfig";
 export default function CursoTratadoresSalesPage() {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
   const [copiedContact, setCopiedContact] = useState(false);
+  const [environmentImageError, setEnvironmentImageError] = useState(false);
 
   const toggleFaq = (index: number) => {
     setOpenFaq(openFaq === index ? null : index);
   };
 
   const handleEnrollment = () => {
-    const target = siteConfig.cursoTratadores?.enrollmentUrl || "#contato-matricula";
+    const target = siteConfig.cursoTratadores?.enrollmentUrl || "/checkout";
     if (target.startsWith("http")) {
       window.open(target, "_blank", "noopener,noreferrer");
     } else if (target.startsWith("/")) {
@@ -34,31 +54,42 @@ export default function CursoTratadoresSalesPage() {
     setTimeout(() => setCopiedContact(false), 2500);
   };
 
+  // Mapeamento de ícones distintos para a composição visual dos 7 benefícios (Item 1)
+  const benefitIcons = [
+    BookOpen,
+    MapPin,
+    ShieldCheck,
+    Eye,
+    Headphones,
+    Award,
+    Users,
+  ];
+
   return (
     <main style={{ backgroundColor: "#fbfaf7", color: "#1c1813", minHeight: "100vh" }}>
       {/* ══════════════════════════════════════════════════════════════════
-          SEÇÃO 1 — HERO DE VENDAS
+          SEÇÃO 1 — HERO DE VENDAS & APRESENTAÇÃO
           - Selo: FORMAÇÃO PRESENCIAL
-          - Título principal
-          - Subtítulo
-          - Texto complementar
-          - Preço: R$ 1.200,00
-          - Texto próximo ao preço: "Investimento na sua capacitação profissional."
+          - Título: Curso de Capacitação de Tratadores de Equinos — Nível I
+          - Apresentação: Aprenda fundamentos essenciais de manejo, alimentação,
+            higiene, controle de parasitas e avaliação de equinos.
+          - Composição visual organizada dos 7 benefícios
+          - Investimento: R$ 1.200,00
           - Botão: QUERO GARANTIR MINHA VAGA
       ══════════════════════════════════════════════════════════════════ */}
       <section
         style={{
           position: "relative",
-          minHeight: "88vh",
+          minHeight: "92vh",
           display: "flex",
           alignItems: "center",
-          paddingTop: "clamp(6rem, 12vh, 8.5rem)",
-          paddingBottom: "clamp(4rem, 8vh, 6rem)",
+          paddingTop: "clamp(6.5rem, 12vh, 9rem)",
+          paddingBottom: "clamp(4.5rem, 8vh, 6.5rem)",
           backgroundColor: "#16130f",
           overflow: "hidden",
         }}
       >
-        {/* Imagem de Fundo de Alta Qualidade */}
+        {/* Imagem de Fundo de Alta Resolução com Gradiente Cinematográfico */}
         <div
           aria-hidden="true"
           style={{
@@ -66,20 +97,19 @@ export default function CursoTratadoresSalesPage() {
             inset: 0,
             backgroundImage: "url('/images/hero-bg.jpg')",
             backgroundSize: "cover",
-            backgroundPosition: "center",
-            opacity: 0.38,
+            backgroundPosition: "center 35%",
+            opacity: 0.32,
             zIndex: 0,
           }}
         />
 
-        {/* Gradiente Cinematográfico Suave */}
         <div
           aria-hidden="true"
           style={{
             position: "absolute",
             inset: 0,
             background:
-              "linear-gradient(to right, rgba(22, 19, 15, 0.96) 0%, rgba(22, 19, 15, 0.88) 45%, rgba(22, 19, 15, 0.6) 100%)",
+              "linear-gradient(to right, rgba(22, 19, 15, 0.97) 0%, rgba(22, 19, 15, 0.90) 50%, rgba(22, 19, 15, 0.65) 100%)",
             zIndex: 1,
           }}
         />
@@ -98,7 +128,7 @@ export default function CursoTratadoresSalesPage() {
 
         <div className="container" style={{ maxWidth: "1240px", margin: "0 auto", padding: "0 1.5rem", position: "relative", zIndex: 3 }}>
           <SectionReveal type="up">
-            <div style={{ maxWidth: "780px" }}>
+            <div style={{ maxWidth: "860px" }}>
               {/* Navegação de retorno */}
               <div style={{ marginBottom: "1.5rem" }}>
                 <Link
@@ -148,18 +178,18 @@ export default function CursoTratadoresSalesPage() {
                       backgroundColor: "#c4a96e",
                     }}
                   />
-                  FORMAÇÃO PRESENCIAL
+                  {cursoTratadoresData.badge}
                 </span>
               </div>
 
-              {/* Título Principal */}
+              {/* Título Principal Exato */}
               <h1
                 className="font-serif"
                 style={{
                   color: "#fbfaf7",
-                  fontSize: "clamp(2.4rem, 5.5vw, 4.4rem)",
+                  fontSize: "clamp(2.4rem, 5vw, 4.2rem)",
                   fontWeight: 600,
-                  lineHeight: 1.1,
+                  lineHeight: 1.12,
                   letterSpacing: "-0.015em",
                   margin: "0 0 1.25rem 0",
                   textShadow: "0 4px 20px rgba(0,0,0,0.6)",
@@ -168,42 +198,108 @@ export default function CursoTratadoresSalesPage() {
                 {cursoTratadoresData.title}
               </h1>
 
-              {/* Subtítulo */}
+              {/* Apresentação Essencial */}
               <p
                 className="font-sans"
                 style={{
                   color: "#e8dfce",
-                  fontSize: "clamp(1.05rem, 1.8vw, 1.25rem)",
-                  fontWeight: 500,
-                  lineHeight: 1.5,
-                  margin: "0 0 1rem 0",
-                }}
-              >
-                “{cursoTratadoresData.subtitle}”
-              </p>
-
-              {/* Texto Complementar */}
-              <p
-                className="font-sans"
-                style={{
-                  color: "rgba(244, 239, 228, 0.78)",
-                  fontSize: "clamp(0.92rem, 1.3vw, 1.02rem)",
-                  fontWeight: 300,
-                  lineHeight: 1.65,
-                  maxWidth: "680px",
+                  fontSize: "clamp(1.1rem, 1.8vw, 1.35rem)",
+                  fontWeight: 400,
+                  lineHeight: 1.55,
+                  maxWidth: "760px",
                   margin: "0 0 2rem 0",
                 }}
               >
-                {cursoTratadoresData.complementaryText}
+                {cursoTratadoresData.subtitle}
               </p>
+
+              {/* ── COMPOSIÇÃO VISUAL ORGANIZADA DOS 7 BENEFÍCIOS (Item 1) ── */}
+              <div
+                style={{
+                  backgroundColor: "rgba(32, 27, 22, 0.75)",
+                  backdropFilter: "blur(12px)",
+                  WebkitBackdropFilter: "blur(12px)",
+                  border: "1px solid rgba(196, 169, 110, 0.28)",
+                  borderRadius: "14px",
+                  padding: "clamp(1.25rem, 3vw, 1.75rem)",
+                  marginBottom: "2.25rem",
+                  boxShadow: "0 10px 30px rgba(0,0,0,0.35)",
+                }}
+              >
+                <span
+                  style={{
+                    fontFamily: "'Inter', sans-serif",
+                    fontSize: "0.7rem",
+                    fontWeight: 700,
+                    letterSpacing: "0.18em",
+                    textTransform: "uppercase",
+                    color: "#c4a96e",
+                    display: "block",
+                    marginBottom: "1rem",
+                  }}
+                >
+                  O que esta formação oferece a você:
+                </span>
+
+                <div
+                  style={{
+                    display: "grid",
+                    gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 250px), 1fr))",
+                    gap: "0.85rem 1.25rem",
+                  }}
+                >
+                  {cursoTratadoresData.benefits.map((benefit, idx) => {
+                    const IconComponent = benefitIcons[idx] || CheckCircle2;
+                    return (
+                      <div
+                        key={idx}
+                        style={{
+                          display: "flex",
+                          alignItems: "flex-start",
+                          gap: "0.65rem",
+                        }}
+                      >
+                        <div
+                          style={{
+                            width: "22px",
+                            height: "22px",
+                            borderRadius: "6px",
+                            backgroundColor: "rgba(196, 169, 110, 0.15)",
+                            border: "1px solid rgba(196, 169, 110, 0.35)",
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "center",
+                            color: "#c4a96e",
+                            flexShrink: 0,
+                            marginTop: "2px",
+                          }}
+                        >
+                          <IconComponent style={{ width: "13px", height: "13px" }} />
+                        </div>
+                        <span
+                          className="font-sans"
+                          style={{
+                            fontSize: "0.88rem",
+                            color: "#f4efe4",
+                            lineHeight: 1.45,
+                            fontWeight: 400,
+                          }}
+                        >
+                          {benefit}
+                        </span>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
 
               {/* Bloco de Conversão: Preço + Botão Principal */}
               <div
                 style={{
-                  backgroundColor: "rgba(35, 30, 24, 0.85)",
+                  backgroundColor: "rgba(35, 30, 24, 0.9)",
                   backdropFilter: "blur(14px)",
                   WebkitBackdropFilter: "blur(14px)",
-                  border: "1px solid rgba(196, 169, 110, 0.35)",
+                  border: "1px solid rgba(196, 169, 110, 0.4)",
                   borderRadius: "12px",
                   padding: "clamp(1.25rem, 3vw, 1.75rem)",
                   display: "flex",
@@ -211,7 +307,7 @@ export default function CursoTratadoresSalesPage() {
                   justifyContent: "space-between",
                   flexWrap: "wrap",
                   gap: "1.25rem",
-                  boxShadow: "0 12px 35px rgba(0,0,0,0.4)",
+                  boxShadow: "0 12px 35px rgba(0,0,0,0.45)",
                 }}
               >
                 <div>
@@ -219,7 +315,7 @@ export default function CursoTratadoresSalesPage() {
                     <span
                       style={{
                         fontFamily: "'Inter', sans-serif",
-                        fontSize: "clamp(1.75rem, 3.5vw, 2.4rem)",
+                        fontSize: "clamp(1.85rem, 3.8vw, 2.5rem)",
                         fontWeight: 800,
                         color: "#fbfaf7",
                         letterSpacing: "-0.02em",
@@ -231,11 +327,11 @@ export default function CursoTratadoresSalesPage() {
                   <span
                     style={{
                       fontFamily: "'Inter', sans-serif",
-                      fontSize: "0.78rem",
+                      fontSize: "0.8rem",
                       color: "#c4a96e",
                       fontWeight: 500,
                       display: "block",
-                      marginTop: "0.15rem",
+                      marginTop: "0.2rem",
                     }}
                   >
                     {cursoTratadoresData.priceLabel}
@@ -250,10 +346,10 @@ export default function CursoTratadoresSalesPage() {
                     color: "#16130f",
                     fontFamily: "'Inter', sans-serif",
                     fontWeight: 800,
-                    fontSize: "0.85rem",
+                    fontSize: "0.88rem",
                     letterSpacing: "0.12em",
                     textTransform: "uppercase",
-                    padding: "1rem 2.2rem",
+                    padding: "1.05rem 2.2rem",
                     borderRadius: "6px",
                     border: "none",
                     cursor: "pointer",
@@ -261,12 +357,12 @@ export default function CursoTratadoresSalesPage() {
                     transition: "all 0.25s ease",
                     display: "inline-flex",
                     alignItems: "center",
-                    gap: "0.5rem",
+                    gap: "0.55rem",
                   }}
                   className="btn-garantir-vaga"
                 >
                   <span>QUERO GARANTIR MINHA VAGA</span>
-                  <span>→</span>
+                  <ArrowRight style={{ width: "16px", height: "16px" }} />
                 </button>
               </div>
             </div>
@@ -275,21 +371,157 @@ export default function CursoTratadoresSalesPage() {
       </section>
 
       {/* ══════════════════════════════════════════════════════════════════
-          SEÇÃO 2 — APRESENTAÇÃO DO CURSO
-          - Título
-          - Textos
-          - 3 Pilares destacados
+          SEÇÃO 2 — IMAGEM DE DESTAQUE DO HARAS (Item 2)
+          - Fotografia ampla e representativa do ambiente do Haras
+          - Preparada para receber a fotografia dos cavalos bebendo água
+          - Transmite ambiente real, cuidado com os animais, tranquilidade
+            e profissionalismo
       ══════════════════════════════════════════════════════════════════ */}
       <section
         style={{
-          paddingTop: "clamp(4.5rem, 8vw, 7.5rem)",
-          paddingBottom: "clamp(4.5rem, 8vw, 7.5rem)",
           backgroundColor: "#fbfaf7",
+          paddingTop: "clamp(3rem, 6vw, 4.5rem)",
+          paddingBottom: "clamp(2rem, 4vw, 3.5rem)",
+          position: "relative",
         }}
       >
         <div className="container" style={{ maxWidth: "1200px", margin: "0 auto", padding: "0 1.5rem" }}>
           <SectionReveal type="up">
-            <div style={{ maxWidth: "820px", margin: "0 auto", textAlign: "center", marginBottom: "clamp(2.5rem, 5vw, 4rem)" }}>
+            <div
+              style={{
+                borderRadius: "16px",
+                overflow: "hidden",
+                border: "1px solid rgba(140, 110, 61, 0.25)",
+                boxShadow: "0 16px 40px rgba(28, 24, 19, 0.08)",
+                backgroundColor: "#16130f",
+                position: "relative",
+              }}
+            >
+              {/* Moldura Widescreen Panorâmica */}
+              <div
+                style={{
+                  position: "relative",
+                  width: "100%",
+                  aspectRatio: "21/9",
+                  minHeight: "260px",
+                }}
+              >
+                <img
+                  src={
+                    environmentImageError
+                      ? "/images/hero-bg.jpg"
+                      : cursoTratadoresData.harasEnvironmentImage
+                  }
+                  onError={() => setEnvironmentImageError(true)}
+                  alt="Fotografia do ambiente real do Haras Nossa Senhora Aparecida — Tranquilidade, manejo e cuidado com os animais"
+                  style={{
+                    width: "100%",
+                    height: "100%",
+                    objectFit: "cover",
+                    objectPosition: "center 40%",
+                    display: "block",
+                  }}
+                />
+
+                {/* Gradiente sutil inferior para garantir leitura da legenda */}
+                <div
+                  aria-hidden="true"
+                  style={{
+                    position: "absolute",
+                    inset: 0,
+                    background:
+                      "linear-gradient(to top, rgba(22, 19, 15, 0.88) 0%, rgba(22, 19, 15, 0.25) 45%, transparent 100%)",
+                    pointerEvents: "none",
+                  }}
+                />
+
+                {/* Informação e Selo de Ambiente Real */}
+                <div
+                  style={{
+                    position: "absolute",
+                    bottom: "clamp(1rem, 2.5vw, 1.75rem)",
+                    left: "clamp(1rem, 3vw, 2rem)",
+                    right: "clamp(1rem, 3vw, 2rem)",
+                    display: "flex",
+                    justifyContent: "space-between",
+                    alignItems: "flex-end",
+                    flexWrap: "wrap",
+                    gap: "1rem",
+                    color: "#fbfaf7",
+                  }}
+                >
+                  <div>
+                    <span
+                      style={{
+                        fontFamily: "'Inter', sans-serif",
+                        fontSize: "0.68rem",
+                        fontWeight: 700,
+                        letterSpacing: "0.18em",
+                        textTransform: "uppercase",
+                        color: "#c4a96e",
+                        display: "inline-flex",
+                        alignItems: "center",
+                        gap: "0.4rem",
+                        marginBottom: "0.35rem",
+                      }}
+                    >
+                      <MapPin style={{ width: "12px", height: "12px" }} />
+                      Haras Nossa Senhora Aparecida • Ambiente Real do Curso
+                    </span>
+                    <h3
+                      className="font-serif"
+                      style={{
+                        fontSize: "clamp(1.15rem, 2.2vw, 1.6rem)",
+                        fontWeight: 600,
+                        lineHeight: 1.25,
+                        margin: 0,
+                        color: "#ffffff",
+                      }}
+                    >
+                      Vivência prática, tranquilidade e cuidado diário com os animais
+                    </h3>
+                  </div>
+
+                  <div
+                    style={{
+                      backgroundColor: "rgba(22, 19, 15, 0.75)",
+                      backdropFilter: "blur(8px)",
+                      border: "1px solid rgba(196, 169, 110, 0.35)",
+                      borderRadius: "8px",
+                      padding: "0.5rem 0.85rem",
+                      fontSize: "0.75rem",
+                      color: "#e8dfce",
+                      fontFamily: "'Inter', sans-serif",
+                      fontWeight: 500,
+                    }}
+                  >
+                    Aulas práticas realizadas diretamente nas instalações e piquetes do criatório
+                  </div>
+                </div>
+              </div>
+            </div>
+          </SectionReveal>
+        </div>
+      </section>
+
+      {/* ══════════════════════════════════════════════════════════════════
+          SEÇÃO 3 — SOBRE A FORMAÇÃO (Item 3)
+          - Título: Sobre a Formação
+          - Subtítulo: Aprenda a cuidar de equinos com mais conhecimento
+            e responsabilidade.
+          - Texto integral em 5 parágrafos com alto contraste e tipografia nobre
+      ══════════════════════════════════════════════════════════════════ */}
+      <section
+        id="sobre-a-formacao"
+        style={{
+          paddingTop: "clamp(3.5rem, 6vw, 5.5rem)",
+          paddingBottom: "clamp(4.5rem, 7vw, 6.5rem)",
+          backgroundColor: "#fbfaf7",
+        }}
+      >
+        <div className="container" style={{ maxWidth: "980px", margin: "0 auto", padding: "0 1.5rem" }}>
+          <SectionReveal type="up">
+            <div style={{ textAlign: "center", marginBottom: "clamp(2.5rem, 4.5vw, 3.5rem)" }}>
               <span
                 style={{
                   fontFamily: "'Inter', sans-serif",
@@ -302,151 +534,157 @@ export default function CursoTratadoresSalesPage() {
                   marginBottom: "0.75rem",
                 }}
               >
-                SOBRE A FORMAÇÃO
+                APRESENTAÇÃO DO CURSO
               </span>
 
               <h2
                 className="font-serif"
                 style={{
-                  fontSize: "clamp(2rem, 4.2vw, 3.2rem)",
+                  fontSize: "clamp(2.2rem, 4.5vw, 3.4rem)",
                   fontWeight: 600,
                   color: "#1c1813",
-                  lineHeight: 1.2,
-                  margin: "0 0 1.5rem 0",
-                  letterSpacing: "-0.01em",
+                  lineHeight: 1.18,
+                  margin: "0 0 1rem 0",
+                  letterSpacing: "-0.015em",
                 }}
               >
-                {cursoTratadoresData.presentation.title}
+                {cursoTratadoresData.aboutSection.title}
               </h2>
 
-              <div style={{ display: "flex", flexDirection: "column", gap: "1rem", textAlign: "left" }}>
-                <p
-                  className="font-sans"
-                  style={{
-                    fontSize: "clamp(0.95rem, 1.2vw, 1.05rem)",
-                    color: "#463d33",
-                    lineHeight: 1.8,
-                    margin: 0,
-                    fontWeight: 400,
-                  }}
-                >
-                  {cursoTratadoresData.presentation.text1}
-                </p>
-                <p
-                  className="font-sans"
-                  style={{
-                    fontSize: "clamp(0.95rem, 1.2vw, 1.05rem)",
-                    color: "#463d33",
-                    lineHeight: 1.8,
-                    margin: 0,
-                    fontWeight: 400,
-                  }}
-                >
-                  {cursoTratadoresData.presentation.text2}
-                </p>
-                <p
-                  className="font-sans"
-                  style={{
-                    fontSize: "clamp(0.95rem, 1.2vw, 1.05rem)",
-                    color: "#463d33",
-                    lineHeight: 1.8,
-                    margin: 0,
-                    fontWeight: 500,
-                  }}
-                >
-                  {cursoTratadoresData.presentation.text3}
-                </p>
-              </div>
+              <p
+                className="font-sans"
+                style={{
+                  fontSize: "clamp(1.05rem, 1.6vw, 1.25rem)",
+                  color: "#6b5d4b",
+                  fontWeight: 500,
+                  lineHeight: 1.5,
+                  maxWidth: "680px",
+                  margin: "0 auto",
+                }}
+              >
+                {cursoTratadoresData.aboutSection.subtitle}
+              </p>
             </div>
           </SectionReveal>
 
-          {/* 3 Pilares destacados visualmente */}
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 320px), 1fr))",
-              gap: "1.5rem",
-            }}
-          >
-            {cursoTratadoresData.presentation.pillars.map((pilar, idx) => (
-              <SectionReveal key={idx} delay={(idx % 3) as any} type="up">
-                <div
+          {/* 5 Parágrafos do Texto Oficial */}
+          <SectionReveal type="up">
+            <div
+              style={{
+                backgroundColor: "#ffffff",
+                border: "1px solid rgba(140, 110, 61, 0.18)",
+                borderRadius: "16px",
+                padding: "clamp(2rem, 5vw, 3.5rem)",
+                boxShadow: "0 8px 30px rgba(28, 24, 19, 0.04)",
+                display: "flex",
+                flexDirection: "column",
+                gap: "1.5rem",
+              }}
+            >
+              {/* Parágrafo 1 */}
+              <p
+                className="font-sans"
+                style={{
+                  fontSize: "clamp(1rem, 1.3vw, 1.1rem)",
+                  color: "#3d352b",
+                  lineHeight: 1.8,
+                  margin: 0,
+                  fontWeight: 400,
+                }}
+              >
+                {cursoTratadoresData.aboutSection.paragraphs[0]}
+              </p>
+
+              {/* Parágrafo 2 */}
+              <p
+                className="font-sans"
+                style={{
+                  fontSize: "clamp(1rem, 1.3vw, 1.1rem)",
+                  color: "#3d352b",
+                  lineHeight: 1.8,
+                  margin: 0,
+                  fontWeight: 400,
+                }}
+              >
+                {cursoTratadoresData.aboutSection.paragraphs[1]}
+              </p>
+
+              {/* Parágrafo 3 — Destaque Editorial Central */}
+              <div
+                style={{
+                  borderLeft: "3px solid #8c6e3d",
+                  backgroundColor: "rgba(140, 110, 61, 0.06)",
+                  padding: "1.25rem 1.75rem",
+                  borderRadius: "0 10px 10px 0",
+                  margin: "0.5rem 0",
+                }}
+              >
+                <p
+                  className="font-serif"
                   style={{
-                    backgroundColor: "#ffffff",
-                    border: "1px solid rgba(140, 110, 61, 0.2)",
-                    borderRadius: "12px",
-                    padding: "2rem 1.75rem",
-                    height: "100%",
-                    display: "flex",
-                    flexDirection: "column",
-                    boxShadow: "0 8px 24px rgba(28, 24, 19, 0.04)",
+                    fontSize: "clamp(1.15rem, 1.8vw, 1.35rem)",
+                    color: "#1c1813",
+                    fontWeight: 600,
+                    lineHeight: 1.5,
+                    margin: 0,
+                    fontStyle: "italic",
                   }}
                 >
-                  <div
-                    style={{
-                      width: "44px",
-                      height: "44px",
-                      borderRadius: "10px",
-                      backgroundColor: "rgba(140, 110, 61, 0.12)",
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      color: "#8c6e3d",
-                      marginBottom: "1.25rem",
-                    }}
-                  >
-                    <span style={{ fontFamily: "'Inter', sans-serif", fontWeight: 800, fontSize: "0.9rem" }}>
-                      0{idx + 1}
-                    </span>
-                  </div>
+                  “{cursoTratadoresData.aboutSection.paragraphs[2]}”
+                </p>
+              </div>
 
-                  <h3
-                    className="font-serif"
-                    style={{
-                      fontSize: "1.45rem",
-                      fontWeight: 600,
-                      color: "#1c1813",
-                      marginBottom: "0.75rem",
-                      lineHeight: 1.25,
-                    }}
-                  >
-                    {pilar.title}
-                  </h3>
+              {/* Parágrafo 4 */}
+              <p
+                className="font-sans"
+                style={{
+                  fontSize: "clamp(1rem, 1.3vw, 1.1rem)",
+                  color: "#3d352b",
+                  lineHeight: 1.8,
+                  margin: 0,
+                  fontWeight: 400,
+                }}
+              >
+                {cursoTratadoresData.aboutSection.paragraphs[3]}
+              </p>
 
-                  <p
-                    className="font-sans"
-                    style={{
-                      fontSize: "0.92rem",
-                      color: "#5f5547",
-                      lineHeight: 1.65,
-                      margin: 0,
-                      fontWeight: 400,
-                    }}
-                  >
-                    {pilar.description}
-                  </p>
-                </div>
-              </SectionReveal>
-            ))}
-          </div>
+              {/* Parágrafo 5 */}
+              <p
+                className="font-sans"
+                style={{
+                  fontSize: "clamp(1rem, 1.3vw, 1.1rem)",
+                  color: "#3d352b",
+                  lineHeight: 1.8,
+                  margin: 0,
+                  fontWeight: 500,
+                }}
+              >
+                {cursoTratadoresData.aboutSection.paragraphs[4]}
+              </p>
+            </div>
+          </SectionReveal>
         </div>
       </section>
 
       {/* ══════════════════════════════════════════════════════════════════
-          SEÇÃO 3 — CONTEÚDO PROGRAMÁTICO
-          - Título: O que você vai aprender
-          - Subtítulo: Conheça os principais temas abordados durante a capacitação.
-          - 8 tópicos em cards numerados mantidos integralmente
+          SEÇÃO 4 — GRADE TÉCNICA (Item 4)
+          - Título: Grade Técnica
+          - Subtítulo: O que você vai aprender
+          - Introdução: Conheça os principais temas abordados durante a capacitação.
+          - 8 tópicos organizados em seção própria, numerados de 01 a 08,
+            com boa leitura e aparência profissional.
       ══════════════════════════════════════════════════════════════════ */}
       <section
-        id="conteudo-programatico"
+        id="grade-tecnica"
         style={{
-          paddingTop: "clamp(4.5rem, 8vw, 7.5rem)",
-          paddingBottom: "clamp(4.5rem, 8vw, 7.5rem)",
+          paddingTop: "clamp(4.5rem, 8vw, 7rem)",
+          paddingBottom: "clamp(4.5rem, 8vw, 7rem)",
           backgroundColor: "#f2ece0",
+          borderTop: "1px solid rgba(140, 110, 61, 0.15)",
+          borderBottom: "1px solid rgba(140, 110, 61, 0.15)",
         }}
       >
-        <div className="container" style={{ maxWidth: "1200px", margin: "0 auto", padding: "0 1.5rem" }}>
+        <div className="container" style={{ maxWidth: "1240px", margin: "0 auto", padding: "0 1.5rem" }}>
           <SectionReveal type="up">
             <div style={{ textAlign: "center", marginBottom: "clamp(2.5rem, 5vw, 4rem)" }}>
               <span
@@ -461,7 +699,7 @@ export default function CursoTratadoresSalesPage() {
                   marginBottom: "0.65rem",
                 }}
               >
-                GRADE TÉCNICA COMPLETA
+                {cursoTratadoresData.technicalGrid.sectionBadge}
               </span>
 
               <h2
@@ -471,34 +709,46 @@ export default function CursoTratadoresSalesPage() {
                   fontWeight: 600,
                   color: "#1c1813",
                   lineHeight: 1.15,
-                  margin: "0 0 0.75rem 0",
-                  letterSpacing: "-0.01em",
+                  margin: "0 0 0.5rem 0",
+                  letterSpacing: "-0.015em",
                 }}
               >
-                O que você vai aprender
+                {cursoTratadoresData.technicalGrid.title}
               </h2>
+
+              <p
+                className="font-serif"
+                style={{
+                  fontSize: "clamp(1.2rem, 2vw, 1.5rem)",
+                  color: "#8c6e3d",
+                  fontWeight: 600,
+                  margin: "0 0 0.75rem 0",
+                }}
+              >
+                {cursoTratadoresData.technicalGrid.subtitle}
+              </p>
 
               <p
                 className="font-sans"
                 style={{
-                  fontSize: "clamp(0.95rem, 1.2vw, 1.1rem)",
+                  fontSize: "clamp(0.95rem, 1.2vw, 1.05rem)",
                   color: "#5f5547",
-                  maxWidth: "580px",
+                  maxWidth: "600px",
                   margin: "0 auto",
                   lineHeight: 1.6,
                 }}
               >
-                Conheça os principais temas abordados durante a capacitação.
+                {cursoTratadoresData.technicalGrid.intro}
               </p>
             </div>
           </SectionReveal>
 
-          {/* Grid dos 8 Tópicos */}
+          {/* Grid dos 8 Tópicos Técnicos — Numeração 01 a 08 */}
           <div
             style={{
               display: "grid",
-              gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 260px), 1fr))",
-              gap: "1.25rem",
+              gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 270px), 1fr))",
+              gap: "1.35rem",
             }}
           >
             {cursoTratadoresData.topics.map((topico, idx) => (
@@ -506,13 +756,13 @@ export default function CursoTratadoresSalesPage() {
                 <div
                   style={{
                     backgroundColor: "#ffffff",
-                    border: "1px solid rgba(140, 110, 61, 0.2)",
-                    borderRadius: "10px",
-                    padding: "1.5rem",
+                    border: "1px solid rgba(140, 110, 61, 0.22)",
+                    borderRadius: "12px",
+                    padding: "1.75rem 1.5rem",
                     height: "100%",
                     display: "flex",
                     flexDirection: "column",
-                    boxShadow: "0 4px 16px rgba(28, 24, 19, 0.03)",
+                    boxShadow: "0 4px 18px rgba(28, 24, 19, 0.04)",
                     transition: "all 0.3s ease",
                   }}
                   className="program-topic-card"
@@ -522,38 +772,47 @@ export default function CursoTratadoresSalesPage() {
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "space-between",
-                      marginBottom: "1rem",
+                      marginBottom: "1.15rem",
                     }}
                   >
                     <span
                       style={{
                         fontFamily: "'Inter', sans-serif",
-                        fontSize: "0.85rem",
+                        fontSize: "0.9rem",
                         fontWeight: 800,
-                        letterSpacing: "0.1em",
+                        letterSpacing: "0.08em",
                         color: "#8c6e3d",
-                        backgroundColor: "rgba(140, 110, 61, 0.1)",
-                        padding: "0.25rem 0.6rem",
-                        borderRadius: "4px",
+                        backgroundColor: "rgba(140, 110, 61, 0.12)",
+                        border: "1px solid rgba(140, 110, 61, 0.25)",
+                        padding: "0.3rem 0.7rem",
+                        borderRadius: "6px",
                       }}
                     >
                       {topico.number}
                     </span>
 
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#8c6e3d" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                      <circle cx="12" cy="12" r="10" />
-                      <polyline points="12 6 12 12 16 14" />
-                    </svg>
+                    <span
+                      style={{
+                        fontFamily: "'Inter', sans-serif",
+                        fontSize: "0.72rem",
+                        fontWeight: 600,
+                        color: "#8c6e3d",
+                        textTransform: "uppercase",
+                        letterSpacing: "0.08em",
+                      }}
+                    >
+                      Módulo {topico.number}
+                    </span>
                   </div>
 
                   <h3
                     className="font-serif"
                     style={{
-                      fontSize: "1.15rem",
+                      fontSize: "1.2rem",
                       fontWeight: 600,
                       color: "#1c1813",
-                      lineHeight: 1.3,
-                      marginBottom: "0.75rem",
+                      lineHeight: 1.35,
+                      marginBottom: "0.85rem",
                     }}
                   >
                     {topico.title}
@@ -562,9 +821,9 @@ export default function CursoTratadoresSalesPage() {
                   <p
                     className="font-sans"
                     style={{
-                      fontSize: "0.84rem",
-                      color: "#5f5547",
-                      lineHeight: 1.6,
+                      fontSize: "0.88rem",
+                      color: "#554c3e",
+                      lineHeight: 1.65,
                       margin: 0,
                       fontWeight: 400,
                     }}
@@ -579,17 +838,15 @@ export default function CursoTratadoresSalesPage() {
       </section>
 
       {/* ══════════════════════════════════════════════════════════════════
-          SEÇÃO 4 — APRESENTAÇÃO DA INSTRUTORA
-          - Título: Conheça sua instrutora
-          - Nome: Pollyanna Santiago Carrazzoni
-          - Apresentação completa e identificação acadêmica UFPB
-          - Linha do tempo / cards com as 6 experiências profissionais
+          SEÇÃO 5 — EXCLUSIVA DA INSTRUTORA POLLYANNA (Item 6)
+          - Totalmente separada dos cards dos tópicos programáticos
+          - Hierarquia visual própria e destaque para mentoria prática
       ══════════════════════════════════════════════════════════════════ */}
       <section
         id="instrutora"
         style={{
-          paddingTop: "clamp(4.5rem, 8vw, 7.5rem)",
-          paddingBottom: "clamp(4.5rem, 8vw, 7.5rem)",
+          paddingTop: "clamp(5rem, 8vw, 8rem)",
+          paddingBottom: "clamp(5rem, 8vw, 8rem)",
           backgroundColor: "#fbfaf7",
         }}
       >
@@ -619,7 +876,7 @@ export default function CursoTratadoresSalesPage() {
                   color: "#1c1813",
                   lineHeight: 1.15,
                   margin: "0 0 0.5rem 0",
-                  letterSpacing: "-0.01em",
+                  letterSpacing: "-0.015em",
                 }}
               >
                 Conheça sua instrutora
@@ -631,10 +888,22 @@ export default function CursoTratadoresSalesPage() {
                   fontSize: "clamp(1.4rem, 2.5vw, 1.85rem)",
                   color: "#8c6e3d",
                   fontWeight: 600,
-                  margin: "0 0 1.5rem 0",
+                  margin: "0 0 1rem 0",
                 }}
               >
                 {cursoTratadoresData.instructor.name}
+              </p>
+
+              <p
+                className="font-sans"
+                style={{
+                  fontSize: "0.95rem",
+                  color: "#6b5d4b",
+                  maxWidth: "580px",
+                  margin: "0 auto",
+                }}
+              >
+                {cursoTratadoresData.instructor.title}
               </p>
             </div>
           </SectionReveal>
@@ -644,31 +913,31 @@ export default function CursoTratadoresSalesPage() {
             <div
               style={{
                 backgroundColor: "#ffffff",
-                border: "1px solid rgba(140, 110, 61, 0.2)",
-                borderRadius: "14px",
+                border: "1px solid rgba(140, 110, 61, 0.22)",
+                borderRadius: "16px",
                 padding: "clamp(1.75rem, 4vw, 3rem)",
-                marginBottom: "3rem",
+                marginBottom: "3.5rem",
                 boxShadow: "0 8px 30px rgba(28, 24, 19, 0.04)",
               }}
             >
               <div
                 style={{
                   display: "grid",
-                  gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 300px), 1fr))",
+                  gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 320px), 1fr))",
                   gap: "2.5rem",
                   alignItems: "center",
                 }}
               >
-                {/* Fotografia Profissional Oficial da Instrutora */}
+                {/* Fotografia Profissional da Instrutora */}
                 <div>
                   <div
                     style={{
                       aspectRatio: "3/4",
-                      borderRadius: "12px",
+                      borderRadius: "14px",
                       overflow: "hidden",
                       border: "1px solid rgba(140, 110, 61, 0.35)",
                       position: "relative",
-                      boxShadow: "0 12px 35px rgba(28, 24, 19, 0.15)",
+                      boxShadow: "0 14px 38px rgba(28, 24, 19, 0.16)",
                       backgroundColor: "#16130f",
                     }}
                   >
@@ -691,37 +960,37 @@ export default function CursoTratadoresSalesPage() {
                         right: 0,
                         height: "45%",
                         background:
-                          "linear-gradient(to top, rgba(22, 19, 15, 0.9) 0%, transparent 100%)",
+                          "linear-gradient(to top, rgba(22, 19, 15, 0.92) 0%, transparent 100%)",
                         pointerEvents: "none",
                       }}
                     />
                     <div
                       style={{
                         position: "absolute",
-                        bottom: "1rem",
-                        left: "1rem",
-                        right: "1rem",
+                        bottom: "1.25rem",
+                        left: "1.25rem",
+                        right: "1.25rem",
                         color: "#fbfaf7",
                       }}
                     >
                       <span
                         style={{
                           fontFamily: "'Inter', sans-serif",
-                          fontSize: "0.62rem",
+                          fontSize: "0.65rem",
                           fontWeight: 700,
                           letterSpacing: "0.15em",
                           textTransform: "uppercase",
                           color: "#c4a96e",
                           display: "block",
-                          marginBottom: "0.2rem",
+                          marginBottom: "0.25rem",
                         }}
                       >
-                        Sua Instrutora
+                        Sua Instrutora no Haras
                       </span>
                       <span
                         style={{
                           fontFamily: "'Inter', sans-serif",
-                          fontSize: "0.95rem",
+                          fontSize: "1rem",
                           fontWeight: 700,
                         }}
                       >
@@ -743,7 +1012,7 @@ export default function CursoTratadoresSalesPage() {
                       lineHeight: 1.25,
                     }}
                   >
-                    Trajetória Dedicada à Equinocultura
+                    Orientação Prática e Experiência Técnica na Rotina Equina
                   </h3>
 
                   <p
@@ -764,8 +1033,8 @@ export default function CursoTratadoresSalesPage() {
                     style={{
                       backgroundColor: "#f7f4ec",
                       border: "1px solid rgba(140, 110, 61, 0.2)",
-                      borderRadius: "8px",
-                      padding: "1.25rem",
+                      borderRadius: "10px",
+                      padding: "1.35rem",
                     }}
                   >
                     <span
@@ -783,7 +1052,7 @@ export default function CursoTratadoresSalesPage() {
                       IDENTIFICAÇÃO ACADÊMICA
                     </span>
 
-                    <div style={{ display: "flex", flexDirection: "column", gap: "0.35rem", fontSize: "0.85rem", color: "#3d352b", fontFamily: "'Inter', sans-serif" }}>
+                    <div style={{ display: "flex", flexDirection: "column", gap: "0.4rem", fontSize: "0.85rem", color: "#3d352b", fontFamily: "'Inter', sans-serif" }}>
                       <div><strong>Formação:</strong> {cursoTratadoresData.instructor.academic.degree}</div>
                       <div><strong>Instituição:</strong> {cursoTratadoresData.instructor.academic.institution}</div>
                       <div><strong>Centro:</strong> {cursoTratadoresData.instructor.academic.center}</div>
@@ -796,7 +1065,7 @@ export default function CursoTratadoresSalesPage() {
             </div>
           </SectionReveal>
 
-          {/* Linha do Tempo / Cards de Experiências Profissionais */}
+          {/* Cards de Experiências Profissionais */}
           <SectionReveal type="up">
             <div>
               <h3
@@ -805,18 +1074,18 @@ export default function CursoTratadoresSalesPage() {
                   fontSize: "clamp(1.5rem, 3vw, 2.2rem)",
                   fontWeight: 600,
                   color: "#1c1813",
-                  marginBottom: "1.5rem",
+                  marginBottom: "1.75rem",
                   textAlign: "center",
                 }}
               >
-                Experiências Profissionais
+                Trajetória e Atuação Profissional
               </h3>
 
               <div
                 style={{
                   display: "grid",
                   gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 340px), 1fr))",
-                  gap: "1.25rem",
+                  gap: "1.35rem",
                 }}
               >
                 {cursoTratadoresData.instructor.experiences.map((exp) => (
@@ -825,8 +1094,8 @@ export default function CursoTratadoresSalesPage() {
                     style={{
                       backgroundColor: "#ffffff",
                       border: "1px solid rgba(140, 110, 61, 0.2)",
-                      borderRadius: "10px",
-                      padding: "1.5rem",
+                      borderRadius: "12px",
+                      padding: "1.6rem",
                       display: "flex",
                       flexDirection: "column",
                       justifyContent: "space-between",
@@ -839,17 +1108,17 @@ export default function CursoTratadoresSalesPage() {
                           display: "flex",
                           alignItems: "center",
                           justifyContent: "space-between",
-                          marginBottom: "0.75rem",
+                          marginBottom: "0.85rem",
                         }}
                       >
                         <span
                           style={{
                             fontFamily: "'Inter', sans-serif",
-                            fontSize: "0.75rem",
+                            fontSize: "0.78rem",
                             fontWeight: 800,
                             color: "#8c6e3d",
                             backgroundColor: "rgba(140, 110, 61, 0.1)",
-                            padding: "0.2rem 0.55rem",
+                            padding: "0.25rem 0.6rem",
                             borderRadius: "4px",
                           }}
                         >
@@ -931,9 +1200,8 @@ export default function CursoTratadoresSalesPage() {
       </section>
 
       {/* ══════════════════════════════════════════════════════════════════
-          SEÇÃO 5 — PARA QUEM É O CURSO
-          - Título: Uma capacitação para quem deseja aprofundar seus conhecimentos sobre equinos
-          - Público potencial em lista / cards elegantes
+          SEÇÃO 6 — PARA QUEM É O CURSO (Item 5 — Linguagem voltada ao aluno)
+          - Priorizar: "você vai aprender", "desenvolva suas habilidades"
       ══════════════════════════════════════════════════════════════════ */}
       <section
         id="publico-alvo"
@@ -943,7 +1211,7 @@ export default function CursoTratadoresSalesPage() {
           backgroundColor: "#f2ece0",
         }}
       >
-        <div className="container" style={{ maxWidth: "1000px", margin: "0 auto", padding: "0 1.5rem" }}>
+        <div className="container" style={{ maxWidth: "1080px", margin: "0 auto", padding: "0 1.5rem" }}>
           <SectionReveal type="up">
             <div style={{ textAlign: "center", marginBottom: "clamp(2.5rem, 5vw, 4rem)" }}>
               <span
@@ -958,7 +1226,7 @@ export default function CursoTratadoresSalesPage() {
                   marginBottom: "0.65rem",
                 }}
               >
-                PÚBLICO POTENCIAL
+                DESENVOLVA SUAS HABILIDADES
               </span>
 
               <h2
@@ -968,20 +1236,33 @@ export default function CursoTratadoresSalesPage() {
                   fontWeight: 600,
                   color: "#1c1813",
                   lineHeight: 1.2,
-                  margin: 0,
+                  margin: "0 0 0.75rem 0",
                   letterSpacing: "-0.01em",
                 }}
               >
-                Uma capacitação para quem deseja aprofundar seus conhecimentos sobre equinos
+                Esta formação foi desenvolvida para você
               </h2>
+
+              <p
+                className="font-sans"
+                style={{
+                  fontSize: "clamp(0.95rem, 1.2vw, 1.1rem)",
+                  color: "#5f5547",
+                  maxWidth: "620px",
+                  margin: "0 auto",
+                  lineHeight: 1.6,
+                }}
+              >
+                Uma oportunidade prática para você aprofundar conhecimentos e aplicar esse aprendizado diretamente na rotina com os equinos.
+              </p>
             </div>
           </SectionReveal>
 
           <div
             style={{
               display: "grid",
-              gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 420px), 1fr))",
-              gap: "1.25rem",
+              gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 460px), 1fr))",
+              gap: "1.35rem",
             }}
           >
             {cursoTratadoresData.targetAudience.map((item, idx) => (
@@ -990,18 +1271,18 @@ export default function CursoTratadoresSalesPage() {
                   style={{
                     backgroundColor: "#ffffff",
                     border: "1px solid rgba(140, 110, 61, 0.2)",
-                    borderRadius: "10px",
-                    padding: "1.5rem",
+                    borderRadius: "12px",
+                    padding: "1.6rem",
                     display: "flex",
                     alignItems: "flex-start",
-                    gap: "1rem",
+                    gap: "1.15rem",
                     boxShadow: "0 4px 16px rgba(28, 24, 19, 0.03)",
                   }}
                 >
                   <div
                     style={{
-                      width: "32px",
-                      height: "32px",
+                      width: "36px",
+                      height: "36px",
                       borderRadius: "50%",
                       backgroundColor: "rgba(140, 110, 61, 0.12)",
                       display: "flex",
@@ -1012,17 +1293,15 @@ export default function CursoTratadoresSalesPage() {
                       marginTop: "2px",
                     }}
                   >
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                      <polyline points="20 6 9 17 4 12" />
-                    </svg>
+                    <CheckCircle2 style={{ width: "18px", height: "18px" }} />
                   </div>
 
                   <p
                     className="font-sans"
                     style={{
-                      fontSize: "0.95rem",
+                      fontSize: "0.98rem",
                       color: "#3d352b",
-                      lineHeight: 1.6,
+                      lineHeight: 1.65,
                       margin: 0,
                       fontWeight: 500,
                     }}
@@ -1037,12 +1316,9 @@ export default function CursoTratadoresSalesPage() {
       </section>
 
       {/* ══════════════════════════════════════════════════════════════════
-          SEÇÃO 6 — INVESTIMENTO E INSCRIÇÃO
+          SEÇÃO 7 — INVESTIMENTO E INSCRIÇÃO
           - Título: Invista na sua capacitação
-          - Nome: Curso de Capacitação de Tratadores de Equinos
-          - Modalidade: Presencial
           - Valor: R$ 1.200,00
-          - Texto persuasivo
           - Botão: QUERO ME INSCREVER
       ══════════════════════════════════════════════════════════════════ */}
       <section
@@ -1091,7 +1367,7 @@ export default function CursoTratadoresSalesPage() {
                   marginBottom: "0.75rem",
                 }}
               >
-                PROCESSO DE INSCRIÇÃO
+                INSCRIÇÃO OFICIAL
               </span>
 
               <h2
@@ -1153,6 +1429,17 @@ export default function CursoTratadoresSalesPage() {
                 >
                   {cursoTratadoresData.price}
                 </span>
+                <span
+                  style={{
+                    display: "block",
+                    fontFamily: "'Inter', sans-serif",
+                    fontSize: "0.85rem",
+                    color: "#c4a96e",
+                    marginTop: "0.5rem",
+                  }}
+                >
+                  {cursoTratadoresData.priceLabel}
+                </span>
               </div>
 
               <p
@@ -1166,7 +1453,7 @@ export default function CursoTratadoresSalesPage() {
                   fontWeight: 300,
                 }}
               >
-                “Dê o próximo passo para aprofundar seus conhecimentos sobre as práticas de manejo e os cuidados essenciais com equinos.”
+                Dê o próximo passo para compreender os fundamentos do manejo e aplicar esse conhecimento na rotina prática com os animais.
               </p>
 
               {/* Botão: QUERO ME INSCREVER */}
@@ -1194,7 +1481,7 @@ export default function CursoTratadoresSalesPage() {
                   className="btn-garantir-vaga"
                 >
                   <span>QUERO ME INSCREVER</span>
-                  <span>→</span>
+                  <ArrowRight style={{ width: "16px", height: "16px" }} />
                 </button>
 
                 {/* Canal de Atendimento / Matrícula */}
@@ -1252,8 +1539,7 @@ export default function CursoTratadoresSalesPage() {
       </section>
 
       {/* ══════════════════════════════════════════════════════════════════
-          SEÇÃO 7 — DÚVIDAS FREQUENTES
-          - Acordeão interativo com as 5 perguntas e respostas solicitadas
+          SEÇÃO 8 — DÚVIDAS FREQUENTES
       ══════════════════════════════════════════════════════════════════ */}
       <section
         id="duvidas"
@@ -1356,22 +1642,14 @@ export default function CursoTratadoresSalesPage() {
                           transition: "all 0.25s ease",
                         }}
                       >
-                        <svg
-                          width="14"
-                          height="14"
-                          viewBox="0 0 24 24"
-                          fill="none"
-                          stroke="currentColor"
-                          strokeWidth="2.5"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
+                        <ChevronDown
                           style={{
+                            width: "16px",
+                            height: "16px",
                             transform: isOpen ? "rotate(180deg)" : "rotate(0deg)",
                             transition: "transform 0.25s ease",
                           }}
-                        >
-                          <polyline points="6 9 12 15 18 9" />
-                        </svg>
+                        />
                       </div>
                     </button>
 
@@ -1407,11 +1685,8 @@ export default function CursoTratadoresSalesPage() {
       </section>
 
       {/* ══════════════════════════════════════════════════════════════════
-          SEÇÃO 8 — CHAMADA FINAL
-          - Título: O cuidado com os cavalos começa com conhecimento.
-          - Texto persuasivo
-          - Preço: Curso de Capacitação de Tratadores de Equinos — R$ 1.200,00
-          - Botão: GARANTIR MINHA VAGA
+          SEÇÃO 9 — CHAMADA FINAL
+          - O cuidado com os cavalos começa com conhecimento.
       ══════════════════════════════════════════════════════════════════ */}
       <section
         style={{
@@ -1464,7 +1739,7 @@ export default function CursoTratadoresSalesPage() {
                   fontWeight: 400,
                 }}
               >
-                “Conheça as práticas essenciais de manejo e aprofunde sua compreensão sobre a rotina de um criatório de equinos.”
+                Aprenda a cuidar de equinos com mais conhecimento, responsabilidade e segurança na rotina do haras.
               </p>
 
               {/* Box de Resumo e Preço */}
@@ -1490,7 +1765,7 @@ export default function CursoTratadoresSalesPage() {
                     color: "#1c1813",
                   }}
                 >
-                  Curso de Capacitação de Tratadores de Equinos
+                  {cursoTratadoresData.title}
                 </span>
                 <span
                   style={{
@@ -1501,10 +1776,10 @@ export default function CursoTratadoresSalesPage() {
                     letterSpacing: "-0.02em",
                   }}
                 >
-                  R$ 1.200,00
+                  {cursoTratadoresData.price}
                 </span>
                 <span style={{ fontSize: "0.72rem", color: "#7a6e5e", textTransform: "uppercase", letterSpacing: "0.1em" }}>
-                  Modalidade Presencial
+                  Modalidade Presencial • Haras Nossa Senhora Aparecida
                 </span>
               </div>
 
@@ -1532,7 +1807,7 @@ export default function CursoTratadoresSalesPage() {
                   className="btn-garantir-vaga-dark"
                 >
                   <span>GARANTIR MINHA VAGA</span>
-                  <span>→</span>
+                  <ArrowRight style={{ width: "16px", height: "16px" }} />
                 </button>
               </div>
             </div>
@@ -1540,7 +1815,7 @@ export default function CursoTratadoresSalesPage() {
         </div>
       </section>
 
-      {/* Estilos e Animações Específicas */}
+      {/* Estilos e Efeitos Hover Editoriais */}
       <style dangerouslySetInnerHTML={{ __html: `
         .btn-garantir-vaga:hover {
           background-color: #d8be86 !important;
@@ -1553,7 +1828,7 @@ export default function CursoTratadoresSalesPage() {
           box-shadow: 0 10px 28px rgba(140, 110, 61, 0.35) !important;
         }
         .program-topic-card:hover {
-          border-color: rgba(140, 110, 61, 0.5) !important;
+          border-color: rgba(140, 110, 61, 0.55) !important;
           transform: translateY(-4px);
           box-shadow: 0 12px 28px rgba(28, 24, 19, 0.08) !important;
         }
