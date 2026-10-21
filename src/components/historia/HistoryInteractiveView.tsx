@@ -32,11 +32,11 @@ export const HISTORY_PHOTOS: HistoryPhotoItem[] = [
   {
     id: "ana-rita-touro",
     src: "/historiadoharas/ana-rita-touro-guzera-pasto.jpg",
-    alt: "Dona Ana Rita Tavares de Melo ao lado de imponente reprodutor Guzerá no pasto",
-    title: "Dona Ana Rita e a Seleção Zebuína Guzerá",
+    alt: "Ana Rita Tavares de Melo ao lado de imponente reprodutor Guzerá no pasto",
+    title: "Ana Rita e a Seleção Zebuína Guzerá",
     subtitle: "Pioneirismo & Genética de Ponta",
     caption:
-      "Dona Ana Rita Tavares de Melo no pasto, conduzindo um reprodutor de linhagem zebuína Guzerá de conformação zootécnica exemplar. A firmeza no trato com animais de grande porte e a visão de melhoramento genético marcaram as bases das negociações internacionais e da solidez da marca JAR.",
+      "Ana Rita Tavares de Melo no pasto, conduzindo um reprodutor de linhagem zebuína Guzerá de conformação zootécnica exemplar. A firmeza no trato com animais de grande porte e a visão de melhoramento genético marcaram as bases das negociações internacionais e da solidez da marca JAR.",
     tag: "Genética & Campo",
     aspectRatio: "3/4",
     objectPosition: "center 20%",
@@ -44,11 +44,11 @@ export const HISTORY_PHOTOS: HistoryPhotoItem[] = [
   {
     id: "ana-rita-cavalo",
     src: "/historiadoharas/ana-rita-cavalo-tropa-elite.jpg",
-    alt: "Dona Ana Rita abraçando cavalo do Haras com afeto e dedicação",
-    title: "Dona Ana Rita e o Amor aos Cavalos",
+    alt: "Ana Rita abraçando cavalo do Haras com afeto e dedicação",
+    title: "Ana Rita e o Amor aos Cavalos",
     subtitle: "O Coração da Tropa de Elite",
     caption:
-      "O afeto, a sensibilidade e o olhar apurado para os cavalos: Dona Ana Rita em momento genuíno de carinho com um dos animais de sela do Haras. Essa ligação profunda estabeleceu o padrão de bem-estar animal e docilidade que caracteriza a criação do Haras Nossa Senhora Aparecida.",
+      "O afeto, a sensibilidade e o olhar apurado para os cavalos: Ana Rita em momento genuíno de carinho com um dos animais de sela do Haras. Essa ligação profunda estabeleceu o padrão de bem-estar animal e docilidade que caracteriza a criação do Haras Nossa Senhora Aparecida.",
     tag: "Tropa de Cavalos",
     aspectRatio: "4/3",
     objectPosition: "center center",
@@ -56,7 +56,7 @@ export const HISTORY_PHOTOS: HistoryPhotoItem[] = [
   {
     id: "ana-rita-filha-chapeu",
     src: "/historiadoharas/ana-rita-filha-chapeu-vaqueiro.jpg",
-    alt: "Dona Ana Rita e filha vestindo chapéus em evento e pistas agropecuárias",
+    alt: "Ana Rita e filha vestindo chapéus em evento e pistas agropecuárias",
     title: "Tradição, Pistas e Grandes Exposições",
     subtitle: "Presença & Identidade Sertaneja",
     caption:
@@ -68,7 +68,7 @@ export const HISTORY_PHOTOS: HistoryPhotoItem[] = [
   {
     id: "ana-rita-filha-uniao",
     src: "/historiadoharas/ana-rita-filha-uniao-familiar.jpg",
-    alt: "Dona Ana Rita e filha abraçadas — união familiar e valores que fundaram o Haras",
+    alt: "Ana Rita e filha abraçadas — união familiar e valores que fundaram o Haras",
     title: "A Força do Legado Familiar",
     subtitle: "Valores Transmitidos de Geração em Geração",
     caption:
@@ -80,7 +80,7 @@ export const HISTORY_PHOTOS: HistoryPhotoItem[] = [
   {
     id: "ana-rita-familia-jardim",
     src: "/historiadoharas/ana-rita-familia-jardim.jpg",
-    alt: "Dona Ana Rita e a filha em momento de cumplicidade e descanso na propriedade",
+    alt: "Ana Rita e a filha em momento de cumplicidade e descanso na propriedade",
     title: "Memória Afetiva e Caminhada",
     subtitle: "A Base Humana da Marca JAR",
     caption:
@@ -91,456 +91,38 @@ export const HISTORY_PHOTOS: HistoryPhotoItem[] = [
   },
 ];
 
-interface HistoryChapterProps {
+export interface TimelineStage {
   number: string;
-  tag: string;
+  stageBadge: string;
+  periodOrStatus: string;
   title: string;
+  subtitle: string;
   paragraphs: string[];
-  photo: HistoryPhotoItem;
+  photo?: HistoryPhotoItem;
   secondaryPhoto?: HistoryPhotoItem;
-  reverse?: boolean;
-  onOpenPhoto: (photo: HistoryPhotoItem) => void;
-}
-
-export function HistoryChapter({
-  number,
-  tag,
-  title,
-  paragraphs,
-  photo,
-  secondaryPhoto,
-  reverse = false,
-  onOpenPhoto,
-}: HistoryChapterProps) {
-  return (
-    <section
-      style={{
-        padding: "clamp(3.5rem, 6.5vw, 6rem) 0",
-        borderBottom: "1px solid rgba(196, 169, 110, 0.16)",
-      }}
-    >
-      <div
-        style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))",
-          gap: "clamp(2rem, 5vw, 4.5rem)",
-          alignItems: "center",
-        }}
-      >
-        {/* Coluna de Texto */}
-        <div style={{ order: reverse ? 2 : 1 }}>
-          <div
-            style={{
-              display: "inline-flex",
-              alignItems: "center",
-              gap: "0.65rem",
-              marginBottom: "0.85rem",
-            }}
-          >
-            <span
-              style={{
-                fontFamily: "'Inter', sans-serif",
-                fontSize: "0.78rem",
-                fontWeight: 800,
-                color: "var(--gold)",
-                letterSpacing: "0.16em",
-              }}
-            >
-              {number}
-            </span>
-            <span
-              style={{
-                fontFamily: "'Inter', sans-serif",
-                fontSize: "0.68rem",
-                fontWeight: 700,
-                letterSpacing: "0.24em",
-                textTransform: "uppercase",
-                color: "var(--gold-light)",
-              }}
-            >
-              {tag}
-            </span>
-          </div>
-
-          <h2
-            style={{
-              fontFamily: "'Inter', sans-serif",
-              fontSize: "clamp(1.75rem, 3.2vw, 2.5rem)",
-              fontWeight: 800,
-              color: "var(--off-white)",
-              letterSpacing: "-0.02em",
-              lineHeight: 1.18,
-              marginBottom: "1.25rem",
-              textTransform: "uppercase",
-            }}
-          >
-            {title}
-          </h2>
-
-          <div
-            style={{
-              width: "48px",
-              height: "2px",
-              backgroundColor: "var(--gold)",
-              marginBottom: "1.75rem",
-            }}
-          />
-
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              gap: "1.1rem",
-            }}
-          >
-            {paragraphs.map((text, idx) => (
-              <p
-                key={idx}
-                style={{
-                  fontFamily: "'Inter', sans-serif",
-                  fontSize: "clamp(0.92rem, 1.15vw, 1.02rem)",
-                  color: "rgba(244, 239, 228, 0.84)",
-                  lineHeight: 1.85,
-                  margin: 0,
-                  fontWeight: 350,
-                }}
-              >
-                {text}
-              </p>
-            ))}
-          </div>
-
-          {/* Destaque / Citação ou Selo de Autenticidade */}
-          <div
-            style={{
-              marginTop: "1.75rem",
-              padding: "0.9rem 1.2rem",
-              backgroundColor: "rgba(196, 169, 110, 0.05)",
-              borderLeft: "3px solid var(--gold)",
-              borderRadius: "0 4px 4px 0",
-              display: "flex",
-              alignItems: "center",
-              gap: "0.75rem",
-            }}
-          >
-            <span
-              style={{
-                fontSize: "1.1rem",
-                color: "var(--gold)",
-              }}
-              aria-hidden="true"
-            >
-              ✦
-            </span>
-            <span
-              style={{
-                fontFamily: "'Inter', sans-serif",
-                fontSize: "0.75rem",
-                color: "var(--gold-light)",
-                letterSpacing: "0.08em",
-                fontWeight: 600,
-                textTransform: "uppercase",
-              }}
-            >
-              Registro verificado do Acervo Histórico JAR
-            </span>
-          </div>
-        </div>
-
-        {/* Coluna da Foto Principal */}
-        <div style={{ order: reverse ? 1 : 2 }}>
-          <div
-            onClick={() => onOpenPhoto(photo)}
-            role="button"
-            tabIndex={0}
-            onKeyDown={(e) => {
-              if (e.key === "Enter" || e.key === " ") {
-                e.preventDefault();
-                onOpenPhoto(photo);
-              }
-            }}
-            style={{
-              position: "relative",
-              cursor: "pointer",
-              borderRadius: "6px",
-              padding: "10px",
-              backgroundColor: "rgba(22, 20, 17, 0.85)",
-              border: "1px solid rgba(196, 169, 110, 0.3)",
-              boxShadow: "0 18px 45px rgba(0, 0, 0, 0.65)",
-              transition: "transform 0.28s ease, border-color 0.28s ease, box-shadow 0.28s ease",
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.transform = "translateY(-4px)";
-              e.currentTarget.style.borderColor = "var(--gold)";
-              e.currentTarget.style.boxShadow = "0 24px 55px rgba(196, 169, 110, 0.2)";
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.transform = "translateY(0)";
-              e.currentTarget.style.borderColor = "rgba(196, 169, 110, 0.3)";
-              e.currentTarget.style.boxShadow = "0 18px 45px rgba(0, 0, 0, 0.65)";
-            }}
-          >
-            {/* Moldura da imagem */}
-            <div
-              style={{
-                position: "relative",
-                width: "100%",
-                height: "auto",
-                aspectRatio: photo.aspectRatio || "4/3",
-                overflow: "hidden",
-                borderRadius: "4px",
-                backgroundColor: "#0d0c0a",
-              }}
-            >
-              <Image
-                src={photo.src}
-                alt={photo.alt}
-                fill
-                sizes="(max-width: 768px) 100vw, 550px"
-                style={{
-                  objectFit: "cover",
-                  objectPosition: photo.objectPosition || "center center",
-                  filter: "contrast(1.04) brightness(0.98)",
-                }}
-              />
-
-              {/* Tag sobre a foto */}
-              <div
-                style={{
-                  position: "absolute",
-                  top: "0.85rem",
-                  left: "0.85rem",
-                  backgroundColor: "rgba(13, 12, 10, 0.82)",
-                  backdropFilter: "blur(6px)",
-                  border: "1px solid rgba(196, 169, 110, 0.4)",
-                  padding: "0.3rem 0.65rem",
-                  borderRadius: "3px",
-                  display: "inline-flex",
-                  alignItems: "center",
-                  gap: "0.4rem",
-                }}
-              >
-                <span
-                  style={{
-                    width: "6px",
-                    height: "6px",
-                    borderRadius: "50%",
-                    backgroundColor: "var(--gold)",
-                  }}
-                />
-                <span
-                  style={{
-                    fontFamily: "'Inter', sans-serif",
-                    fontSize: "0.62rem",
-                    fontWeight: 700,
-                    letterSpacing: "0.14em",
-                    color: "var(--gold-light)",
-                    textTransform: "uppercase",
-                  }}
-                >
-                  {photo.tag}
-                </span>
-              </div>
-
-              {/* Botão de Ampliar Hover */}
-              <div
-                style={{
-                  position: "absolute",
-                  bottom: "0.85rem",
-                  right: "0.85rem",
-                  backgroundColor: "rgba(13, 12, 10, 0.85)",
-                  backdropFilter: "blur(6px)",
-                  border: "1px solid rgba(196, 169, 110, 0.4)",
-                  padding: "0.4rem 0.75rem",
-                  borderRadius: "3px",
-                  display: "inline-flex",
-                  alignItems: "center",
-                  gap: "0.45rem",
-                  color: "var(--off-white)",
-                  fontSize: "0.68rem",
-                  fontFamily: "'Inter', sans-serif",
-                  fontWeight: 600,
-                  letterSpacing: "0.08em",
-                }}
-              >
-                <svg
-                  width="13"
-                  height="13"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="var(--gold-light)"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  <circle cx="11" cy="11" r="8" />
-                  <line x1="21" y1="21" x2="16.65" y2="16.65" />
-                  <line x1="11" y1="8" x2="11" y2="14" />
-                  <line x1="8" y1="11" x2="14" y2="11" />
-                </svg>
-                <span>Ampliar Foto</span>
-              </div>
-            </div>
-
-            {/* Legenda sob a foto */}
-            <div style={{ padding: "1rem 0.5rem 0.25rem" }}>
-              <div
-                style={{
-                  display: "flex",
-                  justifyContent: "space-between",
-                  alignItems: "baseline",
-                  gap: "0.5rem",
-                  marginBottom: "0.35rem",
-                }}
-              >
-                <h4
-                  style={{
-                    fontFamily: "'Inter', sans-serif",
-                    fontSize: "0.88rem",
-                    fontWeight: 700,
-                    color: "var(--off-white)",
-                    margin: 0,
-                  }}
-                >
-                  {photo.title}
-                </h4>
-                <span
-                  style={{
-                    fontSize: "0.62rem",
-                    color: "var(--gold-light)",
-                    letterSpacing: "0.12em",
-                    textTransform: "uppercase",
-                    fontWeight: 700,
-                  }}
-                >
-                  Acervo JAR
-                </span>
-              </div>
-              <p
-                style={{
-                  fontFamily: "'Inter', sans-serif",
-                  fontSize: "0.78rem",
-                  color: "rgba(244, 239, 228, 0.72)",
-                  lineHeight: 1.55,
-                  margin: 0,
-                }}
-              >
-                {photo.caption}
-              </p>
-            </div>
-          </div>
-
-          {/* Foto Secundária (se houver no capítulo) */}
-          {secondaryPhoto && (
-            <div
-              onClick={() => onOpenPhoto(secondaryPhoto)}
-              role="button"
-              tabIndex={0}
-              onKeyDown={(e) => {
-                if (e.key === "Enter" || e.key === " ") {
-                  e.preventDefault();
-                  onOpenPhoto(secondaryPhoto);
-                }
-              }}
-              style={{
-                marginTop: "1.25rem",
-                cursor: "pointer",
-                padding: "8px 12px",
-                backgroundColor: "rgba(22, 20, 17, 0.6)",
-                border: "1px solid rgba(196, 169, 110, 0.2)",
-                borderRadius: "4px",
-                display: "flex",
-                alignItems: "center",
-                gap: "1rem",
-                transition: "all 0.25s ease",
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.borderColor = "var(--gold)";
-                e.currentTarget.style.backgroundColor = "rgba(196, 169, 110, 0.1)";
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.borderColor = "rgba(196, 169, 110, 0.2)";
-                e.currentTarget.style.backgroundColor = "rgba(22, 20, 17, 0.6)";
-              }}
-            >
-              <div
-                style={{
-                  position: "relative",
-                  width: "56px",
-                  height: "56px",
-                  flexShrink: 0,
-                  borderRadius: "4px",
-                  overflow: "hidden",
-                }}
-              >
-                <Image
-                  src={secondaryPhoto.src}
-                  alt={secondaryPhoto.alt}
-                  fill
-                  sizes="56px"
-                  style={{ objectFit: "cover" }}
-                />
-              </div>
-              <div style={{ flex: 1, minWidth: 0 }}>
-                <div
-                  style={{
-                    fontFamily: "'Inter', sans-serif",
-                    fontSize: "0.75rem",
-                    fontWeight: 700,
-                    color: "var(--off-white)",
-                    marginBottom: "0.15rem",
-                  }}
-                >
-                  {secondaryPhoto.title}
-                </div>
-                <div
-                  style={{
-                    fontFamily: "'Inter', sans-serif",
-                    fontSize: "0.68rem",
-                    color: "rgba(244, 239, 228, 0.6)",
-                    whiteSpace: "nowrap",
-                    overflow: "hidden",
-                    textOverflow: "ellipsis",
-                  }}
-                >
-                  {secondaryPhoto.subtitle} — Clique para ver
-                </div>
-              </div>
-              <span
-                style={{
-                  fontSize: "0.75rem",
-                  color: "var(--gold-light)",
-                  fontWeight: 700,
-                }}
-              >
-                + Ver foto
-              </span>
-            </div>
-          )}
-        </div>
-      </div>
-    </section>
-  );
+  isMemoryToConfirm?: boolean;
+  pressQuote?: string;
+  isCurrentStage?: boolean;
 }
 
 export default function HistoryInteractiveView() {
   const [activePhoto, setActivePhoto] = useState<HistoryPhotoItem | null>(null);
   const [activeFilter, setActiveFilter] = useState<string>("todos");
 
-  // Fechar com ESC e navegação com setas
+  // Fechar modal ao pressionar ESC e navegar com setas
   const handleKeyDown = useCallback(
     (e: KeyboardEvent) => {
       if (!activePhoto) return;
       if (e.key === "Escape") {
         setActivePhoto(null);
-      } else if (e.key === "ArrowRight") {
-        const idx = HISTORY_PHOTOS.findIndex((p) => p.id === activePhoto.id);
-        const nextIdx = (idx + 1) % HISTORY_PHOTOS.length;
-        setActivePhoto(HISTORY_PHOTOS[nextIdx]);
       } else if (e.key === "ArrowLeft") {
         const idx = HISTORY_PHOTOS.findIndex((p) => p.id === activePhoto.id);
         const prevIdx = (idx - 1 + HISTORY_PHOTOS.length) % HISTORY_PHOTOS.length;
         setActivePhoto(HISTORY_PHOTOS[prevIdx]);
+      } else if (e.key === "ArrowRight") {
+        const idx = HISTORY_PHOTOS.findIndex((p) => p.id === activePhoto.id);
+        const nextIdx = (idx + 1) % HISTORY_PHOTOS.length;
+        setActivePhoto(HISTORY_PHOTOS[nextIdx]);
       }
     },
     [activePhoto]
@@ -564,30 +146,128 @@ export default function HistoryInteractiveView() {
             : p.id === "ana-rita-filha-uniao" || p.id === "ana-rita-familia-jardim"
         );
 
+  // As 7 Etapas Cronológicas da Linha do Tempo (Alteração 5)
+  const timelineStages: TimelineStage[] = [
+    {
+      number: "01",
+      stageBadge: "RAÍZES & FAMÍLIA",
+      periodOrStatus: "Tradição Familiar & Vocação Rural",
+      title: "As Origens da Família e a Relação com a Terra",
+      subtitle: "A convivência com o semiárido e o despertar da lida com animais",
+      paragraphs: [
+        "A história do Haras Nossa Senhora Aparecida tem início na relação profunda de José e Ana Rita Tavares de Melo com a terra e com a vida no campo.",
+        "No semiárido paraibano, a dedicação diária à pecuária e a observação atenta do comportamento dos animais forjaram uma filosofia baseada na paciência, no respeito aos ciclos da natureza e na perseverança diante dos desafios do clima e da caatinga.",
+        "Essas primeiras vivências constituíram a base moral e humana que sustentaria, anos mais tarde, a construção de um dos criatórios mais respeitados da região.",
+      ],
+      photo: HISTORY_PHOTOS[5], // ana-rita-familia-jardim
+    },
+    {
+      number: "02",
+      stageBadge: "MEMÓRIA FAMILIAR",
+      periodOrStatus: "Tradição Oral • Registro a Ser Confirmado",
+      title: "A História do Avô: O Cavalo que Chegou no Ventre da Égua",
+      subtitle: "Um episódio singular transmitido com afeto através das gerações",
+      isMemoryToConfirm: true,
+      paragraphs: [
+        "Entre as passagens mais singulares e queridas guardadas pela memória da família, destaca-se o episódio da aquisição do cavalo negociado pelo avô, que teria sido trocado por bois e chegado à fazenda ainda no ventre de uma égua.",
+        "Transmitida com carinho entre as gerações, essa história simboliza o espírito destemido e a paixão pelos equinos que já pulsavam nas origens da família Tavares de Melo.",
+        "Preservamos essa narrativa como uma memória familiar viva a ser confirmada, mantendo os registros abertos para a inclusão futura de dados documentais, como a identificação do animal, a data exata e a procedência da égua, à medida que forem catalogados.",
+      ],
+    },
+    {
+      number: "03",
+      stageBadge: "FORMAÇÃO DO CRIATÓRIO",
+      periodOrStatus: "Estruturação & Manejo Racional",
+      title: "A Formação da Criação e a Construção do Haras",
+      subtitle: "Decisões pioneiras, respeito às matrizes e manejo cuidadoso",
+      paragraphs: [
+        "À medida que a atividade criatória se expandia, as decisões e experiências diárias da família começaram a transformar a propriedade em um criatório estruturado.",
+        "O olhar cuidadoso de Ana Rita na lida diária — com atenção redobrada à saúde das matrizes, à nutrição e à mansidão dos potros — somou-se à visão prática de José Tavares de Melo na gestão das terras e das pastagens.",
+        "Essa união estabeleceu um padrão diferenciado: animais criados com liberdade, aprumos fortes e convívio harmonioso com o ser humano, alicerçando a identidade do Haras Nossa Senhora Aparecida.",
+      ],
+      photo: HISTORY_PHOTOS[4], // ana-rita-filha-uniao
+    },
+    {
+      number: "04",
+      stageBadge: "GENÉTICA & SELEÇÃO",
+      periodOrStatus: "Rigor Zootécnico & Exportação aos EUA",
+      title: "A Evolução da Genética JAR: O Ferro que Assina a Excelência",
+      subtitle: "O entrelaçamento de José e Ana Rita e a projeção internacional",
+      paragraphs: [
+        "A marca JAR nasce da união dos nomes dos fundadores: José e Ana Rita Tavares de Melo. Mais do que um ferro gravado a fogo, o símbolo transformou-se no selo de credibilidade zootécnica reconhecido por criadores e compradores em todo o território nacional.",
+        "A seleção genética atingiu marcos reais de destaque histórico: reprodutores de linhagem zebuína Guzerá com conformação exemplar eram conduzidos com serenidade e docilidade nos pastos da propriedade, chamando a atenção de técnicos e pecuaristas.",
+        "A consistência desse trabalho culminou na exportação histórica de reprodutores de elite para os Estados Unidos, levando a genética selecionada na Paraíba para o cenário agropecuário global.",
+      ],
+      photo: HISTORY_PHOTOS[1], // ana-rita-touro
+    },
+    {
+      number: "05",
+      stageBadge: "CONSOLIDAÇÃO & PISTAS",
+      periodOrStatus: "Consagração Nacional • Anos 1970 – 1980",
+      title: "A Consolidação do Haras: Reconhecimento nas Grandes Pistas",
+      subtitle: "José e Ana Rita Tavares de Melo aclamados pela imprensa e pelo setor",
+      pressQuote:
+        "Da Paraíba — José e Ana Rita Tavares de Melo, com a filha, vieram da Paraíba divulgar sua criação de Guzerá. Obtiveram diversos prêmios, recebendo cumprimentos de Hélio Prates da Silveira, em nome do Banco Sulbrasileiro.",
+      paragraphs: [
+        "A consolidação do Haras Nossa Senhora Aparecida ganhou as grandes pistas e exposições agropecuárias do Brasil a partir dos anos 1970.",
+        "Recortes históricos originais da imprensa documentam momentos decisivos da trajetória da família, celebrando premiações oficiais obtidas em diversas capitais brasileiras.",
+        "Esse reconhecimento público atesta o pioneirismo do casal e firmou o Haras como referência de excelência zootécnica e seriedade no meio rural brasileiro.",
+      ],
+      photo: HISTORY_PHOTOS[0], // jornal-paraiba
+    },
+    {
+      number: "06",
+      stageBadge: "TROPAS DE ELITE",
+      periodOrStatus: "Encontros Anuais • Marcha, Nobreza & Bem-Estar",
+      title: "As Tropas de Elite: A Celebração dos Melhores Animais de Sela",
+      subtitle: "Eventos anuais dedicados à marcha cômoda, aprumos e temperamento dócil",
+      paragraphs: [
+        "A paixão pelos equinos consolidou a tradição das Tropas de Elite, encontros anuais aguardados que celebram os melhores animais de sela do Haras Nossa Senhora Aparecida.",
+        "Cada exemplar apresentado na tropa reunia as virtudes cultivadas na propriedade: andamento macio e marchador, nobreza zootécnica e, acima de tudo, equilíbrio e docilidade construídos através do manejo humanizado.",
+        "Fotografias do acervo familiar documentam o afeto de Ana Rita no abraço sincero aos cavalos da tropa e a presença forte da tradição sertaneja nas pistas. A estrutura histórica permanece catalogada para registro das edições anuais confirmadas.",
+      ],
+      photo: HISTORY_PHOTOS[2], // ana-rita-cavalo
+      secondaryPhoto: HISTORY_PHOTOS[3], // ana-rita-filha-chapeu
+    },
+    {
+      number: "07",
+      stageBadge: "PRESENTE & FUTURO",
+      periodOrStatus: "Legado Vivo • Continuidade, Capacitação & Equoterapia",
+      title: "O Haras nos Dias Atuais: Continuidade e Novos Horizontes",
+      subtitle: "A preservação da genética JAR e a expansão para educação e impacto social",
+      isCurrentStage: true,
+      paragraphs: [
+        "O compromisso iniciado por José e Ana Rita Tavares de Melo segue vivo e ativo nas mãos das novas gerações da família.",
+        "Hoje, o Haras Nossa Senhora Aparecida mantém a criação equina com a mesma retidão zootécnica, protegendo a pureza da genética JAR e expandindo sua missão em três pilares integrados:",
+        "A formação profissional técnica com o Curso de Capacitação de Tratadores de Equinos, o impacto humano e terapêutico com o Projeto Bem Viver de Equoterapia, e o acesso qualificado a animais de elite através do Shopping JAR.",
+      ],
+    },
+  ];
+
   return (
     <>
-      {/* ── BARRA DE DESTAQUE / PONTOS CHAVE DA NARRATIVA ── */}
+      {/* ── BARRA DE DESTAQUE / PILARES DA CAMINHADA HISTÓRICA ── */}
       <div
         style={{
-          margin: "2.5rem 0 1rem",
+          margin: "2.5rem 0 3.5rem",
           display: "grid",
-          gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))",
-          gap: "1rem",
+          gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
+          gap: "1.25rem",
         }}
       >
         {[
-          { label: "Pioneirismo Feminino", desc: "Dona Ana Rita à frente da lida" },
-          { label: "Marca JAR", desc: "José & Ana Rita: selo de confiança" },
-          { label: "Projeção Global", desc: "Exportação zebuína aos EUA" },
-          { label: "Tropa de Sela", desc: "Marcha, nobreza e temperamento" },
+          { label: "Origens & Família", desc: "Dedicação à terra e vocação no campo" },
+          { label: "Marca JAR", desc: "José & Ana Rita: o ferro da excelência" },
+          { label: "Genética de Ponta", desc: "Seleção zebuína e exportação aos EUA" },
+          { label: "Tropas de Elite", desc: "Marcha, nobreza e temperamento superior" },
         ].map((highlight, hi) => (
           <div
             key={hi}
             style={{
-              backgroundColor: "rgba(22, 20, 17, 0.7)",
-              border: "1px solid rgba(196, 169, 110, 0.2)",
-              borderRadius: "4px",
-              padding: "1rem 1.25rem",
+              backgroundColor: "rgba(22, 20, 17, 0.75)",
+              border: "1px solid rgba(196, 169, 110, 0.22)",
+              borderRadius: "6px",
+              padding: "1.1rem 1.25rem",
               borderLeft: "3px solid var(--gold)",
             }}
           >
@@ -599,7 +279,7 @@ export default function HistoryInteractiveView() {
                 color: "var(--gold-light)",
                 textTransform: "uppercase",
                 letterSpacing: "0.08em",
-                marginBottom: "0.2rem",
+                marginBottom: "0.25rem",
               }}
             >
               {highlight.label}
@@ -608,7 +288,8 @@ export default function HistoryInteractiveView() {
               style={{
                 fontFamily: "'Inter', sans-serif",
                 fontSize: "0.75rem",
-                color: "rgba(244, 239, 228, 0.7)",
+                color: "rgba(244, 239, 228, 0.75)",
+                lineHeight: 1.45,
               }}
             >
               {highlight.desc}
@@ -617,76 +298,589 @@ export default function HistoryInteractiveView() {
         ))}
       </div>
 
-      {/* ── SEÇÃO 1: A HISTÓRIA DE ANA RITA ── */}
-      <HistoryChapter
-        number="01"
-        tag="Raízes & Matriarca"
-        title="A História de Dona Ana Rita Tavares de Melo"
-        paragraphs={[
-          "A história do Haras e da marca JAR tem em Dona Ana Rita Tavares de Melo a sua alma e o seu alicerce moral. Mulher sertaneja de presença marcante, fibra inabalável e amor visceral pela terra e pelos animais, Dona Ana Rita construiu, ao lado da família, uma trajetória que une coragem e sensibilidade.",
-          "Com sua garra e sabedoria diária no trato do campo, ela sempre esteve à frente de cada detalhe: desde o cuidado atento com as matrizes até a formação de um ambiente familiar onde integridade, honra e respeito pelo rebanho são valores sagrados.",
-          "O respeito conquistado por Dona Ana Rita atravessou fronteiras, tornando-se referência de liderança feminina no agronegócio e na criação de animais de alta linhagem no Brasil.",
-        ]}
-        photo={HISTORY_PHOTOS[4]} // ana-rita-filha-uniao
-        onOpenPhoto={setActivePhoto}
-      />
+      {/* ── SEÇÃO DA LINHA DO TEMPO CRONOLÓGICA (7 ETAPAS) ── */}
+      <section
+        style={{
+          padding: "clamp(3rem, 6vw, 5rem) 0",
+          borderBottom: "1px solid rgba(196, 169, 110, 0.16)",
+        }}
+      >
+        <div style={{ textAlign: "center", marginBottom: "clamp(3rem, 6vw, 4.5rem)" }}>
+          <span
+            style={{
+              fontFamily: "'Inter', sans-serif",
+              fontSize: "0.7rem",
+              fontWeight: 800,
+              letterSpacing: "0.25em",
+              textTransform: "uppercase",
+              color: "var(--gold)",
+              display: "block",
+              marginBottom: "0.6rem",
+            }}
+          >
+            CRONOLOGIA OFICIAL DA MARCA JAR
+          </span>
 
-      {/* ── SEÇÃO 2: A FUNDAÇÃO DO HARAS ── */}
-      <HistoryChapter
-        number="02"
-        tag="Origens & Conquistas"
-        title="Da Paraíba para o Brasil: O Nascimento do Haras"
-        paragraphs={[
-          "Com conhecimento adquirido em décadas de lida no semiárido nordestino, José e Ana Rita Tavares de Melo transformaram a vocação rural em referência nacional de pecuária de seleção.",
-          "Registros da grande imprensa dos anos 1970 documentam a aclamação da família: premiados em exposições agropecuárias em diversas capitais brasileiras com reprodutores de alta linhagem, o casal firmou o nome do Haras Nossa Senhora Aparecida como sinônimo de credibilidade zootécnica.",
-        ]}
-        photo={HISTORY_PHOTOS[0]} // jornal-paraiba
-        reverse
-        onOpenPhoto={setActivePhoto}
-      />
+          <h2
+            style={{
+              fontFamily: "'Inter', sans-serif",
+              fontSize: "clamp(1.9rem, 4vw, 3rem)",
+              fontWeight: 900,
+              color: "var(--off-white)",
+              textTransform: "uppercase",
+              letterSpacing: "-0.02em",
+              lineHeight: 1.15,
+              margin: "0 0 1rem 0",
+            }}
+          >
+            Linha do Tempo do Haras Nossa Senhora Aparecida
+          </h2>
 
-      {/* ── SEÇÃO 3: A MARCA JAR — ORIGEM E EVOLUÇÃO ── */}
-      <HistoryChapter
-        number="03"
-        tag="Símbolo & Rigor"
-        title="A Marca JAR: O Ferro que Assina a Excelência"
-        paragraphs={[
-          "A sigla JAR nasce do entrelaçamento dos nomes dos fundadores: José e Ana Rita. Mais do que um ferro gravado a fogo, transformou-se no selo de confiança de compradores de todo o país.",
-          "Ter a marca JAR em um lote é garantia de aprumos equilibrados, nobreza zootécnica e genética comprovada por gerações de seleção rigorosa.",
-        ]}
-        photo={HISTORY_PHOTOS[3]} // ana-rita-filha-chapeu
-        secondaryPhoto={HISTORY_PHOTOS[5]} // ana-rita-familia-jardim
-        onOpenPhoto={setActivePhoto}
-      />
+          <div
+            style={{
+              width: "56px",
+              height: "2px",
+              backgroundColor: "var(--gold)",
+              margin: "0 auto 1.25rem",
+            }}
+          />
 
-      {/* ── SEÇÃO 4: VENDA DE TOUROS E PROJEÇÃO INTERNACIONAL ── */}
-      <HistoryChapter
-        number="04"
-        tag="Fronteiras Superadas"
-        title="Projeção Internacional: Touros Guzerá para os EUA"
-        paragraphs={[
-          "O manejo manso e a conformação de ponta dos animais selecionados por Dona Ana Rita atraíram os olhares de criadores estrangeiros. Reprodutores de grande porte eram conduzidos com serenidade e respeito no pasto, refletindo um manejo pioneiro e ético.",
-          "Essa excelência culminou em negociações históricas e na exportação de reprodutores de elite para os Estados Unidos, levando a genética nordestina para o cenário agropecuário global.",
-        ]}
-        photo={HISTORY_PHOTOS[1]} // ana-rita-touro
-        reverse
-        onOpenPhoto={setActivePhoto}
-      />
+          <p
+            style={{
+              fontFamily: "'Inter', sans-serif",
+              fontSize: "clamp(0.92rem, 1.2vw, 1.05rem)",
+              color: "rgba(244, 239, 228, 0.78)",
+              maxWidth: "760px",
+              margin: "0 auto",
+              lineHeight: 1.7,
+            }}
+          >
+            Acompanhe as origens familiares, as decisões que estruturaram o criatório, os marcos comprovados da genética JAR e a continuidade do legado nos dias atuais.
+          </p>
+        </div>
 
-      {/* ── SEÇÃO 5: AS TROPAS DE ELITE DO HARAS ── */}
-      <HistoryChapter
-        number="05"
-        tag="Equinocultura de Elite"
-        title="A Tropa de Cavalos: Marcha, Nobreza & Bem-Estar"
-        paragraphs={[
-          "No haras, o cavalo sempre foi compreendido em sua essência: temperamento equilibrado, andamento cômodo e parceria leal com o cavaleiro. O treino e o convívio diário fundamentaram o conceito de manejo racional praticado na propriedade.",
-          "Hoje, essa tradição centenária se desdobra na plataforma Mundo dos Cavalos, nos projetos de equoterapia Bem Viver e nos leilões do Shopping JAR 2026.",
-        ]}
-        photo={HISTORY_PHOTOS[2]} // ana-rita-cavalo
-        onOpenPhoto={setActivePhoto}
-      />
+        {/* ESTRUTURA VERTICAL DA LINHA DO TEMPO */}
+        <div
+          style={{
+            maxWidth: "1080px",
+            margin: "0 auto",
+            position: "relative",
+          }}
+        >
+          {timelineStages.map((stage, idx) => (
+            <div
+              key={stage.number}
+              style={{
+                position: "relative",
+                paddingBottom: idx === timelineStages.length - 1 ? "1rem" : "clamp(3.5rem, 6vw, 5rem)",
+                paddingLeft: "clamp(2rem, 5vw, 3.75rem)",
+                borderLeft:
+                  idx === timelineStages.length - 1
+                    ? "2px solid transparent"
+                    : "2px solid rgba(196, 169, 110, 0.28)",
+              }}
+            >
+              {/* Marcador Circular Numerado no Eixo Vertical */}
+              <div
+                style={{
+                  position: "absolute",
+                  left: "-18px",
+                  top: "0",
+                  width: "34px",
+                  height: "34px",
+                  borderRadius: "50%",
+                  backgroundColor: "#16130f",
+                  border: "2px solid var(--gold)",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  boxShadow: "0 0 16px rgba(196, 169, 110, 0.4)",
+                  zIndex: 2,
+                }}
+              >
+                <span
+                  style={{
+                    fontFamily: "'Inter', sans-serif",
+                    fontSize: "0.75rem",
+                    fontWeight: 800,
+                    color: "var(--gold-light)",
+                  }}
+                >
+                  {stage.number}
+                </span>
+              </div>
 
-      {/* ── SEÇÃO 6: GALERIA COMPLETA DO ACERVO HISTÓRICO ── */}
+              {/* Card da Etapa */}
+              <div
+                style={{
+                  backgroundColor: "rgba(22, 20, 17, 0.88)",
+                  border: "1px solid rgba(196, 169, 110, 0.24)",
+                  borderRadius: "8px",
+                  padding: "clamp(1.5rem, 3.5vw, 2.5rem)",
+                  boxShadow: "0 12px 35px rgba(0, 0, 0, 0.45)",
+                  transition: "border-color 0.25s ease",
+                }}
+              >
+                {/* Cabeçalho da Etapa com Badges e Datas */}
+                <div
+                  style={{
+                    display: "flex",
+                    flexWrap: "wrap",
+                    alignItems: "center",
+                    justifyContent: "space-between",
+                    gap: "0.6rem",
+                    marginBottom: "1rem",
+                    paddingBottom: "0.75rem",
+                    borderBottom: "1px solid rgba(196, 169, 110, 0.14)",
+                  }}
+                >
+                  <span
+                    style={{
+                      fontFamily: "'Inter', sans-serif",
+                      fontSize: "0.68rem",
+                      fontWeight: 800,
+                      letterSpacing: "0.18em",
+                      textTransform: "uppercase",
+                      color: "var(--gold)",
+                    }}
+                  >
+                    ETAPA {stage.number} • {stage.stageBadge}
+                  </span>
+
+                  <span
+                    style={{
+                      fontFamily: "'Inter', sans-serif",
+                      fontSize: "0.72rem",
+                      fontWeight: 600,
+                      letterSpacing: "0.06em",
+                      color: "var(--gold-light)",
+                      backgroundColor: "rgba(196, 169, 110, 0.12)",
+                      border: "1px solid rgba(196, 169, 110, 0.25)",
+                      padding: "0.25rem 0.65rem",
+                      borderRadius: "3px",
+                    }}
+                  >
+                    {stage.periodOrStatus}
+                  </span>
+                </div>
+
+                {/* Grid de Conteúdo: Texto e Fotografia (quando disponível) */}
+                <div
+                  style={{
+                    display: "grid",
+                    gridTemplateColumns: stage.photo
+                      ? "repeat(auto-fit, minmax(min(100%, 340px), 1fr))"
+                      : "1fr",
+                    gap: "2rem",
+                    alignItems: "start",
+                  }}
+                >
+                  {/* Bloco de Texto Narrativo */}
+                  <div>
+                    <h3
+                      style={{
+                        fontFamily: "'Inter', sans-serif",
+                        fontSize: "clamp(1.35rem, 2.5vw, 1.85rem)",
+                        fontWeight: 800,
+                        color: "var(--off-white)",
+                        letterSpacing: "-0.015em",
+                        lineHeight: 1.22,
+                        margin: "0 0 0.5rem 0",
+                      }}
+                    >
+                      {stage.title}
+                    </h3>
+
+                    <p
+                      style={{
+                        fontFamily: "'Inter', sans-serif",
+                        fontSize: "0.88rem",
+                        color: "var(--gold-light)",
+                        fontWeight: 500,
+                        margin: "0 0 1.25rem 0",
+                        lineHeight: 1.5,
+                      }}
+                    >
+                      {stage.subtitle}
+                    </p>
+
+                    <div
+                      style={{
+                        display: "flex",
+                        flexDirection: "column",
+                        gap: "0.95rem",
+                        fontSize: "clamp(0.88rem, 1.1vw, 0.98rem)",
+                        color: "rgba(244, 239, 228, 0.84)",
+                        lineHeight: 1.78,
+                        fontWeight: 350,
+                      }}
+                    >
+                      {stage.paragraphs.map((p, pIdx) => (
+                        <p key={pIdx} style={{ margin: 0 }}>
+                          {p}
+                        </p>
+                      ))}
+                    </div>
+
+                    {/* Citação Histórica de Imprensa (Etapa 05) */}
+                    {stage.pressQuote && (
+                      <blockquote
+                        style={{
+                          borderLeft: "3px solid var(--gold)",
+                          paddingLeft: "1.1rem",
+                          margin: "1.35rem 0 0.5rem 0",
+                          backgroundColor: "rgba(196, 169, 110, 0.05)",
+                          padding: "0.85rem 1.1rem",
+                          borderRadius: "0 4px 4px 0",
+                        }}
+                      >
+                        <p
+                          style={{
+                            fontFamily: "'Inter', sans-serif",
+                            fontSize: "0.85rem",
+                            fontStyle: "italic",
+                            color: "var(--gold-light)",
+                            margin: 0,
+                            lineHeight: 1.6,
+                          }}
+                        >
+                          &ldquo;{stage.pressQuote}&rdquo;
+                        </p>
+                      </blockquote>
+                    )}
+
+                    {/* Tratamento Especial da Memória Familiar do Avô (Etapa 02) */}
+                    {stage.isMemoryToConfirm && (
+                      <div
+                        style={{
+                          marginTop: "1.35rem",
+                          padding: "1.1rem 1.25rem",
+                          backgroundColor: "rgba(196, 169, 110, 0.08)",
+                          border: "1px dashed rgba(196, 169, 110, 0.35)",
+                          borderRadius: "6px",
+                        }}
+                      >
+                        <span
+                          style={{
+                            fontFamily: "'Inter', sans-serif",
+                            fontSize: "0.68rem",
+                            fontWeight: 800,
+                            letterSpacing: "0.15em",
+                            textTransform: "uppercase",
+                            color: "var(--gold)",
+                            display: "block",
+                            marginBottom: "0.35rem",
+                          }}
+                        >
+                          REGISTRO DA TRADIÇÃO ORAL DA FAMÍLIA
+                        </span>
+                        <p
+                          style={{
+                            fontFamily: "'Inter', sans-serif",
+                            fontSize: "0.82rem",
+                            color: "rgba(244, 239, 228, 0.78)",
+                            lineHeight: 1.6,
+                            margin: 0,
+                          }}
+                        >
+                          Esta passagem é mantida como memória afetiva da trajetória dos fundadores. Detalhes documentais como ano exato, genealogia e local de origem da égua permanecem em aberto para inclusão posterior à medida que forem confirmados pelo acervo histórico da família.
+                        </p>
+                      </div>
+                    )}
+
+                    {/* Destaque dos 3 Pilares Atuais (Etapa 07) */}
+                    {stage.isCurrentStage && (
+                      <div
+                        style={{
+                          marginTop: "1.5rem",
+                          display: "grid",
+                          gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))",
+                          gap: "0.85rem",
+                        }}
+                      >
+                        <div
+                          style={{
+                            backgroundColor: "rgba(13, 12, 10, 0.7)",
+                            border: "1px solid rgba(196, 169, 110, 0.2)",
+                            borderRadius: "4px",
+                            padding: "0.85rem 1rem",
+                          }}
+                        >
+                          <span
+                            style={{
+                              fontFamily: "'Inter', sans-serif",
+                              fontSize: "0.75rem",
+                              fontWeight: 800,
+                              color: "var(--gold-light)",
+                              display: "block",
+                              marginBottom: "0.2rem",
+                            }}
+                          >
+                            Criação Equina & Genética JAR
+                          </span>
+                          <span style={{ fontSize: "0.72rem", color: "rgba(244, 239, 228, 0.7)", display: "block" }}>
+                            Preservação das linhagens de marcha, morfologia e aprumos fortes.
+                          </span>
+                        </div>
+
+                        <div
+                          style={{
+                            backgroundColor: "rgba(13, 12, 10, 0.7)",
+                            border: "1px solid rgba(196, 169, 110, 0.2)",
+                            borderRadius: "4px",
+                            padding: "0.85rem 1rem",
+                          }}
+                        >
+                          <span
+                            style={{
+                              fontFamily: "'Inter', sans-serif",
+                              fontSize: "0.75rem",
+                              fontWeight: 800,
+                              color: "var(--gold-light)",
+                              display: "block",
+                              marginBottom: "0.2rem",
+                            }}
+                          >
+                            Capacitação de Tratadores
+                          </span>
+                          <span style={{ fontSize: "0.72rem", color: "rgba(244, 239, 228, 0.7)", display: "block" }}>
+                            Treinamento técnico e manejo com vivência prática no Haras.
+                          </span>
+                        </div>
+
+                        <div
+                          style={{
+                            backgroundColor: "rgba(13, 12, 10, 0.7)",
+                            border: "1px solid rgba(196, 169, 110, 0.2)",
+                            borderRadius: "4px",
+                            padding: "0.85rem 1rem",
+                          }}
+                        >
+                          <span
+                            style={{
+                              fontFamily: "'Inter', sans-serif",
+                              fontSize: "0.75rem",
+                              fontWeight: 800,
+                              color: "var(--gold-light)",
+                              display: "block",
+                              marginBottom: "0.2rem",
+                            }}
+                          >
+                            Projeto Social Bem Viver
+                          </span>
+                          <span style={{ fontSize: "0.72rem", color: "rgba(244, 239, 228, 0.7)", display: "block" }}>
+                            Equoterapia, cuidado humano e responsabilidade social contínua.
+                          </span>
+                        </div>
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Bloco de Fotografia Histórica Original (quando associada à etapa) */}
+                  {stage.photo && (
+                    <div>
+                      <div
+                        onClick={() => stage.photo && setActivePhoto(stage.photo)}
+                        role="button"
+                        tabIndex={0}
+                        onKeyDown={(e) => {
+                          if (e.key === "Enter" || e.key === " ") {
+                            e.preventDefault();
+                            stage.photo && setActivePhoto(stage.photo);
+                          }
+                        }}
+                        style={{
+                          position: "relative",
+                          cursor: "pointer",
+                          borderRadius: "6px",
+                          padding: "8px",
+                          backgroundColor: "rgba(13, 12, 10, 0.8)",
+                          border: "1px solid rgba(196, 169, 110, 0.3)",
+                          boxShadow: "0 14px 35px rgba(0, 0, 0, 0.6)",
+                          transition: "all 0.25s ease",
+                        }}
+                      >
+                        <div
+                          style={{
+                            position: "relative",
+                            width: "100%",
+                            aspectRatio: stage.photo.aspectRatio || "4/3",
+                            overflow: "hidden",
+                            borderRadius: "4px",
+                            backgroundColor: "#0d0c0a",
+                          }}
+                        >
+                          <Image
+                            src={stage.photo.src}
+                            alt={stage.photo.alt}
+                            fill
+                            sizes="(max-width: 768px) 100vw, 480px"
+                            style={{
+                              objectFit: "cover",
+                              objectPosition: stage.photo.objectPosition || "center center",
+                            }}
+                          />
+
+                          {/* Tag sobre a foto */}
+                          <div
+                            style={{
+                              position: "absolute",
+                              top: "0.75rem",
+                              left: "0.75rem",
+                              backgroundColor: "rgba(13, 12, 10, 0.85)",
+                              backdropFilter: "blur(6px)",
+                              border: "1px solid rgba(196, 169, 110, 0.4)",
+                              padding: "0.25rem 0.55rem",
+                              borderRadius: "3px",
+                            }}
+                          >
+                            <span
+                              style={{
+                                fontFamily: "'Inter', sans-serif",
+                                fontSize: "0.62rem",
+                                fontWeight: 700,
+                                letterSpacing: "0.12em",
+                                color: "var(--gold-light)",
+                                textTransform: "uppercase",
+                              }}
+                            >
+                              {stage.photo.tag}
+                            </span>
+                          </div>
+
+                          {/* Botão de Ampliar */}
+                          <div
+                            style={{
+                              position: "absolute",
+                              bottom: "0.75rem",
+                              right: "0.75rem",
+                              backgroundColor: "rgba(13, 12, 10, 0.85)",
+                              backdropFilter: "blur(6px)",
+                              border: "1px solid rgba(196, 169, 110, 0.35)",
+                              padding: "0.3rem 0.65rem",
+                              borderRadius: "3px",
+                              color: "var(--off-white)",
+                              fontSize: "0.65rem",
+                              fontFamily: "'Inter', sans-serif",
+                              fontWeight: 600,
+                            }}
+                          >
+                            <span>Ampliar Foto</span>
+                          </div>
+                        </div>
+
+                        {/* Legenda sob a foto */}
+                        <div style={{ padding: "0.75rem 0.35rem 0.25rem" }}>
+                          <h4
+                            style={{
+                              fontFamily: "'Inter', sans-serif",
+                              fontSize: "0.85rem",
+                              fontWeight: 700,
+                              color: "var(--off-white)",
+                              margin: "0 0 0.25rem 0",
+                            }}
+                          >
+                            {stage.photo.title}
+                          </h4>
+                          <p
+                            style={{
+                              fontFamily: "'Inter', sans-serif",
+                              fontSize: "0.75rem",
+                              color: "rgba(244, 239, 228, 0.72)",
+                              lineHeight: 1.5,
+                              margin: 0,
+                            }}
+                          >
+                            {stage.photo.caption}
+                          </p>
+                        </div>
+                      </div>
+
+                      {/* Foto Secundária (Etapa 06 — Tropas de Elite) */}
+                      {stage.secondaryPhoto && (
+                        <div
+                          onClick={() => stage.secondaryPhoto && setActivePhoto(stage.secondaryPhoto)}
+                          role="button"
+                          tabIndex={0}
+                          onKeyDown={(e) => {
+                            if (e.key === "Enter" || e.key === " ") {
+                              e.preventDefault();
+                              stage.secondaryPhoto && setActivePhoto(stage.secondaryPhoto);
+                            }
+                          }}
+                          style={{
+                            marginTop: "1rem",
+                            cursor: "pointer",
+                            padding: "8px 12px",
+                            backgroundColor: "rgba(13, 12, 10, 0.65)",
+                            border: "1px solid rgba(196, 169, 110, 0.2)",
+                            borderRadius: "4px",
+                            display: "flex",
+                            alignItems: "center",
+                            gap: "0.75rem",
+                            transition: "all 0.2s ease",
+                          }}
+                        >
+                          <div
+                            style={{
+                              position: "relative",
+                              width: "48px",
+                              height: "48px",
+                              borderRadius: "3px",
+                              overflow: "hidden",
+                              flexShrink: 0,
+                            }}
+                          >
+                            <Image
+                              src={stage.secondaryPhoto.src}
+                              alt={stage.secondaryPhoto.alt}
+                              fill
+                              sizes="48px"
+                              style={{ objectFit: "cover" }}
+                            />
+                          </div>
+                          <div style={{ flex: 1, minWidth: 0 }}>
+                            <span
+                              style={{
+                                fontFamily: "'Inter', sans-serif",
+                                fontSize: "0.62rem",
+                                fontWeight: 700,
+                                color: "var(--gold)",
+                                letterSpacing: "0.1em",
+                                textTransform: "uppercase",
+                                display: "block",
+                              }}
+                            >
+                              Foto Complementar do Acervo
+                            </span>
+                            <span
+                              style={{
+                                fontFamily: "'Inter', sans-serif",
+                                fontSize: "0.78rem",
+                                color: "var(--off-white)",
+                                fontWeight: 600,
+                                display: "block",
+                                whiteSpace: "nowrap",
+                                overflow: "hidden",
+                                textOverflow: "ellipsis",
+                              }}
+                            >
+                              {stage.secondaryPhoto.title}
+                            </span>
+                          </div>
+                          <span style={{ fontSize: "0.75rem", color: "var(--gold-light)" }}>Ver →</span>
+                        </div>
+                      )}
+                    </div>
+                  )}
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* ── GALERIA COMPLETA DO ACERVO HISTÓRICO ORIGINAL ── */}
       <section
         style={{
           padding: "clamp(3.5rem, 6.5vw, 6rem) 0",
@@ -740,7 +934,7 @@ export default function HistoryInteractiveView() {
               lineHeight: 1.7,
             }}
           >
-            Todas as fotos originais que documentam a caminhada de Dona Ana Rita Tavares de Melo, a fundação familiar e os marcos que eternizaram o Haras Nossa Senhora Aparecida. Clique em qualquer imagem para abrir em alta resolução.
+            Todas as fotos originais que documentam a caminhada de José e Ana Rita Tavares de Melo, a fundação familiar e os marcos que eternizaram o Haras Nossa Senhora Aparecida. Clique em qualquer imagem para abrir em alta resolução.
           </p>
 
           {/* BOTÕES DE FILTRO */}
@@ -802,7 +996,7 @@ export default function HistoryInteractiveView() {
             gap: "1.75rem",
           }}
         >
-          {filteredPhotos.map((item, index) => (
+          {filteredPhotos.map((item) => (
             <div
               key={item.id}
               onClick={() => setActivePhoto(item)}
@@ -824,16 +1018,6 @@ export default function HistoryInteractiveView() {
                 flexDirection: "column",
                 transition: "all 0.28s ease",
                 boxShadow: "0 10px 25px rgba(0, 0, 0, 0.5)",
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.transform = "translateY(-5px)";
-                e.currentTarget.style.borderColor = "var(--gold)";
-                e.currentTarget.style.boxShadow = "0 16px 35px rgba(196, 169, 110, 0.22)";
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.transform = "translateY(0)";
-                e.currentTarget.style.borderColor = "rgba(196, 169, 110, 0.22)";
-                e.currentTarget.style.boxShadow = "0 10px 25px rgba(0, 0, 0, 0.5)";
               }}
             >
               <div
@@ -860,84 +1044,69 @@ export default function HistoryInteractiveView() {
                 <div
                   style={{
                     position: "absolute",
-                    top: "0.6rem",
-                    left: "0.6rem",
-                    backgroundColor: "rgba(13, 12, 10, 0.82)",
-                    backdropFilter: "blur(4px)",
-                    border: "1px solid rgba(196, 169, 110, 0.4)",
-                    padding: "0.2rem 0.55rem",
-                    borderRadius: "3px",
-                    fontFamily: "'Inter', sans-serif",
-                    fontSize: "0.58rem",
-                    fontWeight: 700,
-                    letterSpacing: "0.14em",
-                    color: "var(--gold-light)",
-                    textTransform: "uppercase",
+                    top: "0.65rem",
+                    left: "0.65rem",
+                    backgroundColor: "rgba(13, 12, 10, 0.8)",
+                    border: "1px solid rgba(196, 169, 110, 0.35)",
+                    padding: "0.2rem 0.5rem",
+                    borderRadius: "2px",
                   }}
                 >
-                  Foto #{index + 1}
+                  <span
+                    style={{
+                      fontFamily: "'Inter', sans-serif",
+                      fontSize: "0.58rem",
+                      fontWeight: 700,
+                      letterSpacing: "0.12em",
+                      color: "var(--gold-light)",
+                      textTransform: "uppercase",
+                    }}
+                  >
+                    {item.tag}
+                  </span>
                 </div>
               </div>
 
-              <div style={{ padding: "0.9rem 0.4rem 0.4rem", flex: 1, display: "flex", flexDirection: "column" }}>
-                <span
-                  style={{
-                    fontFamily: "'Inter', sans-serif",
-                    fontSize: "0.62rem",
-                    fontWeight: 700,
-                    letterSpacing: "0.14em",
-                    color: "var(--gold-light)",
-                    textTransform: "uppercase",
-                    marginBottom: "0.25rem",
-                  }}
-                >
-                  {item.tag}
-                </span>
-
-                <h3
-                  style={{
-                    fontFamily: "'Inter', sans-serif",
-                    fontSize: "0.92rem",
-                    fontWeight: 700,
-                    color: "var(--off-white)",
-                    marginBottom: "0.4rem",
-                    lineHeight: 1.3,
-                  }}
-                >
-                  {item.title}
-                </h3>
-
-                <p
-                  style={{
-                    fontFamily: "'Inter', sans-serif",
-                    fontSize: "0.75rem",
-                    color: "rgba(244, 239, 228, 0.65)",
-                    lineHeight: 1.5,
-                    margin: "0 0 0.8rem 0",
-                    display: "-webkit-box",
-                    WebkitLineClamp: 3,
-                    WebkitBoxOrient: "vertical",
-                    overflow: "hidden",
-                    flex: 1,
-                  }}
-                >
-                  {item.caption}
-                </p>
-
+              <div style={{ padding: "0.85rem 0.25rem 0.25rem", flex: 1, display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
+                <div>
+                  <h4
+                    style={{
+                      fontFamily: "'Inter', sans-serif",
+                      fontSize: "0.88rem",
+                      fontWeight: 700,
+                      color: "var(--off-white)",
+                      margin: "0 0 0.35rem 0",
+                    }}
+                  >
+                    {item.title}
+                  </h4>
+                  <p
+                    style={{
+                      fontFamily: "'Inter', sans-serif",
+                      fontSize: "0.75rem",
+                      color: "rgba(244, 239, 228, 0.72)",
+                      lineHeight: 1.5,
+                      margin: 0,
+                    }}
+                  >
+                    {item.caption}
+                  </p>
+                </div>
                 <div
                   style={{
-                    paddingTop: "0.6rem",
-                    borderTop: "1px dashed rgba(196, 169, 110, 0.18)",
+                    marginTop: "0.75rem",
+                    paddingTop: "0.5rem",
+                    borderTop: "1px dashed rgba(196, 169, 110, 0.15)",
                     display: "flex",
                     justifyContent: "space-between",
                     alignItems: "center",
                     fontSize: "0.68rem",
-                    color: "var(--gold)",
+                    color: "var(--gold-light)",
                     fontWeight: 600,
                   }}
                 >
-                  <span>Ver em Alta Resolução</span>
-                  <span aria-hidden="true">→</span>
+                  <span>Acervo Original</span>
+                  <span>Ver em Alta Resolução →</span>
                 </div>
               </div>
             </div>
@@ -945,7 +1114,7 @@ export default function HistoryInteractiveView() {
         </div>
       </section>
 
-      {/* ── MODAL / LIGHTBOX DE IMAGEM AMPLIADA ── */}
+      {/* ── MODAL DE ZOOM / LIGHTBOX ── */}
       {activePhoto && (
         <div
           role="dialog"
@@ -956,8 +1125,8 @@ export default function HistoryInteractiveView() {
             position: "fixed",
             inset: 0,
             zIndex: 9999,
-            backgroundColor: "rgba(0, 0, 0, 0.92)",
-            backdropFilter: "blur(10px)",
+            backgroundColor: "rgba(7, 6, 5, 0.93)",
+            backdropFilter: "blur(12px)",
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
@@ -970,17 +1139,14 @@ export default function HistoryInteractiveView() {
               position: "relative",
               maxWidth: "1000px",
               width: "100%",
-              maxHeight: "92vh",
-              display: "flex",
-              flexDirection: "column",
-              backgroundColor: "#14120f",
-              borderRadius: "8px",
+              backgroundColor: "rgba(20, 18, 15, 0.98)",
               border: "1px solid rgba(196, 169, 110, 0.4)",
-              boxShadow: "0 25px 70px rgba(0, 0, 0, 0.9), 0 0 50px rgba(196, 169, 110, 0.15)",
+              borderRadius: "8px",
               overflow: "hidden",
+              boxShadow: "0 25px 70px rgba(0, 0, 0, 0.9)",
             }}
           >
-            {/* Top Bar do Modal */}
+            {/* Topo do Modal */}
             <div
               style={{
                 display: "flex",
@@ -988,7 +1154,7 @@ export default function HistoryInteractiveView() {
                 alignItems: "center",
                 padding: "1rem 1.5rem",
                 borderBottom: "1px solid rgba(196, 169, 110, 0.2)",
-                backgroundColor: "rgba(22, 20, 17, 0.95)",
+                backgroundColor: "rgba(13, 12, 10, 0.9)",
               }}
             >
               <div>
@@ -996,7 +1162,7 @@ export default function HistoryInteractiveView() {
                   style={{
                     fontFamily: "'Inter', sans-serif",
                     fontSize: "0.65rem",
-                    fontWeight: 700,
+                    fontWeight: 800,
                     letterSpacing: "0.18em",
                     color: "var(--gold)",
                     textTransform: "uppercase",
@@ -1035,14 +1201,6 @@ export default function HistoryInteractiveView() {
                   justifyContent: "center",
                   fontSize: "1.1rem",
                   transition: "all 0.2s ease",
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.backgroundColor = "var(--gold)";
-                  e.currentTarget.style.color = "#000";
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.backgroundColor = "rgba(196, 169, 110, 0.12)";
-                  e.currentTarget.style.color = "var(--off-white)";
                 }}
               >
                 ✕

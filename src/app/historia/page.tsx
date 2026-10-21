@@ -102,191 +102,12 @@ export default function HistoriaPage() {
               margin: 0,
             }}
           >
-            Uma caminhada forjada na dedicação à terra, no respeito aos animais e na evolução contínua da genética JAR por José e Dona Ana Rita Tavares de Melo. Conheça as origens, os momentos decisivos e o acervo fotográfico original que eterniza a nossa criação.
+            Uma caminhada forjada na dedicação à terra, no respeito aos animais e na evolução contínua da genética JAR por José e Ana Rita Tavares de Melo. Conheça as origens, os momentos decisivos e o acervo fotográfico original que eterniza a nossa criação.
           </p>
         </header>
 
-        {/* ── CAPÍTULOS HISTÓRICOS & GALERIA COM FOTOS REAIS ── */}
+        {/* ── LINHA DO TEMPO CRONOLÓGICA (7 ETAPAS) & ACERVO HISTÓRICO ORIGINAL ── */}
         <HistoryInteractiveView />
-
-        {/* ── LINHA DO TEMPO & MARCOS HISTÓRICOS ── */}
-        <section
-          style={{
-            padding: "clamp(3.5rem, 6vw, 5.5rem) 0",
-            borderBottom: "1px solid rgba(196, 169, 110, 0.16)",
-          }}
-        >
-          <div style={{ textAlign: "center", marginBottom: "3.5rem" }}>
-            <span
-              style={{
-                fontFamily: "'Inter', sans-serif",
-                fontSize: "0.68rem",
-                fontWeight: 700,
-                letterSpacing: "0.25em",
-                textTransform: "uppercase",
-                color: "var(--gold-light)",
-                display: "block",
-                marginBottom: "0.5rem",
-              }}
-            >
-              Marcos da Jornada JAR
-            </span>
-            <h2
-              style={{
-                fontFamily: "'Inter', sans-serif",
-                fontSize: "clamp(1.75rem, 3.5vw, 2.6rem)",
-                fontWeight: 800,
-                color: "var(--off-white)",
-                textTransform: "uppercase",
-                letterSpacing: "-0.02em",
-                margin: 0,
-              }}
-            >
-              Linha do Tempo & Conquistas
-            </h2>
-          </div>
-
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
-              gap: "1.75rem",
-            }}
-          >
-            {[
-              {
-                period: "Anos 1970",
-                badge: "Fundação & Fé",
-                title: "Raízes Paraibanas",
-                desc: "Chegada com a devoção a Nossa Senhora Aparecida e os primeiros cruzamentos zootécnicos no semiárido nordestino.",
-                icon: "🌿",
-              },
-              {
-                period: "Anos 1980 – 1990",
-                badge: "Consagração Nacional",
-                title: "Grandes Pistas & Premiações",
-                desc: "A consagração nas maiores feiras do Brasil e registro da marca JAR como padrão de excelência genética.",
-                icon: "🏆",
-              },
-              {
-                period: "Anos 2000+",
-                badge: "Internacional",
-                title: "Exportação & Seleção Zebuína",
-                desc: "Venda histórica de touros Guzerá para criadores dos EUA e consolidação de tropas de marcha de elite.",
-                icon: "🌎",
-              },
-              {
-                period: "Presente & Futuro",
-                badge: "Legado Vivo",
-                title: "Mundo dos Cavalos & Equoterapia",
-                desc: "Expansão para capacitação técnica, projeto social de equoterapia Bem Viver e a vitrine do Shopping JAR.",
-                icon: "✨",
-              },
-            ].map((milestone, idx) => (
-              <div
-                key={idx}
-                style={{
-                  backgroundColor: "rgba(22, 20, 17, 0.85)",
-                  border: "1px solid rgba(196, 169, 110, 0.22)",
-                  borderRadius: "6px",
-                  padding: "1.85rem",
-                  display: "flex",
-                  flexDirection: "column",
-                  justifyContent: "space-between",
-                  position: "relative",
-                  transition: "all 0.28s ease",
-                }}
-              >
-                <div>
-                  <div
-                    style={{
-                      display: "flex",
-                      justifyContent: "space-between",
-                      alignItems: "center",
-                      marginBottom: "1rem",
-                    }}
-                  >
-                    <span
-                      style={{
-                        fontFamily: "'Inter', sans-serif",
-                        fontSize: "0.75rem",
-                        fontWeight: 800,
-                        letterSpacing: "0.1em",
-                        color: "var(--gold)",
-                      }}
-                    >
-                      {milestone.period}
-                    </span>
-                    <span
-                      style={{
-                        fontSize: "1.2rem",
-                      }}
-                      aria-hidden="true"
-                    >
-                      {milestone.icon}
-                    </span>
-                  </div>
-
-                  <span
-                    style={{
-                      display: "inline-block",
-                      fontSize: "0.62rem",
-                      fontWeight: 700,
-                      letterSpacing: "0.14em",
-                      textTransform: "uppercase",
-                      color: "var(--gold-light)",
-                      backgroundColor: "rgba(196, 169, 110, 0.12)",
-                      padding: "0.25rem 0.6rem",
-                      borderRadius: "2px",
-                      marginBottom: "0.75rem",
-                    }}
-                  >
-                    {milestone.badge}
-                  </span>
-
-                  <h3
-                    style={{
-                      fontFamily: "'Inter', sans-serif",
-                      fontSize: "1.1rem",
-                      fontWeight: 700,
-                      color: "var(--off-white)",
-                      marginBottom: "0.65rem",
-                    }}
-                  >
-                    {milestone.title}
-                  </h3>
-
-                  <p
-                    style={{
-                      fontFamily: "'Inter', sans-serif",
-                      fontSize: "0.85rem",
-                      color: "rgba(244, 239, 228, 0.75)",
-                      lineHeight: 1.65,
-                      margin: 0,
-                    }}
-                  >
-                    {milestone.desc}
-                  </p>
-                </div>
-
-                <div
-                  style={{
-                    marginTop: "1.5rem",
-                    paddingTop: "0.85rem",
-                    borderTop: "1px dashed rgba(196, 169, 110, 0.15)",
-                    fontSize: "0.68rem",
-                    color: "rgba(196, 169, 110, 0.75)",
-                    letterSpacing: "0.08em",
-                    textTransform: "uppercase",
-                    fontWeight: 600,
-                  }}
-                >
-                  Pilar Histórico Verificado
-                </div>
-              </div>
-            ))}
-          </div>
-        </section>
 
         {/* ── PROPÓSITO & VALORES FUNDAMENTAIS ── */}
         <section
@@ -345,7 +166,7 @@ export default function HistoriaPage() {
                   margin: 0,
                 }}
               >
-                Da simplicidade das pastagens à alta performance, mantemos a mesma essência herdada de Dona Ana Rita: amor pelos animais, verdade em cada negociação e compromisso absoluto com o futuro da equinocultura.
+                Da simplicidade das pastagens à alta performance, mantemos a mesma essência de José e Ana Rita Tavares de Melo: amor pelos animais, verdade em cada negociação e compromisso absoluto com o futuro da equinocultura.
               </p>
             </div>
 
